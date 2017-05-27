@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Animating with CSS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 2. Animating with CSS" class="praise">
+<div class="praise" id="animating_with_css">
+<div data-type="note" epub:type="note" class="calibre19">
+<h1 class="calibre27" id="calibre_pb_1">Keyframe Syntax Hint</h1>
+
+<p class="author1">You can also define <code class="calibre15">from</code> and <code class="calibre15">to</code> instead of percentages. If you declare nothing in either the initial keyframe or the ending keyframe, the animation will use the default or declared properties on the element. It may be worth double-checking your work in all browsers if you do remove them, though, due to strange and inconsistent browser bugs.</p>
+</div>
+
+<p class="author1">After <a contenteditable="false" data-primary="CSS animations" data-secondary="syntax declarations" data-type="indexterm" id="cssa2sd" class="calibre7"></a>you define the keyframe values, you have two options for animation syntax declaration. Here’s an example of the long form, with each declaration defined separately:</p>
+
+<pre data-type="programlisting" class="calibre24">
+.ball {
+  animation-name: animation-name-you-pick;
+  animation-duration: 2s;
+  animation-delay: 2s;
+  animation-iteration-count: 3;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}</pre>
+
+<p class="author1">And here’s the shorthand (my preferred method, as it uses less code):</p>
+
+<pre data-type="programlisting" class="calibre24">
+.ball {
+  animation: animation-name-you-pick 2s 2s 3 alternate ease-in-out forwards;
+}
+</pre>
+
+<p class="author1">The order of the declarations is interchangeable in a space-separated list, except for the number values, which must be defined in this order: duration, delay, and iteration count.</p>
+
+<p class="author1">Let’s apply this animation to this very simple <code class="calibre15">.ball</code> div (shown in <a data-type="xref" href="part0007_split_001.html#fig2.1" class="calibre7">Figure 2-1</a>):</p>
+
+<pre data-type="programlisting" class="calibre24">
+.ball {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 20px; // so that it's not hitting the edge of the page
+  background: black;
+}
+</pre>
+
+<figure class="calibre25"><div id="fig2.1" class="figure"><img alt="" class="iimagesimage11png" src="../images/00017.gif"/>
+<h6 class="calibre26"><span class="keep-together">Figure 2-1. </span>The result of applying .ball div</h6>
+</div></figure>
+
+<p class="author1">We get the result in <a data-type="xref" href="part0007_split_001.html#fig2.2" class="calibre7">Figure 2-2</a>, with interstitial states shown less opaque.</p>
+
+<figure class="calibre25"><div id="fig2.2" class="figure"><img alt="" class="iimagesimage11png" src="../images/00018.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 2-2. </span>The result of adjusting the ball div</h6>
+</div></figure>
+
+<p class="author1">You can see all the code in action in <a href="http://bit.ly/2lSB8KZ" class="calibre7">a demo I created</a>.</p>
+
+<p class="author1">For more information and further detail about each animation property, such as what <code class="calibre15">animation-fill-mode</code> is, what eases are available in CSS, and which properties are animatable, see <a class="calibre7" href="http://shop.oreilly.com/product/0636920041658.do"><em class="calibre2">Transitions and Animations in CSS</em></a> by Estelle Weyl (O’Reilly).</p>
+
+<p class="author1">You can also <a contenteditable="false" data-primary="CSS animations" data-secondary="syntax declarations" data-startref="cssa2sd" data-type="indexterm" id="idm140658633963888" class="calibre7"></a>consult <em class="calibre2">Pro CSS3 Animation</em>, by Dudley Storey (Apress).</p>
+
+</div></section></body></html>

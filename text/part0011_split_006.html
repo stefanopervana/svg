@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Animating Data Visualizations</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 6. Animating Data Visualizations" class="praise">
+<div class="praise" id="animating_data_viz">
+<section data-type="sect1" data-pdf-bookmark="Animating with D3" class="praise">
+<div class="praise" id="idm140658633308208">
+<div data-type="warning" epub:type="warning" class="calibre21">
+<h1 class="calibre28" id="calibre_pb_6">Animating Different Path Point Amounts</h1>
+
+<p class="author1">Even though D3 is <a contenteditable="false" data-primary="D3 animation" data-secondary="animating different path point amounts" data-type="indexterm" id="idm140658633250512" class="calibre7"></a>flexible (in that it allows for most things that SVG is capable of), SVG is pretty finicky about animating between different path values, and D3 inherits that quirk. If our second dataset had a different length than the first, we’d find the transition effect to be unwieldy, ugly, or just fail entirely. That’s why  GreenSock’s MorphSVG is extremely handy, and would work for this as well. (See <a data-type="xref" href="part0015_split_000.html#ch10" class="calibre7">Chapter 10</a> for more details.)</p>
+
+<p class="author1"><a href="https://github.com/pbeshai/d3-interpolate-path" class="calibre7">d3-interpolate-path</a> is <a contenteditable="false" data-primary="d3-interpolate-path" data-type="indexterm" id="idm140658633247328" class="calibre7"></a>a library built outside of D3 that allows for graceful path animations. There’s a nice <a href="http://bit.ly/2lSOMOz" class="calibre7">blog post</a> about it as well.</p>
+</div>
+
+<p class="author1">Staggers are <a contenteditable="false" data-primary="staggers" data-type="indexterm" id="idm140658633245664" class="calibre7"></a>pretty easy in D3, and share some similarities with CSS in that you calculate a new delay for each element. If you’re familiar with <code class="calibre15">for</code> loops in JavaScript, this implementation will likely look familiar to you:</p>
+
+<pre data-type="programlisting" class="calibre24">
+transition.delay(function(d, i) { return i * 10; });</pre>
+
+<p class="author1">If we were to use this in a color interpolation, it would look something like this (we’ll update the last code sample to a scatterplot so that the colors are easier to see):</p>
+
+<pre data-type="programlisting" class="calibre24">
+var dataset = [ 5, 17, 15, 13, 25, 30, 15, 17, 35, 10, 25, 15],
+    w = 300,
+    h = 300;
+
+// create svg
+var svg = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+// create shapes in svg with data
+svg.selectAll("circle")
+   .data(dataset)
+   .enter()
+   .append("circle")
+   .attr("class", "circles")
+   .attr("cx", function(d, i) {
+    return 10 + (i * 22)
+    })
+   .attr("cy", function(d) {
+     return 200 - (d * 5)
+   })
+   .attr("r", function(d) {
+     return (d / 2)
+   })
+  .transition()
+    .style("fill", "teal")
+    .duration(1500)
+    .delay(function(d, i) { return i * 100; });
+</pre>
+
+<p class="author1">Be sure to check out <a href="http://bit.ly/2fpuPe3" class="calibre7">the CodePen example</a> of this as well.</p>
+
+</div></section>
+</div></section></body></html>

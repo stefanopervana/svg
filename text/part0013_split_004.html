@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Animating with GreenSock</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 8. Animating with GreenSock" class="praise">
+<div class="praise" id="ch08">
+<section data-type="sect1" data-pdf-bookmark="Basic GreenSock Syntax" class="praise">
+<div class="praise" id="idm140658632991248">
+<section data-type="sect2" data-pdf-bookmark="Staggering" class="praise"><div class="praise" id="staggering">
+<h2 class="pagebreak-before" id="calibre_pb_4">Staggering</h2>
+
+<p class="author1">We <a contenteditable="false" data-primary="staggers" data-type="indexterm" id="s8" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="staggering" data-type="indexterm" id="gsap8s" class="calibre7"></a>can also <a contenteditable="false" data-primary=".staggerFromTo" data-primary-sortas="staggerFromTo" data-type="indexterm" id="idm140658632952544" class="calibre7"></a><a contenteditable="false" data-primary=".staggerFrom" data-primary-sortas="staggerFrom" data-type="indexterm" id="idm140658632951024" class="calibre7"></a><a contenteditable="false" data-primary=".staggerTo" data-primary-sortas="staggerTo" data-type="indexterm" id="idm140658632949568" class="calibre7"></a>use <code class="calibre15">.staggerTo</code>, <code class="calibre15">.staggerFrom</code>, or <code class="calibre15">.staggerFromTo</code>. These will take the same animation and repeat it in a kind of cascade, applied to a group of objects that you designate. With SVG I find it helpful to place the items in a group together and add a class to the group to achieve this.  For example, in this code, the animation will be applied to all circles inside the group with the class <code class="calibre15">.element</code>:</p>
+
+<pre data-type="programlisting" class="calibre44">
+TweenMax<span class="keep-together">.stagge</span><span class="keep-together">rTo</span>(".element circle", 2, {
+  x: 100
+}, <span class="keep-together">0.1</span>);
+</pre>
+
+<p class="author1">This code  snippet shows what we’ve changed: we’re using <code class="calibre15">.staggerTo</code> instead of <code class="calibre15">.to</code> and have added an extra parameter at the end of the statement: <code class="calibre15">0.1</code>. <em class="calibre2">This controls the time between each of the staggers.</em> We’re also now targeting all of the circles in a group with a class of <code class="calibre15">.element</code>. The output will look something like <a data-type="xref" href="part0013_split_004.html#fig8.2" class="calibre7">Figure 8-2</a>.</p>
+
+<figure class="calibre25"><div id="fig8.2" class="figure"><img alt="" class="iimagesimage11png" src="../images/00058.gif"/>
+<h6 class="calibre26"><span class="keep-together">Figure 8-2. </span>The balls are all animating with the same values, but staggered in timing, one after another</h6>
+</div></figure>
+
+</div></section>
+
+</div></section>
+</div></section></body></html>

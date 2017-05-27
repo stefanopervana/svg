@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Animating Data Visualizations</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 6. Animating Data Visualizations" class="praise">
+<div class="praise" id="animating_data_viz">
+<section data-type="sect1" data-pdf-bookmark="Animating with D3" class="praise"><div class="praise" id="idm140658633308208">
+<h1 class="calibre12" id="calibre_pb_5">Animating with D3</h1>
+
+<p class="author1">In <a contenteditable="false" data-primary="D3 animation" data-secondary="instead of CSS" data-type="indexterm" id="d3a6iocss" class="calibre7"></a>this section we’ll go over the simplest possible example of how to animate with D3 instead of CSS. We’ll use version 4 for these examples (there are breaking changes between versions 3 and 4, so version 3 of the library will not work with this example).</p>
+
+<p class="author1">If you recall from <a data-type="xref" href="part0006_split_000.html#anatomy_of_an_svg" class="calibre7">Chapter 1</a> that a <a contenteditable="false" data-primary="polyline" data-type="indexterm" id="idm140658633261520" class="calibre7"></a><em class="calibre2">line</em> is a series of points plotted on an <em class="calibre2">x,y</em> coordinate plane, you can also see why it might be useful for a very simple data visualization. If you look at the following code, you can probably make sense of it with your prior knowledge of SVG:</p>
+
+<pre data-type="programlisting" class="calibre24">
+var line = d3.line();
+var data1 = [[0, 0], [200, 300], [400, 50], [500, 300],
+    [550, 300], [600, 50], [700, 120], [775, 250]];
+var data2 = [[0, 100], [220, 120], [300, 250], [500, 10], 
+    [520, 120], [575, 250], [600, 300], [775, 50]];
+
+d3.select('#path1')
+  .attr('d', line(data1))
+  .transition()
+  .attr('d', line(data2))
+  .delay(1000)
+  .duration(3000)
+  .ease(d3.easeBounce);
+</pre>
+
+<p class="author1">We set the line to <a contenteditable="false" data-primary="d3.line()" data-type="indexterm" id="idm140658633257792" class="calibre7"></a>the <code class="calibre15">d3.line()</code> method, which sets the attributes of the line to the <em class="calibre2">x</em> and <em class="calibre2">y</em> coordinates of two fields of data. We then call a transition between the two states of the line attributes. Optionally, we can also declare delays, durations, and eases.</p>
+
+<p class="author1">The preceding code will transition this line from one state to another:</p>
+
+<figure class="calibre25"><div class="figure"><img alt="" class="iimagesimage11png" src="../images/00056.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 6-12. </span> </h6>
+</div></figure>
+
+<p class="author1">You can apply this same method of animating with other things as well—colors, coordinates, you name it. D3 is very flexible this way.</p>
+
+</div></section>
+</div></section></body></html>

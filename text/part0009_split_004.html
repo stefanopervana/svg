@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Creating a Responsive SVG Sprite</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 4. Creating a Responsive SVG Sprite" class="praise">
+<div class="praise" id="ch04">
+<section data-type="sect1" data-pdf-bookmark="Responsive Animation" class="praise"><div class="praise" id="idm140658633666512">
+<h1 class="calibre12" id="calibre_pb_4">Responsive Animation</h1>
+
+<p class="author1">When <a contenteditable="false" data-primary="responsive animation" data-type="indexterm" id="ran4" class="calibre7"></a>we export from a graphics editor, we have a unique ID for every different element. My preference for <a contenteditable="false" data-primary="repeated elements" data-type="indexterm" id="idm140658633663472" class="calibre7"></a>repeated elements is to use <a contenteditable="false" data-primary="classes" data-type="indexterm" id="idm140658633662448" class="calibre7"></a>classes, so I did a find and replace of IDs to classes (Illustrator will still add some unique numbers to the names of each class, but we can target them using a CSS <code class="calibre15">attributeStartsWith</code> <a contenteditable="false" data-primary="attributeStartsWith" data-type="indexterm" id="idm140658633660272" class="calibre7"></a>selector):</p>
+
+<pre data-type="programlisting" class="calibre24">
+[class^="mountain"], [class^="grass"] {
+  animation: slant 9s ease-in-out infinite both;
+  transform: skew(2deg);
+}
+</pre>
+
+<p class="author1">You’ll see here that we begin with a <a contenteditable="false" data-primary="transforms" data-type="indexterm" id="idm140658633657568" class="calibre7"></a>transform set on that element; this keeps the keyframe animation nice and concise. The animation will assume that the 0% keyframe corresponds to the initial state of the element; to create a very efficient loop, we can define only the changes halfway through the animation sequence:</p>
+
+<pre data-type="programlisting" class="calibre24">
+@keyframes slant {
+  50% { transform: skew(-2deg); }
+}
+</pre>
+
+<p class="author1">Some elements, such as the dots and stars, share a common animation, so we can reuse the declaration, adjusting the timing and delay as needed. We use a negative offset for the delay because we want it to appear as though it’s running from the start, even though the element animations are staggered. Animation keyframes will use the default positioning set on the element as the 0% and 100% keyframes unless they are specified otherwise. We use this to our benefit to write the least code possible:</p>
+
+<pre data-type="programlisting" class="calibre24">
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+[class^="star"] {
+  animation: blink 2s ease-in-out infinite both;
+}
+
+[class^="dot"] {
+  animation: blink 5s -3s ease-in-out infinite both;
+}
+</pre>
+
+<p class="author1">We also need to add a viewport <code class="calibre15">&lt;meta&gt;</code> tag, which gives us control over the page’s width and scaling on different devices. The most common one will <a contenteditable="false" data-primary="responsive animation" data-startref="ran4" data-type="indexterm" id="idm140658633655264" class="calibre7"></a>do:</p> 
+<pre data-type="programlisting" class="calibre24">&lt;meta name=<span class="keep-together">"viewport"</span> content="width=device-width, initial-scale=1"&gt;</pre>
+</div></section>
+</div></section></body></html>

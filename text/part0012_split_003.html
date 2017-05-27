@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>A Comparison of Web Animation Technologies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 7. A Comparison of Web Animation Technologies" class="praise">
+<div class="praise" id="comparison">
+<section data-type="sect1" data-pdf-bookmark="Native Animation" class="praise">
+<div class="praise" id="idm140658633213280">
+<section data-type="sect2" data-pdf-bookmark="requestAnimationFrame()" class="praise"><div class="praise" id="idm140658633182192">
+<h2 class="pagebreak-before" id="calibre_pb_3">requestAnimationFrame()</h2>
+
+<p class="author1"><code class="calibre15">requestAnimationFrame()</code> (rAF for short) is <a contenteditable="false" data-primary="requestAnimationFrame (rAF)" data-type="indexterm" id="idm140658633181088" class="calibre7"></a><a contenteditable="false" data-primary="native animation" data-secondary="requestAnimationFrame (rAF)" data-type="indexterm" id="idm140658633179440" class="calibre7"></a>a native method  available on the <code class="calibre15">window</code> object in <a contenteditable="false" data-primary="JavaScript" data-secondary="requestAnimationFrame (rAF)" data-type="indexterm" id="idm140658633176192" class="calibre7"></a>JavaScript. It’s really wonderful because under the hood, it figures out what the appropriate frame rate is for your animation in whatever environment you’re in, and only pushes it to that level. For instance, when you’re on mobile, it won’t use as high a frame rate as on desktop.  It also stops running when a tab is inactive, to keep from using resources unnecessarily. For this reason, <code class="calibre15">requestAnimationFrame()</code> is a really performant way of animating, and most of the libraries we’ll cover use it internally.</p>
+
+<p class="author1"><code class="calibre15">requestAnimationFrame()</code> works in a similar fashion to <a contenteditable="false" data-primary="recursion" data-type="indexterm" id="idm140658633170064" class="calibre7"></a>recursion; before it draws the next frame in a sequence, it executes the logic, and then calls itself again to keep going. That might sound a little complex, but what it really means is that you have a series of commands that are constantly running, so it will interpolate how the intermediary steps are rendered for you very nicely.</p>
+
+<p class="author1">There’s more information about <code class="calibre15">requestAnimationFrame()</code> in <a data-type="xref" href="part0020_split_000.html#animating_the_unanimatable" class="calibre7">Chapter 15</a>, so if you’re interested in learning more, flip ahead.</p>
+</div></section>
+
+</div></section>
+
+</div></section></body></html>

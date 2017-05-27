@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>GreenSock’s Timeline</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 9. GreenSock’s Timeline" class="praise">
+<div class="praise" id="ch09">
+<section data-type="sect1" data-pdf-bookmark="A Simple Timeline" class="praise">
+<div class="praise" id="idm140658632808752">
+<div data-type="note" epub:type="note" class="calibre19">
+<h1 class="calibre27" id="calibre_pb_2">Incrementing in Time</h1>
+
+<p class="author1">In <a contenteditable="false" data-primary="GreenSock (GSAP) timeline" data-secondary="delays" data-type="indexterm" id="idm140658632775792" class="calibre7"></a><a contenteditable="false" data-primary="incrementing in time" data-type="indexterm" id="idm140658632774048" class="calibre7"></a>the preceding example, we used a relative incrementor, <code class="calibre15">"-=1"</code>, to let the timeline know we wanted to push the animation up by one second. If you’re not familiar with <a contenteditable="false" data-primary="JavaScript" data-secondary="incrementors" data-type="indexterm" id="idm140658632772896" class="calibre7"></a>JavaScript, incrementors are really useful. The syntax is <code class="calibre15">+=1</code> (or any integer) or <code class="calibre15">-=1</code>. This lets the compiler know we are taking the original state and adding to it, not setting a static value. You can see this expressed in a number of ways to work with the timeline.</p>
+
+<p class="author1">For instance, we can add a delay to the timeline:</p>
+
+<pre data-type="programlisting" class="calibre48">
+tl.to(".circle", 3, {x: 300}, <strong class="calibre16">"+=1"</strong>);</pre>
+
+<p class="author1">We can set it to fire a second before it normally would (but only if the timeline already has time on it):</p>
+
+<pre data-type="programlisting" class="calibre48">
+tl.to(".circle", 3, {x: 300}, <strong class="calibre16">"-=1"</strong>);</pre>
+
+<p class="author1">Or we can set it to fire at a specific time that’s static. This will fire exactly 2 seconds in:</p>
+
+<pre data-type="programlisting" class="calibre48">
+tl.to(".circle", 3, {x: 300}, <strong class="calibre16">"2"</strong>);</pre>
+
+<p class="author1">My favorite, though, is setting animations on or relative to labels, which we’ll cover next.</p>
+</div>
+
+<p class="author1">The cool thing about this is that the circle will now start animating one second before the star finishes, but the hex will still follow the circle, even though we’ve adjusted the placement in time (originally the hex would have fired at six seconds; now the hex will fire at five).</p>
+</div></section>
+
+</div></section></body></html>

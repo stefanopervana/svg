@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Animating with GreenSock</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 8. Animating with GreenSock" class="praise">
+<div class="praise" id="ch08">
+<section data-type="sect1" data-pdf-bookmark="Basic GreenSock Syntax" class="praise">
+<div class="praise" id="idm140658632991248">
+<section data-type="sect2" class="praise"><div class="praise" id="idm140658632901088">
+<h1 class="calibre12" id="calibre_pb_9">Properties to Animate</h1>
+
+<p class="author1">We <a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="animation properties" data-type="indexterm" id="gsap8ap" class="calibre7"></a>talked briefly  about how our example code will move the ball to the right by 100 px, but let’s dig into that a little more. What does <a contenteditable="false" data-primary="x" data-type="indexterm" id="idm140658632896832" class="calibre7"></a>that <code class="calibre15">x</code> stand for? It actually stands for <code class="calibre15">transform: translateX(100px)</code>. (It should <em class="calibre2">not</em> be confused with the <code class="calibre15">x</code> attribute in elements like <code class="calibre15">rects</code> in SVG.) Remember when I mentioned that transforms and opacity are the most performant things to animate? <a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="rotation" data-type="indexterm" id="idm140658632893216" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="z" data-type="indexterm" id="idm140658632892240" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="y" data-type="indexterm" id="idm140658632890064" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="x" data-type="indexterm" id="idm140658632888640" class="calibre7"></a>Well, GreenSock’s developers know this, so they nicely created some shorthand for us—we can use <code class="calibre15">x</code>, <code class="calibre15">y</code>, <code class="calibre15">z</code>, <code class="calibre15">scale</code>, <a contenteditable="false" data-primary="scale" data-type="indexterm" id="idm140658632885184" class="calibre7"></a><a contenteditable="false" data-primary="z" data-type="indexterm" id="idm140658632884112" class="calibre7"></a><a contenteditable="false" data-primary="y" data-type="indexterm" id="idm140658632882992" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="scale" data-type="indexterm" id="idm140658632881840" class="calibre7"></a>and <code class="calibre15">rotation</code> <a contenteditable="false" data-primary="rotation" data-type="indexterm" id="idm140658632879872" class="calibre7"></a>(instead of <code class="calibre15">rotate</code> in CSS). Handily, because they’ve broken out the properties, we can use them individually and at different times. That saves us a lot of typing and makes our code much easier to read.</p>
+
+<p class="author1">Keep in mind that if you’re <a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="transforms" data-type="indexterm" id="idm140658632878016" class="calibre7"></a><a contenteditable="false" data-primary="transforms" data-type="indexterm" id="idm140658632876464" class="calibre7"></a>transforming within the SVG DOM, it will use the coordinate system within the <code class="calibre15">viewBox</code>, so you won’t actually be using true pixels. You might recall from previous chapters that this is actually a really great feature, because it means we can easily scale and create complex responsive animations (more on this in <a data-type="xref" href="part0021_split_000.html#ch16" class="calibre7">Chapter 16</a>).</p>
+
+</div></section>
+
+</div></section>
+</div></section></body></html>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Creating a Responsive SVG Sprite</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 4. Creating a Responsive SVG Sprite" class="praise">
+<div class="praise" id="ch04">
+<section data-type="sect1" data-pdf-bookmark="Grouping and DRYing It Out" class="praise"><div class="praise" id="idm140658633706272">
+<h1 class="calibre12" id="calibre_pb_2">Grouping and DRYing It Out</h1>
+
+<p class="author1">Now that we know how the final product appears, we can refactor the design to group like sections together, based on what’s most important for the associated viewport width. We can also simplify the design by identifying shapes used in both the first and second versions, keeping just one copy of each shared shape.</p>
+
+<p class="author1">All of the elements are assigned semantic ID names such as “mountain” or “bridge.” The most detailed shapes also get a shared ID that we can progressively show for larger viewports. If the first illustration is <code class="calibre15">kells1</code>, the group particular to the second illustration is <code class="calibre15">kells2</code>, and the last is <code class="calibre15">kells3</code>.</p>
+
+<p class="author1">In order to make the SVG scalable to shared container values, the last illustration becomes the same size as the first; SVG’s built-in responsiveness will take care of the rest.</p>
+
+<p class="author1">We end up creating only two areas of the sprite sheet, with both having the same width so that we can scale the whole image at once (<a data-type="xref" href="part0009_split_002.html#fig4.5" class="calibre7">Figure 4-5</a>). The top graphic is more complex; it holds information for both the tablet and desktop instances.</p>
+
+<figure class="calibre25"><div id="fig4.5" class="figure"><img alt="" class="iimagesimage11png" src="../images/00033.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 4-5. </span>The sprite once we reduce repetition and get it ready for export</h6>
+</div></figure>
+
+<p class="author1">Once we have this view, we run it through SVGOMG, <a contenteditable="false" data-primary="SVGOMG" data-type="indexterm" id="idm140658633692416" class="calibre7"></a>using the web-based GUI to check that there’s no distortion and toggling off the option to Clean IDs and also Collapse Useless Groups. We can later change the IDs to classes if we wish and clean up some of the cruft from the export. I do this by hand or with find and replace, but there are myriad ways to accomplish it.</p>
+
+<p class="author1">The optimized SVG is placed inline in the HTML rather than included as a source URL background image like in the previous techniques. Now we can set areas to hide and show with a mobile-first implementation:</p>
+
+<pre data-type="programlisting" class="calibre24">
+@media screen and ( min-width: 701px ) {
+  .kells3, .kells2 {
+    display: none;
+  }
+}
+</pre>
+
+<p class="author1">We can also adjust the animation parameters slightly, depending on the viewport, in order to refine the movement for each version:</p>
+
+<pre data-type="programlisting" class="calibre24">
+[class^="mountain"], [class^="grass"] {
+  ...
+  transform: skew(1.5deg);
+}
+
+@media screen and ( min-width: 500px ) {
+  [class^="mountain"], [class^="grass"] { 
+    transform: skew(2deg);
+  }
+}
+</pre>
+
+<p class="author1">At this point the width and height are removed from the SVG and we can add in <code class="calibre15">preserveAspectRatio="xMidYMid meet"</code> <a contenteditable="false" data-primary="preserveAspectRatio=&quot;xMidYMidmeet&quot;" data-type="indexterm" id="idm140658633688240" class="calibre7"></a>(though that’s the default, so it’s not strictly necessary) to make the SVG fluid. With these alterations, it will adjust to the container size instead, which we set based on percentages (a. <a contenteditable="false" data-primary="flexbox" data-type="indexterm" id="idm140658633685392" class="calibre7"></a>flexbox or any other responsive container would work here <a contenteditable="false" data-primary="SVG sprites" data-secondary="viewport shifting" data-startref="svgs4vs" data-type="indexterm" id="idm140658633684304" class="calibre7"></a><a contenteditable="false" data-primary="CSS animations" data-secondary="viewport shifting" data-startref="cssa4vs" data-type="indexterm" id="idm140658633684912" class="calibre7"></a><a contenteditable="false" data-primary="viewport shifting" data-startref="vs4" data-type="indexterm" id="idm140658633681392" class="calibre7"></a>too):</p>
+
+<pre data-type="programlisting" class="calibre24">
+.initial { 
+  width: 50%;
+  float: left;
+  margin: 0 7% 0 0;
+}
+</pre>
+</div></section>
+
+</div></section></body></html>

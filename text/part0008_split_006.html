@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>CSS Animation and Hand-Drawn SVG Sprites</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 3. CSS Animation and Hand-Drawn SVG Sprites" class="praise">
+<div class="praise" id="css_animation">
+<section data-type="sect1" data-pdf-bookmark="Keyframe Animation with steps() and SVG Sprites, Two Ways" class="praise">
+<div class="praise" id="idm140658633880432">
+<section data-type="sect2" class="praise"><div class="praise" id="idm140658633796384">
+<h1 class="calibre12" id="calibre_pb_6">Simple Walk Cycle</h1>
+
+<p class="author1">If <a contenteditable="false" data-primary="CSS animations" data-secondary="walk cycle" data-type="indexterm" id="cssa3wc" class="calibre7"></a><a contenteditable="false" data-primary="CSS animations" data-secondary="simple code for complex movement" data-startref="cssa3scfcm" data-type="indexterm" id="idm140658633793872" class="calibre7"></a>you take the <code class="calibre15">steps()</code> value <a contenteditable="false" data-primary="steps()" data-type="indexterm" id="idm140658633791664" class="calibre7"></a>out of the last animation, you’ll see something interesting. Instead of creating a seamless moving drawing, the background rolls through. We can use that to our advantage for a nice layered background with spatial placement and movement.</p>
+
+<p class="author1">Let’s consider <a href="http://codepen.io/sdras/pen/azEBEZ" class="calibre7">a walk cycle</a>, that shows a ghostly figure walking through a looping, multidimensional, outlined landscape.</p>
+
+<p class="author1">We can create this using the previous technique with the cels/steps, with drawings that show a walk cycle. We’ll use a manual animation technique to change the color by shifting the color in each frame. Alternatively, we could have used a filter with a shift for <code class="calibre15">hue-rotate</code>, but as long as we are creating all of these frames by hand the amount of work required to change the color here is minimal, and the cost of the filters on performance, while not huge, is one we can do without.</p>
+
+<aside data-type="sidebar" epub:type="sidebar" class="calibre37"><div class="sidebar" id="idm140658633786400">
+<h5 class="calibre38">CSS Filter Demos</h5>
+
+<p class="author1">If you <a contenteditable="false" data-primary="CSS animations" data-secondary="filter effects" data-type="indexterm" id="idm140658633788512" class="calibre7"></a>do choose to work with filters, there are a number of sites that demo great capabilities with CSS filter effects. Here are just a few:</p>
+
+<ul class="printings">
+	<li class="calibre10"><a contenteditable="false" data-primary="CSS Filter Demos" data-type="indexterm" id="idm140658633784912" class="calibre7"></a><a contenteditable="false" data-primary="HTML5-Demos" data-type="indexterm" id="idm140658633782288" class="calibre7"></a><a href="http://bit.ly/2lSARYv" class="calibre7">HTML5 Demos</a>, the source of the preceding images</li>
+	<li class="calibre10"><a href="http://bennettfeely.com/filters/" class="calibre7">CSS Filter Playground by Bennett Feely</a></li>
+	<li class="calibre10"><a href="http://www.cssreflex.com/css-generators/filter/" class="calibre7">CSSReflex</a></li>
+	<li class="calibre10">My <a contenteditable="false" data-primary="CSS Gram" data-type="indexterm" id="idm140658633778128" class="calibre7"></a><a contenteditable="false" data-primary="CSS Reflex" data-type="indexterm" id="idm140658633776912" class="calibre7"></a>personal favorite, <a href="http://una.im/CSSgram/" class="calibre7">CSSGram</a> by Una Kravets, which mixes filters to make some great Instagram-like effects</li>
+</ul>
+
+<p class="author1">Keep in mind that animating filters can be very costly. I tend to avoid animating them, or use a <code class="calibre15">setTimeout</code> that <a contenteditable="false" data-primary="setTimeout" data-type="indexterm" id="idm140658633774384" class="calibre7"></a>will apply the attribute or CSS strictly for the time I need it, and then remove it.</p>
+</div></aside>
+
+<p class="author1">It’s still important that <a contenteditable="false" data-primary="steps()" data-type="indexterm" id="idm140658633772416" class="calibre7"></a>the <code class="calibre15">steps()</code> and <code class="calibre15">animation-duration</code> <a contenteditable="false" data-primary="animation-duration" data-type="indexterm" id="idm140658633769840" class="calibre7"></a>ratio fall around the 12 fps range. We can scroll through each version of the images presented by animating the background position of the SVG sprite sheet. In order to keep everything consistent, we’ve made all of the background images the same size (see <a data-type="xref" href="part0008_split_006.html#fig3.5" class="calibre7">Figure 3-5</a>), which lends itself well to the use of an <code class="calibre15">@extend</code> if <a contenteditable="false" data-primary="@extend" data-primary-sortas="extend" data-type="indexterm" id="idm140658633768512" class="calibre7"></a>you’re working with <a contenteditable="false" data-primary="Sass" data-type="indexterm" id="idm140658633766512" class="calibre7"></a>Sass:</p>
+
+<pre data-type="programlisting" class="calibre24">
+/*--extend--*/
+.area {
+  width: 600px;
+  height: 348px;
+}
+
+.fore, .mid, .bk, .container { @extend .area; }
+</pre>
+
+<figure class="calibre25"><div id="fig3.5" class="figure"><img alt="" class="iimagesimage11png" src="../images/00027.gif"/>
+<h6 class="calibre26"><span class="keep-together">Figure 3-5. </span>Fluidity and consistency in images</h6>
+</div></figure>
+
+
+<p class="author1">To create the impression of fluid linear infinite movement, the three background images must be able to repeat seamlessly on the x-axis so that when they scroll through there are no seams. This can be achieved by making each end identical, or, as in this case, using an image that is sparse enough that it can completely flow through (<a data-type="xref" href="part0008_split_006.html#fig3.6" class="calibre7">Figure 3-6</a>). If you’re working with the latter, it’s important to marry the beginning state and end state in a graphics editor like Illustrator or Sketch to ensure it looks OK while you’re building the graphic.</p>
+
+<figure class="calibre25"><div id="fig3.6" class="figure"><img alt="" class="iimagesimage11png" src="../images/00028.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 3-6. </span>We’ll layer SVGs to create an illusion of depth</h6>
+</div></figure>
+
+<p class="author1">Each element uses the same keyframe values, but we set apart their animations with an incremental decrease in seconds the further back their z-index goes. If you look around you, things that are closer to you are in sharper contrast and appear to move faster than things that are further away. Our animation will mimic this effect by increasing the second integer (and thus having longer animations) for the SVGs in the background. This yields a <a contenteditable="false" data-primary="parallax effect" data-type="indexterm" id="idm140658633758992" class="calibre7"></a>nice <em class="calibre2">parallax</em> effect. There are three parallaxed background images in this example that don’t include the figure:</p>
+
+<pre data-type="programlisting" class="calibre24">
+.fore {
+  background: url('fore.svg');
+  animation: bk 7s -5s linear infinite;
+}
+
+.mid {
+  background: url('mid.svg');
+  animation: bk 15s -5s linear infinite;
+}
+
+.bk {
+  background: url('bkwalk2.svg');
+  animation: bk 20s -5s linear infinite;
+}
+
+@keyframes bk {
+  100% { background-position: 200% 0; }
+}
+</pre>
+
+<p class="author1">We don’t need multiple intervals for this kind of animation, because keyframes will interpolate values for us. In the event that the number of pixels in the scrolling sprite sheets changes in the future, we don’t have to update the amounts, because we set it with a percentage. The use of negative delays ensures that the animation is running from the start. All of the SVGs are optimized and have a <a contenteditable="false" data-primary="CSS animations" data-secondary="walk cycle" data-startref="cssa3wc" data-type="indexterm" id="idm140658633756848" class="calibre7"></a>PNG fallback.</p>
+</div></section>
+</div></section>
+</div></section></body></html>

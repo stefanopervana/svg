@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>A Comparison of Web Animation Technologies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 7. A Comparison of Web Animation Technologies" class="praise">
+<div class="praise" id="comparison">
+<section data-type="sect1" data-pdf-bookmark="External Libraries" class="praise">
+<div class="praise" id="idm140658633139840">
+<section data-type="sect2" data-pdf-bookmark="GreenSock (GSAP)" class="praise"><div class="praise" id="idm140658633143312">
+<h2 class="pagebreak-before" id="calibre_pb_7">GreenSock (GSAP)</h2>
+
+<p class="author1">GreenSock <a contenteditable="false" data-primary="external libraries" data-secondary="GreenSock (GSAP)" data-see="GreenSock (GSAP)" data-type="indexterm" id="idm140658633141984" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="pros and cons" data-type="indexterm" id="idm140658633138368" class="calibre7"></a>is currently the most sophisticated animation library on the web, and I favor working with it. Please understand that this bias comes from working, playing around with, and bumping my head badly on a lot of different animation tooling, so when I give my strong endorsement, it’s through blood, sweat, and tears. I especially <a href="http://bit.ly/2kWAyPa" class="calibre7">like it for SVG</a>. The <a href="http://greensock.com/" class="calibre7">GreenSock Animation API</a> has almost too many cool benefits to list here without missing something, but they have extensive <a href="http://greensock.com/docs/#/HTML5/" class="calibre7">docs</a> and <a href="http://greensock.com/forums/" class="calibre7">forums</a> you can explore.</p>
+
+<p class="author1">Pros:</p>
+
+<ul class="printings">
+	<li class="calibre10">It’s <a href="http://bit.ly/2lGE4fq" class="calibre7">extraordinarily performant</a> for something that’s not native—as in, performs as well. Which is a big deal.</li>
+	<li class="calibre10">There are still a lot of things about the GSAP timeline that are more powerful than current implementations of the Web Animations API: for me, the important ones are the cross-browser stability in regards to SVG and the ability to animate long sequences in a line of code.</li>
+	<li class="calibre10">GreenSock has a ton of other plug-ins if you want to do fancy things like animate text, morph SVGs with an uneven number of points, etc.</li>
+	<li class="calibre10">Motion along a path with GreenSock’s <a href="https://greensock.com/BezierPlugin-JS" class="calibre7">BezierPlugin</a> has the longest tail of support available.</li>
+	<li class="calibre10"><em class="calibre2">It solves SVG cross-browser woes</em>, as mentioned previously. Thank goodness for this one. Especially for mobile.</li>
+	<li class="calibre10"><a href="http://greensock.com/ease-visualizer" class="calibre7">GreenSock’s Ease Visualizer</a> offers nice, realistic eases. It even allows you to create custom eases from an SVG path.</li>
+	<li class="calibre10">Since you can tween any two integers, you can do cool stuff like <a href="http://codepen.io/sdras/full/gaxGBB/" class="calibre7">animate SVG filters for some awesome effects</a>. The sky’s the limit on what you can animate. More on this in <a data-type="xref" href="part0020_split_000.html#animating_the_unanimatable" class="calibre7">Chapter 15</a>.</li>
+</ul>
+
+<p class="author1">Cons:</p>
+
+<ul class="printings">
+	<li class="calibre10">You have to pay for licensing for use of the plug-ins. But there are some <a href="http://codepen.io/GreenSock/" class="calibre7">CodePen-safe versions</a> that you can play with before you buy.</li>
+	<li class="calibre10">When you’re managing external libraries, you have to watch which versions you are using in production; because new versions come out regularly, upgrading involves testing (this is probably true of any library, ever).</li>
+</ul>
+</div></section>
+
+</div></section>
+
+</div></section></body></html>

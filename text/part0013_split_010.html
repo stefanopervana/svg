@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Animating with GreenSock</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 8. Animating with GreenSock" class="praise">
+<div class="praise" id="ch08">
+<section data-type="sect1" data-pdf-bookmark="Basic GreenSock Syntax" class="praise">
+<div class="praise" id="idm140658632991248">
+<section data-type="sect2" class="praise">
+<div class="praise" id="idm140658632901088">
+<div data-type="note" epub:type="note" class="calibre19">
+<h1 class="calibre27" id="calibre_pb_10">Animating Transforms in CSS Equivalent</h1>
+
+<p class="author1">Because <code class="calibre15">transform</code> is one property in CSS, it’s a hassle to apply different transforms at different times to one element. They end up having a stacking order and are applied one by one, unless you write out each value at the interpolated percentage for each change.</p>
+
+<p class="author1">I’ve written more about this in <a href="http://bit.ly/2ivvcrP" class="calibre7">an article for CSS-Tricks</a>.</p>
+
+<p class="author1">GreenSock gives us a huge life upgrade by breaking these properties apart so we can have finer control of movement.</p>
+
+<p class="author1">The CSS Working Group is planning to break transforms out into their own properties, but at the time of publishing the timeline for implementation and extent of browser support were unclear. Chrome has some experimental implementations.</p>
+</div>
+
+<p class="author1">We also have <code class="calibre15">opacity</code>, <a contenteditable="false" data-primary="opacity" data-type="indexterm" id="idm140658632865264" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="opacity" data-type="indexterm" id="idm140658632869552" class="calibre7"></a>which works like it does in CSS: we can supply values from <code class="calibre15">0</code> to <code class="calibre15">1</code>, with <code class="calibre15">0</code> being completely transparent and <code class="calibre15">1</code> being completely opaque. Additionally, GreenSock offers a custom value called <code class="calibre15">autoAlpha</code>, <a contenteditable="false" data-primary="autoAlpha" data-type="indexterm" id="idm140658632862896" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="autoAlpha" data-type="indexterm" id="idm140658632861296" class="calibre7"></a>which also takes values from <code class="calibre15">0</code> to <code class="calibre15">1</code>. This value couples <code class="calibre15">opacity</code> and<a contenteditable="false" data-primary="visibility: hidden" data-type="indexterm" id="idm140658632858496" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="visibility: hidden" data-type="indexterm" id="idm140658632857280" class="calibre7"></a> <code class="calibre15">visibility: hidden</code>, so it removes the element from/adds it into the DOM completely. </p>
+
+<p class="author1">This is important because an element with <code class="calibre15">opacity: 0</code> is still able to react to mouse/touch/keyboard events and is included in the accessibility tree used by screen readers. An element with <code class="calibre15">visibility: hidden</code> is not. <code class="calibre15">autoAlpha</code> ensures that when the element has fully faded out, it is correctly hidden from interaction as well as from view.</p>
+
+<p class="author1">You can also animate any number of other CSS values. Color, width, height, perspective—they’re all fair game. There are a few things to keep in mind, though. First, any property with a dash in its name becomes <a contenteditable="false" data-primary="camelCase" data-type="indexterm" id="idm140658632851888" class="calibre7"></a>camelCased. For example, <code class="calibre15">background-color</code> would be <code class="calibre15">backgroundColor</code>, and <code class="calibre15">border-radius</code> would be <code class="calibre15">borderRadius</code>. Also, any value that isn’t a number has to be passed in as a string, surrounded in quotes. So, a color value would be <code class="calibre15">color: "#333333"</code>.</p>
+
+<p class="author1">When animating two properties, we separate them by commas (we treat the properties that we’re animating like <a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="animation properties" data-startref="gsap8ap" data-type="indexterm" id="idm140658632848000" class="calibre7"></a>objects):</p>
+
+<pre data-type="programlisting" class="calibre44">
+TweenMax.to(.element", 2, {
+ x: 100, 
+ <span class="keep-together">y: 50</span> 
+});
+</pre>
+</div></section>
+
+</div></section>
+</div></section></body></html>

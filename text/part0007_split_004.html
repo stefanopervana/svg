@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Animating with CSS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 2. Animating with CSS" class="praise">
+<div class="praise" id="animating_with_css">
+<section data-type="sect1" data-pdf-bookmark="Silky-Smooth Animation" class="praise"><div class="praise" id="idm140658633923440">
+<h1 class="calibre12" id="calibre_pb_4">Silky-Smooth Animation</h1>
+
+<p class="author1">It’s tempting to use all of the same properties that you use to affect layout with CSS: <code class="calibre15">margin</code>, <code class="calibre15">top</code>, <code class="calibre15">left</code>, etc. But browsers do not update values for all properties equally. To animate cheaply, your best bet is to use <a contenteditable="false" data-primary="transforms" data-type="indexterm" id="idm140658633909952" class="calibre7"></a><em class="calibre2">transforms</em> and <a contenteditable="false" data-primary="opacity" data-type="indexterm" id="idm140658633902944" class="calibre7"></a><em class="calibre2">opacity</em>. That might seem limiting, but transforms offer translation (positioning), scale, and rotation. Using these in combination with opacity can be extremely powerful. It’s surprising how much can be achieved with these properties in standard animations.</p>
+
+<p class="author1">Throughout this book, I will use these properties wherever possible while demonstrating various techniques. It is important to note that SVG DOM <a contenteditable="false" data-primary="DOM (Document Object Model)" data-secondary="elements" data-type="indexterm" id="idm140658633898000" class="calibre7"></a>elements are currently hardware-accelerated only in some browsers (for instance, hardware acceleration is supported in Firefox but not Chrome), but you should still be moving the SVG DOM with transforms, not margins or other CSS positioning.</p>
+
+<p class="author1">At the time of publishing, Microsoft Internet Explorer (IE) and <a contenteditable="false" data-primary="Edge" data-type="indexterm" id="idm140658633894688" class="calibre7"></a><a contenteditable="false" data-primary="Internet Explorer (IE)" data-type="indexterm" id="idm140658633895584" class="calibre7"></a>Edge did not support transforms on SVG elements at all—but you can vote on these issues and more on <a href="http://bit.ly/2lkk4f8" class="calibre7">the Windows Developer Feedback site</a>.</p>
+
+<p class="author1">Until this is supported, your best bet for Edge is using either native SVG transforms (which are a pain and you’ll need JavaScript for) or the <a contenteditable="false" data-primary="GreenSock (GSAP)" data-type="indexterm" id="idm140658633899456" class="calibre7"></a>GreenSock Animation API, which has support back to IE9.</p>
+
+<p class="author1">For more information on how to properly keep your layout repaint costs low (these are Chrome-specific resources), check <a contenteditable="false" data-primary="High Performance Animations" data-type="indexterm" id="idm140658633892064" class="calibre7"></a><a contenteditable="false" data-primary="Jank Free" data-type="indexterm" id="idm140658633891376" class="calibre7"></a>out <a href="http://jankfree.org/" class="calibre7">Jank Free</a> and <a href="http://bit.ly/2lPFlRo" class="calibre7">High Performance Animations</a>.</p>
+
+<p class="author1">For information on the costs of individual <a contenteditable="false" data-primary="CSS animations" data-startref="cssa2" data-type="indexterm" id="idm140658633887056" class="calibre7"></a>properties, see <a href="http://csstriggers.com/" class="calibre7">CSS Triggers</a>.</p>
+</div></section>
+</div></section></body></html>

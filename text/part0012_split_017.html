@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>A Comparison of Web Animation Technologies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 7. A Comparison of Web Animation Technologies" class="praise">
+<div class="praise" id="comparison">
+<section data-type="sect1" data-pdf-bookmark="React-Specific Workflows" class="praise">
+<div class="praise" id="idm140658633072096">
+<section data-type="sect2" data-pdf-bookmark="Canvas in React" class="praise"><div class="praise" id="idm140658633029584">
+<h2 class="pagebreak-before" id="calibre_pb_17">Canvas in React</h2>
+
+<p class="author1">Canvas <a contenteditable="false" data-primary="canvas" data-type="indexterm" id="idm140658633028256" class="calibre7"></a><a contenteditable="false" data-primary="React-specific workflows" data-secondary="canvas in React" data-type="indexterm" id="idm140658633027008" class="calibre7"></a>itself works beautifully in React. You can choose to bypass the DOM entirely and attach a single node, in which you can create all of your animations. It has the same benefits and limitations we discussed previously (see <a data-type="xref" href="part0012_split_004.html#canvas_section" class="calibre7">“Canvas”</a>). You can also break a canvas into React components, but the implementation details can get much more complicated due to the virtual DOM.</p>
+
+<p class="author1">There are a couple of good libraries for working with canvas in React. React-Canvas was developed by the <a contenteditable="false" data-primary="Flipboard" data-type="indexterm" id="idm140658633024352" class="calibre7"></a>Flipboard team because they wanted 60 fps animation with the DOM. The repo hasn’t been updated in a while, though, and it really does focus on only UI elements, so any other kind of animation will take some work.</p>
+
+<p class="author1"><a href="https://github.com/lavrton/react-konva" class="calibre7">React Konva</a> is an interesting, <a contenteditable="false" data-primary="React Konva" data-type="indexterm" id="idm140658633023120" class="calibre7"></a>very declarative way of working with canvas and React. It creates beautiful shapes incredibly easily, but the animation performance is a little lacking. The developer acknowledges this right in the docs, so it’s possible that if you’re willing to submit a pull request (PR) you could improve it and help him work on it.</p>
+</div></section>
+
+</div></section>
+
+</div></section></body></html>

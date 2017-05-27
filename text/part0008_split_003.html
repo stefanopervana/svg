@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>CSS Animation and Hand-Drawn SVG Sprites</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 3. CSS Animation and Hand-Drawn SVG Sprites" class="praise">
+<div class="praise" id="css_animation">
+<section data-type="sect1" data-pdf-bookmark="Keyframe Animation with steps() and SVG Sprites, Two Ways" class="praise">
+<div class="praise" id="idm140658633880432">
+<section data-type="sect2" class="praise"><div class="praise" id="idm140658633847376">
+<h1 class="calibre12" id="calibre_pb_3">The “Drawing in Illustrator with a Template” Way</h1>
+
+<p class="author1">There are two ways of creating the series of drawings for this type of animation; both work equally well, but they use different automation processes for the images. The challenge we face in each workflow is keeping the drawing steadily placed in the center of the frame throughout a large sprite; even the best drawing will look flawed if the drawing jumps as we run through each <a contenteditable="false" data-primary="Illustrator" data-secondary="drawing in with a template" data-type="indexterm" id="i3diwat" class="calibre7"></a> <a contenteditable="false" data-primary="step animation" data-startref="sa3" data-type="indexterm" id="idm140658633843520" class="calibre7"></a><a contenteditable="false" data-primary="cel animations" data-startref="ca3" data-type="indexterm" id="idm140658633854128" class="calibre7"></a>frame.</p>
+
+<p class="author1">I use Illustrator for this technique, but you could theoretically use Sketch or any other graphics editor. First, we decide how big the animation is and multiply that number by 21 in one direction (the number of frames in our animation), determining the length of our artboard. We drag a box around that area and choose Object → Path → Split Into Grid. Then we enter the number of rows we want (or columns, if we wish to make a horizontal sprite sheet) and click OK. Finally, we choose View → Guides → Make Guides, and our template is all set.</p>
+
+<p class="author1">If you’re drawing directly in the graphics editor, I recommend placing your first drawing within the first box, and creating a box around it that frames it within the guides. You can then copy everything into the next box (including the box frame) using the alignment line or Shift + drag, which will keep it steady. Use the box frame again to fit it into the next guide’s space.</p>
+
+<p class="author1">Using the Direct Selection <a contenteditable="false" data-primary="Direct Selection tool" data-type="indexterm" id="idm140658633839200" class="calibre7"></a>tool (the white arrow), you can then drag and reshape the pieces of your image for each frame. Fair warning: don’t be tempted to front-load your work here by copying and pasting it all at the start—this process works best if you build each frame from the previous one.</p>
+
+<p class="author1">You can also do a screencast of something so that you can walk through the stills and place each image in the Illustrator doc and trace it, either with Illustrator’s native trace functionality, or with the Pen tool for a hand-drawn feel and more concise paths.</p>
+
+<p class="author1">At the end of this process we will have a long sprite sheet. We can export that directly as an SVG as well as a PNG, which we’ll use as a fallback with a <code class="calibre15">body</code> class hook in <a contenteditable="false" data-primary="modernizr" data-type="indexterm" id="idm140658633841824" class="calibre7"></a>Modernizr (for more about Modernizr, see <a data-type="xref" href="part0008_split_005.html#using_mdnzr" class="calibre7">“Using Modernizr”</a>):</p>
+
+<pre data-type="programlisting" class="calibre24">
+.splash {
+  background: url('splash-sprite2.svg');
+  ...
+  animation: splashit 1.8s steps(21) infinite;
+}
+
+/* fallback */
+.no-svg .splash {
+  background: url('splash-sprite2.png');
+}
+</pre>
+</div></section>
+
+<p class="author1">At this point, though, fallbacks might not be necessary, so it’s recommended you check your analytics and consult the <a href="http://caniuse.com/" class="calibre7"><em class="calibre2">caniuse.com</em></a> tables for SVG support.</p>
+
+</div></section>
+</div></section></body></html>

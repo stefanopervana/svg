@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>GreenSock’s Timeline</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 9. GreenSock’s Timeline" class="praise">
+<div class="praise" id="ch09">
+<section data-type="sect1" data-pdf-bookmark="Relative Labels" class="praise"><div class="praise" id="idm140658632807936">
+<h1 class="calibre12" id="calibre_pb_3">Relative Labels</h1>
+
+<p class="author1">This <a contenteditable="false" data-primary="relative labels" data-type="indexterm" id="rl9" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP) timeline" data-secondary="relative labels" data-type="indexterm" id="gsap9rl" class="calibre7"></a>is all well and good, but what if you have a <em class="calibre2">very</em> complex animation, and you want multiple things firing at once, far into your timeline? Or you want a few things to fire slightly before or after one another? That kind of logic can get a little tangled and disorganized, particularly if you have to adjust the timeline (which, trust me, you will need to do all the time).</p>
+
+<p class="author1">Enter relative labels. Relative labels are incredibly useful, because you can insert them partway into a timeline, or you can set them at the beginning and have everything fire off of them.</p>
+
+<p class="author1"><a data-type="xref" href="part0014_split_003.html#fig9.2" class="calibre7">Figure 9-2</a> is an example.</p>
+
+<figure class="calibre25"><div id="fig9.2" class="figure"><img alt="" class="iimagesimage11png" src="../images/00061.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 9-2. </span>An animation where the star rotates and three circles fire at once</h6>
+</div></figure>
+
+<p class="author1">In this example, let’s say you want the star to rotate on itself, and then immediately when it’s done you want three circles to fire at the same time.</p>
+
+<p class="author1">Since the circles are all animated a different way, we can’t just apply the same animation to all of them (yes, we could build a function for it, but I’ll address that later in the chapter). This is when a relative label will come in really handy. Rather than writing this:</p>
+
+<pre data-type="programlisting" class="calibre24">
+var tl = new TimelineMax();
+
+tl.to(".star", 3, { 
+  rotation: 30, 
+  transformOrigin: "50% 50%"
+});
+
+tl.to(".circle1", 1, { 
+  scale: 2.5
+  x: 100, 
+  y: -70 
+});
+
+tl.to(".circle2", 1, { 
+  scale: 2.5
+  y: -100
+}, "-=1");
+
+tl.to(".circle3", 1, { 
+  scale: 2.5
+  y: -70,
+  x: -100
+}, "-=2");
+</pre>
+
+<p class="author1">we can use a label:</p>
+
+<pre data-type="programlisting" class="calibre24">
+var tl = new TimelineMax();
+
+tl.to(".star", 3, { 
+  rotation: 30, 
+  transformOrigin: "50% 50%"
+});
+
+tl.add("burst");
+
+tl.to(".circle1", 1, { 
+  scale: 2.5
+  x: 100, 
+  y: -70 
+}, "burst");
+
+tl.to(".circle2", 1, { 
+  scale: 2.5
+  y: -100
+}, "burst");
+
+tl.to(".circle3", 1, { 
+  scale: 2.5
+  y: -70,
+  x: -100
+}, "burst");</pre>
+
+<p class="author1">I prefer this way because it’s so much more legible to someone reading it later. It’s also more flexible: anything can move earlier in the timeline, and the circles will all still burst together. Their timing can also change, and there’s nothing to be recalculated. You can even set them a little before or after one another with the relative positioning we discussed earlier: <code class="calibre15">"burst+=1"</code>.</p>
+
+<aside data-type="sidebar" epub:type="sidebar" class="calibre37"><div class="sidebar" id="idm140658632747936">
+<h5 class="calibre38">.set to Stabilize Your Animation</h5>
+
+<p class="author1">You may have times when you realize that you want to animate something like the perspective, where you actually animate the z value, but you have to set the perspective in order to see the effects. You may also want to set a stroke on a shape that doesn’t have one in order to animate it with <a href="https://greensock.com/drawSVG" class="calibre7">DrawSVG</a>. You can definitely set these properties in CSS, but the nice thing about <code class="calibre15">.set</code> is <a contenteditable="false" data-primary=".set" data-primary-sortas="set" data-type="indexterm" id="idm140658632746672" class="calibre7"></a>that you are telling the person who is reading your code what you’re changing in order to animate. It’s harder to do this with the CSS in a completely different place, so this is a real maintenance boon. Basically, you are “setting” the tween without animating it:</p>
+
+<pre data-type="programlisting" class="calibre24">
+tl.set(".circle", {scale: 0.5}); </pre>
+
+<p class="author1">You might not always need a set, though—if you have a <code class="calibre15">.fromTo</code> <a contenteditable="false" data-primary=".fromTo" data-primary-sortas="fromTo" data-type="indexterm" id="idm140658632739920" class="calibre7"></a>animation that designates a different state for the element to originate from, it will carry through the whole animation. So if you decided to do something like:</p>
+
+<pre data-type="programlisting" class="calibre24">
+tl.fromTo(".circle", {
+  scale: 0.5
+}, {
+  scale: 1
+}, 8); </pre>
+
+<p class="author1">even if it’s 8 seconds into the animation, the <code class="calibre15">"from"</code> state will be applied to the whole length of the animation before it.</p>
+
+<p class="author1">That said, another good use of <code class="calibre15">.set</code> is for things you animate with a <code class="calibre15">.from</code> <a contenteditable="false" data-primary=".from" data-primary-sortas="from" data-type="indexterm" id="idm140658632736704" class="calibre7"></a>or <code class="calibre15">.fromTo</code>. For instance, if you have something <a contenteditable="false" data-primary="opacity" data-type="indexterm" id="idm140658632734752" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="opacity" data-type="indexterm" id="idm140658632733616" class="calibre7"></a>with <code class="calibre15">opacity: 0</code> at the outset, you’ll notice that there’s a momentary flash on the screen of the element shown while the JavaScript is loading. It’s usually only for a split second, but discernible to the naked eye.</p>
+
+<p class="author1">Since the CSS is loaded first, a workaround would be to set the visibility to <code class="calibre15">hidden</code> in the CSS:</p>
+
+<pre data-type="programlisting" class="calibre24">
+.element { visibility: hidden; }
+</pre>
+
+<p class="author1">and then set it back to <code class="calibre15">visible</code> <a contenteditable="false" data-primary="visibility" data-type="indexterm" id="idm140658632729408" class="calibre7"></a><a contenteditable="false" data-primary="JavaScript" data-secondary="visible" data-type="indexterm" id="idm140658632728096" class="calibre7"></a>in the JavaScript, so that GSAP can handle it from there:</p>
+
+<pre data-type="programlisting" class="calibre24">
+TweenMax.set(".element", {visibility:"visible"});</pre>
+
+<p class="author1">I use this trick in almost every pen or project that I make.</p>
+</div></aside>
+</div></section>
+
+</div></section></body></html>

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Creating a Responsive SVG Sprite</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 4. Creating a Responsive SVG Sprite" class="praise">
+<div class="praise" id="ch04">
+<section data-type="sect1" data-pdf-bookmark="The viewBox Trick" class="praise"><div class="praise" id="idm140658633705744">
+<h1 class="calibre12" id="calibre_pb_3">The viewBox Trick</h1>
+
+<p class="author1">There is one catch—even if we assign the bottom layer a class and hide it, there will be an empty gap where the <code class="calibre15">viewBox</code> still accounts for that space. In order to account for that area, we can change the<a contenteditable="false" data-primary="viewBox" data-secondary="adjusting" data-type="indexterm" id="v4a" class="calibre7"></a> <code class="calibre15">viewBox</code> in the SVG to show only the top portion:</p>
+
+<pre data-type="programlisting" class="calibre24">
+viewBox="0 0 490 474"
+</pre>
+
+<p class="author1">That will work, but only for the two larger versions. The smallest version is now obscured, as the <code class="calibre15">viewBox</code> is providing a window into another portion of the SVG sprite sheet, so we will need to adjust it. This is akin to changing the background position in CSS to show different areas of a sprite sheet. But because we’re adjusting an SVG attribute, we will need JavaScript, as CSS doesn’t yet have that capability:</p>
+
+
+<pre data-type="programlisting" class="calibre24">
+var shape = document.getElementById("svg");
+
+// media query event handler
+if (matchMedia) {
+	var mq = window.matchMedia("(min-width: 500px)");
+	mq.addListener(WidthChange);
+	WidthChange(mq);
+}
+// media query change
+function WidthChange(mq) {
+  if (mq.matches) {
+    shape.setAttribute("viewBox", "0 0 490 474");
+  } else {
+    shape.setAttribute("viewBox", "0 490 500 500");
+  }
+};
+</pre>
+
+<div data-type="note" epub:type="note" class="calibre19"><h6 class="calibre20">Note</h6>
+<p class="author1">There’s an ongoing discussion of adding these types of adjustments into the CSS spec on the <a href="https://github.com/w3c/fxtf-drafts/issues/7" class="calibre7">W3C’s GitHub page</a>; Jake Archibald <a href="http://bit.ly/2mANBmP" class="calibre7">has also raised the issue</a>. If the proposal is adopted, you will be able to update all of the <code class="calibre15">viewBox</code> changes in media queries and keep presentation implementation in one language.</p>
+</div>
+
+<p class="author1">Now when we scroll the browser window horizontally the viewport will shift to display only the part of the SVG we want to expose. Our code is now primed and ready to <a contenteditable="false" data-primary="viewBox" data-secondary="adjusting" data-startref="v4a" data-type="indexterm" id="idm140658633670208" class="calibre7"></a>animate.</p>
+</div></section>
+
+</div></section></body></html>

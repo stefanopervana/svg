@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>CSS Animation and Hand-Drawn SVG Sprites</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 3. CSS Animation and Hand-Drawn SVG Sprites" class="praise">
+<div class="praise" id="css_animation">
+<section data-type="sect1" data-pdf-bookmark="Keyframe Animation with steps() and SVG Sprites, Two Ways" class="praise">
+<div class="praise" id="idm140658633880432">
+<section data-type="sect2" class="praise"><div class="praise" id="idm140658633813056">
+<h1 class="calibre12" id="calibre_pb_5">Simple Code for Complex Movement</h1>
+
+<p class="author1">This <a contenteditable="false" data-primary="CSS animations" data-secondary="simple code for complex movement" data-type="indexterm" id="cssa3scfcm" class="calibre7"></a>type of sprite makes use of the smallest amount of code for the most amount of believable movement. We intentionally keep the code <a contenteditable="false" data-primary="DRY (Don't Repeat Yourself)" data-type="indexterm" id="idm140658633818288" class="calibre7"></a>DRY (an acronym that means <em class="calibre2">don’t repeat yourself</em>), simple, and clean. The greatest thing about this type of movement is that we rely enough on the sprite to not need a lot of code to achieve an illusion of movement through space.</p>
+
+<p class="author1">We absolutely position a smaller area of movement because we want to show a consistent experience across desktop and mobile. Our aim is to cycle through the entire image, but stop momentarily at each individual picture in the image, and thankfully, <code class="calibre15">steps()</code> in CSS allows us to do just that. We’ve already done a lot of the heavy lifting in our design, so the code to create the effect is very small.</p>
+
+<p class="author1">There’s no need for complex percentages and keyframes. All we need to do is use the image height as a negative integer on the 100% keyframe value for the background position:</p>
+
+<pre data-type="programlisting" class="calibre24">
+@keyframes splashit {
+  100% { background-position: 0 -3046px; }
+}
+</pre>
+
+<p class="author1">Here, we don’t have to use <code class="calibre15">.container-fluid</code>, because it’s easy to have the SVG take up the whole screen on mobile devices. In the <code class="calibre15">splash</code> div, we animate using <code class="calibre15">steps()</code> for the number of frames we had in the SVG:</p>
+
+<pre data-type="programlisting" class="calibre24">
+.splash {
+  background: url('splash-sprite2.svg');
+  ...
+  animation: splashit 1.8s steps(21) infinite;
+}
+</pre>
+
+<p class="author1">Using an SVG rather than a PNG gives us the advantage of a crisp image on all displays, but it’s easy to provide a fallback. We use Modernizr to create a class hook on <code class="calibre15">body</code> and can still animate it with the PNG we created:</p>
+
+<pre data-type="programlisting" class="calibre24">
+/* fallback */
+.no-svg .splash {
+  background: url(‘splash-sprite2.png’);
+}
+</pre>
+
+<p class="author1">We don’t simply use the PNG because at different resolutions it will look fuzzy, while the SVG will remain crisp.</p>
+
+<aside data-type="sidebar" epub:type="sidebar" class="calibre37"><div class="sidebar" id="using_mdnzr">
+<h5 class="calibre38">Using Modernizr</h5>
+
+<p class="author1"><a href="https://modernizr.com/" class="calibre7">Modernizr</a> is a <a contenteditable="false" data-primary="modernizr" data-type="indexterm" id="idm140658633799888" class="calibre7"></a>feature detection library. It allows you to work with advanced features on the web while providing fallbacks, or progressively enhance features by checking to see if they are available. It’s a highly customizable library that provides classes on the <code class="calibre15">body</code> element that you can hook into for different experiences, like the <code class="calibre15">.no-svg</code> tag in the preceding example. I highly suggest working with a custom build for your unique purposes—the entire library is a lot of overhead, and you’ll likely only use a small portion of it.</p>
+</div></aside>
+</div></section>
+
+</div></section>
+</div></section></body></html>

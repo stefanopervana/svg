@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>GreenSock’s Timeline</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 9. GreenSock’s Timeline" class="praise">
+<div class="praise" id="ch09">
+<section data-type="sect1" data-pdf-bookmark="Nested and Master Timelines" class="praise"><div class="praise" id="idm140658632763712">
+<h1 class="calibre12" id="calibre_pb_4">Nested and Master Timelines</h1>
+
+<p class="author1">I <a contenteditable="false" data-primary="relative labels" data-startref="rl9" data-type="indexterm" id="idm140658632723440" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP) timeline" data-secondary="relative labels" data-startref="gsap9rl" data-type="indexterm" id="idm140658632722016" class="calibre7"></a>don’t <a contenteditable="false" data-primary="master timelines" data-type="indexterm" id="mt9" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP) timeline" data-secondary="master timelines" data-type="indexterm" id="gsapt9namt" class="calibre7"></a>suggest just throwing some animations into your global scope. If you’re working with a really simple TweenMax animation, it’s easy enough to pack your animation into an <a contenteditable="false" data-primary="IIFE (immediately invoked function expression)" data-type="indexterm" id="idm140658632717472" class="calibre7"></a>IIFE (immediately invoked function expression), but I strongly suggest wrapping your timelines in a function and calling that instead.</p>
+
+<p class="author1">One step further would be to create a master timeline. I like using master timelines because I can group sections of the animation into scenes. This gives me tons of control because I can:</p>
+
+<ul class="printings">
+	<li class="calibre10">Name and order my scenes so that it’s easy to find my place when I have to make adjustments.</li>
+	<li class="calibre10">Change the placement of these scenes.</li>
+	<li class="calibre10">Make just one scene a little faster.</li>
+	<li class="calibre10">Seek out a scene so that I don’t have to sit through the entire animation every time.</li>
+	<li class="calibre10">Restart or play the master timeline on an event, like a click.</li>
+	<li class="calibre10">Keep all of my animations organized, tidy, and easy to read.</li>
+</ul>
+
+<p class="author1">Let’s dig into how to create a master timeline, and then we’ll go through all the bells and whistles.</p>
+
+</div></section>
+</div></section></body></html>

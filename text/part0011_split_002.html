@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Animating Data Visualizations</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 6. Animating Data Visualizations" class="praise">
+<div class="praise" id="animating_data_viz">
+<section data-type="sect1" data-pdf-bookmark="Why Use Animation in Data Visualization?" class="praise"><div class="praise" id="idm140658633383440">
+<h1 class="calibre12" id="calibre_pb_2">Why Use Animation in Data Visualization?</h1>
+
+<p class="author1">Animation <a contenteditable="false" data-primary="data visualizations" data-secondary="reasons for animation in" data-type="indexterm" id="dv6rfai" class="calibre7"></a>in data visualization can be extremely powerful as a performant piece of the data’s structure. Here are a few ways that animation can aid a data visualization:</p>
+
+<ul class="printings">
+	<li class="calibre10">Filtering</li>
+	<li class="calibre10">Reordering</li>
+	<li class="calibre10">Storytelling</li>
+	<li class="calibre10">Showing change over time</li>
+	<li class="calibre10">Staggering pieces for clarity</li>
+</ul>
+
+<p class="author1">In the last chapter, we discussed the importance of retaining context for users. Filtering data allows us to retain consistent <em class="calibre2">elements</em>, while shifting their <em class="calibre2">meaning</em> by rearranging them.</p>
+
+<p class="author1">Consider the data visualization in <a data-type="xref" href="part0011_split_002.html#fig6.1" class="calibre7">Figure 6-1</a>. <a href="http://www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html" class="calibre7">The <em class="calibre2">New York Times</em> presents the same data in many different contexts</a>, allowing readers to process the information in an extremely powerful, multidimensional way. Users gain greater insight into the information by seeing it in a variety of different contexts, while the area of the representation remains unchanged.</p>
+
+<figure class="calibre25"><div id="fig6.1" class="figure"><img alt="" class="iimagesimage11png" src="../images/00045.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 6-1. </span>The New York Times shows the same information reassembled in four different ways to give the information new meaning, and adjusts between views with animation to retain context between states</h6>
+</div></figure>
+
+<p class="author1">Even the most informative data lacks meaning if it is not engaging.<sup class="calibre42"><a data-type="noteref" id="idm140658633370288-marker" href="part0011_split_007.html#idm140658633370288" class="calibre7">1</a></sup> That’s why storytelling is extremely important when it comes to data visualization.</p>
+
+<p class="author1">I live in San Francisco, where there is an ongoing housing crisis. Many families are being thrown out of their homes through a loophole in the law called the Ellis Act. <a href="http://bit.ly/2lPHaOd" class="calibre7">The Ellis Act evictions</a> are illustrated very powerfully in the data visualization in <a data-type="xref" href="part0011_split_002.html#fig6.2" class="calibre7">Figure 6-2</a>, showing the change in evictions over time in a timeline. We’ll learn how to make <a contenteditable="false" data-primary="interactive timeline animations" data-type="indexterm" id="idm140658633363920" class="calibre7"></a><a contenteditable="false" data-primary="data visualizations" data-secondary="interactive timeline animations" data-type="indexterm" id="idm140658633364560" class="calibre7"></a>interactive timeline animations like this one in <a data-type="xref" href="part0014_split_000.html#ch09" class="calibre7">Chapter 9</a>.</p>
+
+<figure class="calibre25"><div id="fig6.2" class="figure"><img alt="" class="iimagesimage11png" src="../images/00046.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 6-2. </span>As the timeline moves forward, the heat spots come in faster and faster and fill up the city; the data visualization isn’t just showing us data here, it’s telling a story and showing the impact</h6>
+</div></figure>
+
+<p class="author1">If we look under the hood, we can see that that it’s all SVG: the visualization is hiding and displaying the bursts of evictions depending on when they occur in the timeline (see <a data-type="xref" href="part0011_split_002.html#fig6.3" class="calibre7">Figure 6-3</a>). This linear story is very effective, as more and more locations on the map “explode” in the animation.</p>
+
+<figure class="calibre25"><div id="fig6.3" class="figure"><img alt="" class="iimagesimage54jpg" src="../images/00047.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 6-3. </span>Under the hood this visualization uses an SVG animation, modifying and animating these groups for the sudden bursts on the screen</h6>
+</div></figure>
+
+<p class="author1">Let’s build out our own small version of something like this so you can see <a contenteditable="false" data-primary="data visualizations" data-secondary="reasons for animation in" data-startref="dv6rfai" data-type="indexterm" id="idm140658633353440" class="calibre7"></a>how it’s done.</p>
+</div></section>
+
+</div></section></body></html>

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>UI/UX Animations with No External Libraries</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 5. UI/UX Animations with No External Libraries" class="praise">
+<div class="praise" id="idm140658633651280">
+<section data-type="sect1" data-pdf-bookmark="Context-Shifting in UX Patterns" class="praise">
+<div class="praise" id="idm140658633647664">
+<section data-type="sect2" data-pdf-bookmark="Style" class="praise"><div class="praise" id="idm140658633578624">
+<h2 class="pagebreak-before" id="calibre_pb_5">Style</h2>
+
+<p class="author1">Style, <a contenteditable="false" data-primary="style" data-type="indexterm" id="s5" class="calibre7"></a><a contenteditable="false" data-primary="UI/UX animations" data-secondary="style" data-type="indexterm" id="uiuxa5s" class="calibre7"></a>design, branding, and eases are all very closely tied. If you keep your animation style unified across your brand (and you should), this becomes your <em class="calibre2">motion design language</em>. Motion design languages <a contenteditable="false" data-primary="motion design language" data-type="indexterm" id="idm140658633573008" class="calibre7"></a>are important for getting everyone on the same page about what types of animations you’re going to be creating. For this very reason, you can keep your code <a contenteditable="false" data-primary="DRY (Don't Repeat Yourself)" data-type="indexterm" id="idm140658633571776" class="calibre7"></a>DRY by reusing eases in variables and interactions in functions, and keep consistent behavior across your site and even across multiple platforms. I don’t code Java for Android or Swift for iOS (yet), but I can retain consistency across these platforms and the web by nailing down a style guide for animations that will apply to all of them.</p>
+
+<p class="author1">How do <a contenteditable="false" data-primary="eases" data-type="indexterm" id="e5" class="calibre7"></a>eases come into play? Eases are a strong piece of an animation’s branding. If you work for a stoic company like a bank or financial institution, your eases are more likely to be <a contenteditable="false" data-primary="Sine eases" data-type="indexterm" id="se1" class="calibre7"></a>Sine or <a contenteditable="false" data-primary="Circ eases" data-type="indexterm" id="idm140658633566704" class="calibre7"></a>Circ; if you work for a more playful company like MailChimp or <a contenteditable="false" data-primary="Wufoo" data-type="indexterm" id="idm140658633563520" class="calibre7"></a><a contenteditable="false" data-primary="MailChimp" data-type="indexterm" id="idm140658633568160" class="calibre7"></a>Wufoo, a <a contenteditable="false" data-primary="Bounce eases" data-type="indexterm" id="idm140658633562256" class="calibre7"></a>Bounce or <a contenteditable="false" data-primary="Elastic" data-type="indexterm" id="idm140658633560992" class="calibre7"></a>Elastic ease would be more suitable. (See the sidebar <a data-type="xref" href="part0010_split_005.html#accent_eases" class="calibre7">“Accents in Eases”</a> for a visual illustration of Sine versus Bounce eases.)</p>
+
+<p class="author1">Here are some sites that allow you to pick out the eases you could be using for your project:</p>
+
+<ul class="printings">
+	<li class="calibre10">CSS: <a href="http://cubic-bezier.com/" class="calibre7"><em class="calibre2">http://cubic-bezier.com/</em></a> and <a href="http://easings.net/" class="calibre7"><em class="calibre2">http://easings.net/</em></a></li>
+	<li class="calibre10">GSAP: <a href="http://greensock.com/ease-visualizer" class="calibre7"><em class="calibre2">http://greensock.com/ease-visualizer</em></a></li>
+	<li class="calibre10">React-Motion:<a contenteditable="false" data-primary="style" data-startref="s5" data-type="indexterm" id="idm140658633554336" class="calibre7"></a> <a href="http://bit.ly/2mH7nvT" class="calibre7"><em class="calibre2">http://bit.ly/2mH7nvT</em></a></li>
+</ul>
+
+<aside class="calibre37" data-type="sidebar" epub:type="sidebar"><div class="sidebar" id="accent_eases">
+<h5 class="calibre38">Accents in Eases</h5>
+
+<p class="author1">Eases can completely change the appearance and tone of an animation. <a contenteditable="false" data-primary="Linear eases" data-type="indexterm" id="idm140658633548576" class="calibre7"></a>Linear and <a contenteditable="false" data-primary="Sine eases" data-type="indexterm" data-startref="se1" id="idm140658633549696" class="calibre7"></a>Sine eases are expressed mathematically as more of a line, and will have an even transition between states, while something like a <a contenteditable="false" data-primary="Bounce eases" data-type="indexterm" id="idm140658633547072" class="calibre7"></a>Bounce or <a contenteditable="false" data-primary="Elastic eases" data-type="indexterm" id="idm140658633545840" class="calibre7"></a>Elastic ease will go back and forth between those states to create a jumping-around sensation that can potentially feel more playful.</p>
+
+<p class="author1">You can use eases to draw attention to a particular action or event in the same way that a designer uses accents in a palette (see <a data-type="xref" href="part0010_split_005.html#fig5.5" class="calibre7">Figure 5-5</a>). If you visit any major website, you’ll note that one primary color tends to be used everywhere, with an accent color that contrasts with this color. The accent is used for things like calls to action <a contenteditable="false" data-primary="calls to action (CTAs)" data-type="indexterm" id="idm140658633541552" class="calibre7"></a>(CTAs) prompting users to click a button. Most of those CTAs are the real moneymakers for the site, so their ability to stand out is of utmost importance.</p>
+
+<figure class="calibre25"><div id="fig5.5" class="figure"><img alt="" class="iimages1843779-accentsjpg" src="../images/00038.jpeg"/>
+<h6 class="calibre39"><span class="label">Figure 5-5. </span>Just as we have accents in a palette to draw attention, we can also have accents in eases</h6>
+</div></figure>
+
+<p class="author1">We can apply the same technique to eases. In the previous example (<a data-type="xref" href="part0010_split_001.html#fig5.2" class="calibre7">Figure 5-2</a>), all of the eases were Sine eases, which are closer to a smooth, Linear ease. The only time we used a Bounce ease was for confirmation that the form had gone through completely and was successful.</p>
+
+<p class="author1">For more information on voice and tone in animation, check out <em class="calibre2">Designing Interface Animation</em> by Val <a contenteditable="false" data-primary="eases" data-startref="e5" data-type="indexterm" id="idm140658633542816" class="calibre7"></a>Head (Rosenfeld Media).</p>
+</div></aside>
+</div></section>
+
+</div></section>
+
+</div></section></body></html>

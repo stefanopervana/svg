@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Animating Data Visualizations</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 6. Animating Data Visualizations" class="praise">
+<div class="praise" id="animating_data_viz">
+<section data-type="sect1" data-pdf-bookmark="Animating with D3" class="praise">
+<div class="praise" id="idm140658633308208">
+<section data-type="sect2" data-pdf-bookmark="Chaining and Repeating" class="praise"><div class="praise" id="idm140658633237248">
+<h2 class="pagebreak-before" id="calibre_pb_7">Chaining and Repeating</h2>
+
+<p class="author1">For <a contenteditable="false" data-primary="D3 animation" data-secondary="chaining and repeating" data-type="indexterm" id="idm140658633235856" class="calibre7"></a>more complex effects, we could also add multiple transitions, and even create loops. To chain <a contenteditable="false" data-primary="chaining" data-type="indexterm" id="idm140658633234640" class="calibre7"></a>animations, we would add a <code class="calibre15">.transition()</code> <a contenteditable="false" data-primary=".transition()" data-primary-sortas="transition" data-type="indexterm" id="idm140658633233136" class="calibre7"></a>method between two states as we did before, but to make the whole thing repeat, we would have update our syntax a little and use some recursion. Here’s an example of both:</p>
+
+<pre data-type="programlisting" class="calibre24">
+.transition()
+    .on("start", function repeat() {
+        d3.active(this)
+            .style("fill", "purple")
+          .transition()
+            .style("fill", "blue")
+          .duration(2000)
+          .transition()
+          .duration(2000)
+            .on("start", repeat);
+      });</pre>
+
+<p class="author1">You can find <a href="http://bit.ly/2goB8mh" class="calibre7">this example on CodePen</a> as well.</p>
+
+<p class="author1">Please keep in mind that if you’d like to create a very complex chaining or interaction, you might consider switching to <a contenteditable="false" data-primary="GreenSock (GSAP)" data-type="indexterm" id="idm140658633229792" class="calibre7"></a>GreenSock for animation. We’ll cover GreenSock in later chapters. You’ll find that it plays nicely with D3’s output, while providing fine control of timelines and <a contenteditable="false" data-primary="D3 animation" data-secondary="instead of CSS" data-startref="d3a6iocss" data-type="indexterm" id="idm140658633226064" class="calibre7"></a> <a contenteditable="false" data-primary="data visualizations" data-startref="dv6" data-type="indexterm" id="idm140658633224720" class="calibre7"></a>sequencing.</p>
+</div></section>
+</div></section>
+<div data-type="footnotes" class="calibre43"><p data-type="footnote" id="idm140658633370288" class="author1"><sup class="calibre42"><a href="part0011_split_002.html#idm140658633370288-marker" class="calibre7">1</a></sup> See the <a href="http://bit.ly/2lSLKtl" class="calibre7">“Storytelling in Data Visualization”</a> presentation by Emma Whitehead and Tobias Sturt, from the Graphical Web, 2014.</p><p data-type="footnote" id="idm140658633302864" class="author1"><sup class="calibre42"><a href="part0011_split_004.html#idm140658633302864-marker" class="calibre7">2</a></sup> For <a contenteditable="false" data-primary=".getTotalLength()" data-primary-sortas="getTotalLength()" data-type="indexterm" id="idm140658633302224" class="calibre7"></a>a full list of <a contenteditable="false" data-primary="SVGs" data-secondary="path interface operations list" data-type="indexterm" id="idm140658633300272" class="calibre7"></a>SVG path interface operations, <a href="https://mzl.la/2lkvTlG" class="calibre7">MDN has a great resource</a>.</p></div></div></section></body></html>

@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Animating Data Visualizations</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 6. Animating Data Visualizations" class="praise">
+<div class="praise" id="animating_data_viz">
+<section data-type="sect1" data-pdf-bookmark="D3 with CSS Animation Example" class="praise"><div class="praise" id="idm140658633382816">
+<h1 class="calibre12" id="calibre_pb_3">D3 with CSS Animation Example</h1>
+
+<p class="author1">As <a contenteditable="false" data-primary="D3 animation" data-secondary="example with CSS" data-type="indexterm" id="d36wcss" class="calibre7"></a><a contenteditable="false" data-primary="CSS animations" data-secondary="example with D3" data-type="indexterm" id="css6aewd3" class="calibre7"></a>a starting point, D3 has a ton of nice blocks that you can work with and modify (<a data-type="xref" href="part0011_split_003.html#fig6.4" class="calibre7">Figure 6-4</a>). <em class="calibre2">Blocks</em> are <a contenteditable="false" data-primary="blocks" data-type="indexterm" id="idm140658633346832" class="calibre7"></a>demos that show the code and implementation details of a D3 example. Take care: blocks are not part of the library; they are examples individual contributors have posted, and licenses and versions may vary.</p>
+
+<figure class="calibre25"><div id="fig6.4" class="figure"><img alt="" class="iimagesimage11png" src="../images/00048.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 6-4. </span>The D3 home page</h6>
+</div></figure>
+
+<p class="author1">As beautiful as the ready-made blocks may be, you may still need to style them for your own site or animate them to bring them to life.</p>
+
+<p class="author1">For this demo, I chose a map of 3,000 Walmart locations across the US (see <a data-type="xref" href="part0011_split_003.html#fig6.5" class="calibre7">Figure 6-5</a>)</p>
+
+<figure class="calibre25"><div id="fig6.5" class="figure"><img alt="" class="iimagesimage11png" src="../images/00049.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 6-5. </span>The data visualization from D3 block mbostock/4330486 by Mike Bostock that we will use to demo progressive animation</h6>
+</div></figure>
+
+<p class="author1">With just a few styles and a few simple <a contenteditable="false" data-primary="SCSS" data-type="indexterm" id="idm140658633336928" class="calibre7"></a>SCSS functions, we can convert this static document into something that presents itself progressively, as shown in Figures <a href="part0011_split_003.html#fig6.6" class="calibre7">6-6</a> through <a href="part0011_split_003.html#fig6.8" class="calibre7">6-8</a> and found in full animation at <a href="http://codepen.io/sdras/full/qZBgaj/" class="calibre7"><em class="calibre2">http://codepen.io/sdras/full/qZBgaj/</em></a>.</p>
+
+<figure class="calibre25"><div id="fig6.6" class="figure"><img alt="" class="iimagesimage11png" src="../images/00050.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 6-6. </span>Progressive rendering of hexagonal data, initial stage</h6>
+</div></figure>
+
+<figure class="calibre25"><div id="fig6.7" class="figure"><img alt="" class="iimagesimage11png" src="../images/00051.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 6-7. </span>Progressive rendering of hexagonal data, middle stage</h6>
+</div></figure>
+
+<figure class="calibre25"><div id="fig6.8" class="figure"><img alt="" class="iimagesimage11png" src="../images/00052.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 6-8. </span>Progressive rendering of hexagonal data, rendering complete</h6>
+</div></figure>
+
+<p class="author1">In order to change the base styling, we will need classes to distinguish the different types of SVG paths. In this case, the D3 code already assigns the necessary classes using the <code class="calibre15">.attr()</code> <a contenteditable="false" data-primary=".attr() function" data-primary-sortas="attr" data-type="indexterm" id="idm140658633326800" class="calibre7"></a><a contenteditable="false" data-primary="JavaScript" data-type="indexterm" id="idm140658633324960" class="calibre7"></a>function.</p>
+
+<p class="author1">Here’s the JavaScript:</p>
+
+<pre data-type="programlisting" class="calibre24">
+svg.append("path")
+      .datum(topojson.feature(us, us.objects.land))
+      .attr("class", "land")
+      .attr("d", path);
+
+svg.append("path")
+      .datum(topojson.mesh(us, us.objects.states, function(a, b) {
+        return a !== b; 
+      }))
+      .attr("class", "states")
+      .attr("d", path);
+
+svg.append("g")
+      .attr("class", "hexagons")
+    .selectAll("path")
+</pre>
+
+<p class="author1">And here’s the SCSS:</p>
+
+<pre data-type="programlisting" class="calibre24">
+svg {
+  position: absolute;
+  left: 50%;
+  margin-left: -500px;
+}
+
+path {
+  fill: none;
+  stroke-linejoin: round;
+}
+
+.land {
+  fill: #444;
+}
+
+.states {
+  stroke: #555;
+}
+</pre>
+
+<p class="author1">It <a contenteditable="false" data-primary="SCSS" data-type="indexterm" id="idm140658633320272" class="calibre7"></a>doesn’t make much sense to add an extra class on every hexagon path in order to animate them, as we can use <a contenteditable="false" data-primary="nth-child selector" data-type="indexterm" id="idm140658633319104" class="calibre7"></a>the <code class="calibre15">nth-child</code> selector. Sass also helps us create a stagger in our animations by allowing us to create a function. We set the hexagons to <code class="calibre15"><span class="keep-together">opacity:</span> 0</code> initially in order to bring them in slowly:</p>
+
+<pre data-type="programlisting" class="calibre24">
+.hexagons path {
+  opacity: 0;
+}
+
+$elements: 2000;
+@for $i from 0 to $elements {
+  .hexagons path:nth-child(#{$i}) {
+    $per: $i/50;
+    animation: 2s #{$per}s ease hexagons both;
+  }
+}
+
+@keyframes hexagons {
+  100% {
+    opacity: 1;
+  }
+}
+</pre>
+
+<p class="author1">The result is a pretty slim amount of code for a beautiful and exciting way to progressively show data. For a timeline showing <a contenteditable="false" data-primary="progression" data-type="indexterm" id="idm140658633314624" class="calibre7"></a>progression, please refer to <a data-type="xref" href="part0017_split_000.html#drawsvg_and_draggable" class="calibre7">Chapter 12</a>, where we tie a GSAP timeline together with Draggable instances to create interaction and <a contenteditable="false" data-primary="D3 animation" data-secondary="example with CSS" data-startref="d36wcss" data-type="indexterm" id="idm140658633310240" class="calibre7"></a><a contenteditable="false" data-primary="CSS animations" data-secondary="example with D3" data-startref="css6aewd3" data-type="indexterm" id="idm140658633311552" class="calibre7"></a>progression.</p>
+</div></section>
+
+</div></section></body></html>

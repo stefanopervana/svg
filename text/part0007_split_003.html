@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Animating with CSS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 2. Animating with CSS" class="praise">
+<div class="praise" id="animating_with_css">
+<section data-type="sect1" data-pdf-bookmark="Benefits of Drawing with SVG" class="praise"><div class="praise" id="idm140658633959568">
+<h1 class="calibre12" id="calibre_pb_3">Benefits of Drawing with SVG</h1>
+
+<p class="author1">So, <a contenteditable="false" data-primary="fill" data-startref="fill2" data-type="indexterm" id="idm140658633922272" class="calibre7"></a>why <a contenteditable="false" data-primary="SVGs" data-secondary="benefits of drawing with" data-type="indexterm" id="svgs2bodw" class="calibre7"></a>learn SVG when you could build something in CSS-styled HTML and animate that way?</p>
+
+<p class="author1">First of all, even that small, simple circle was four lines less than the CSS version. SVG was built for drawing—unlike CSS, which was built for presentational formatting. Let’s look at the code for the star from the first chapter of this book:</p>
+
+<pre data-type="programlisting" class="calibre24">
+&lt;polygon fill="white" stroke="black" points="279,5 294,35 328,40 
+   303,62 309,94 279,79 248,94 254,62 230,39 263,35 "/&gt;</pre>
+
+<p class="author1">It would be incredibly difficult to draw a star in CSS with such a small amount of code, and impossible for the code to be that concise once compiled, if using a preprocessor.</p>
+
+<p class="author1"><a data-type="xref" href="part0007_split_003.html#fig2.6" class="calibre7">Figure 2-6</a> is something I drew in Illustrator.</p>
+
+<figure class="calibre25"><div id="fig2.6" class="figure"><img alt="" class="iimagesimage11png" src="../images/00022.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 2-6. </span>An example of the ease of Illustrator</h6>
+</div></figure>
+
+<p class="author1">We could also probably draw this in CSS, but to what end? If you’re working with a designer on a project, having them draw something for you in CSS is not typically an option, and drawings that you want to animate can get much more complex than this. In SVG you can also make the whole image scale easily, and therefore, your whole animation can be responsive.</p>
+
+<p class="author1">All of the information for the illustration is just <em class="calibre2">2 KB gzipped</em>, and it can fill up a whole screen. That’s pretty amazing if you consider raster image alternatives.</p>
+
+<p class="author1">Applying what we just learned about the circle, we can look at some of these shapes and think about what we can do with them. We could group all of the parts of the cow together and make it jump over the moon. We could make the astronaut’s “surprised” expression disappear and appear. We can even make the helmet go up and down so it looks like the astronaut is looking up. <a contenteditable="false" data-primary="SVGs" data-secondary="benefits of drawing with" data-startref="svgs2bodw" data-type="indexterm" id="idm140658633907008" class="calibre7"></a><a contenteditable="false" data-primary="CSS animations" data-secondary="versus SVG" data-startref="cssa2vsvg" data-type="indexterm" id="idm140658633906080" class="calibre7"></a>(That is actually what I did in the final animation.)</p>
+</div></section>
+
+</div></section></body></html>

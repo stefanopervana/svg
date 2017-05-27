@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>UI/UX Animations with No External Libraries</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 5. UI/UX Animations with No External Libraries" class="praise">
+<div class="praise" id="idm140658633651280">
+<section data-type="sect1" data-pdf-bookmark="Putting It All Together" class="praise">
+<div class="praise" id="idm140658633644832">
+<section data-type="sect2" data-pdf-bookmark="Icons That Transform" class="praise">
+<div class="praise" id="idm140658633480592">
+<div data-type="warning" epub:type="warning" class="calibre21">
+<h1 class="calibre28" id="calibre_pb_11">CSS Transforms on SVG DOM Elements</h1>
+
+<p class="author1">As you <a contenteditable="false" data-primary="transforms" data-secondary="stacking behaviors" data-type="indexterm" id="idm140658633442896" class="calibre7"></a>experiment with CSS and SVG with transforms, you might notice that cross-browser stability begins to become hairy with complex movement, particularly when you’re adjusting something with <code class="calibre15">transform-origin</code>. This is a major reason I work with <a contenteditable="false" data-primary="GreenSock (GSAP)" data-type="indexterm" id="idm140658633440080" class="calibre7"></a>GreenSock. GreenSock not only makes your SVG animations stable, but also fixes some <code class="calibre15">transform-origin</code> stacking behaviors that are defined counterintuitively in the spec.</p>
+</div>
+
+<p class="author1">We don’t really need a full CSS animation with keyframes to interpolate, because it’s just from point A to point B, so we’re going to use a transition. We’ll also use a couple of custom eases in SCSS, which we’ll reuse as variables. One nice trick—and a possible pitfall—is that ease-out functions are nice for entrances, while ease-in functions are great for exits. With that in mind, we’re going to use a <a contenteditable="false" data-primary="eases" data-secondary="quad easing" data-type="indexterm" id="idm140658633442352" class="calibre7"></a><code class="calibre15">quad</code> easing function:</p>
+
+<pre data-type="programlisting" class="calibre24">
+$quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$quad-out: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+
+.open .magnifier {
+  line {
+    transition: 0.65s all $quad;
+    transform: rotate(-2.5deg) translateY(14px);
+  }
+  circle {
+    transition: 0.35s all $quad;
+    transform: scale(0.5);
+  }
+}
+</pre>
+
+<p class="author1">You’ll notice we’re using the entrance animations on the open state. This part may seem a little backward: the <code class="calibre15">.open</code> animations  will be treated as our entrance animation state while our exit animations should be added to the initial property. It’s a little counterintuitive at first, but makes sense the more you work with it. The exit animations make more visual sense when they collapse together, and we’ll make them a little faster because it feels better when they fade more quickly:</p>
+
+<pre data-type="programlisting" class="calibre24">
+.magnifier {
+  line {
+    transition: 0.25s all $quad-out;
+    transform: rotate(0deg) translateY(0px);
+  }
+  circle {
+    transition: 0.25s all $quad-out;
+    transform: scale(1);
+  }
+}
+</pre>
+
+<p class="author1">Next let’s work on the circle and the ×-out. In this case, we’ve added the ×-out as its own SVG and positioned it appropriately, but we could have just as easily included it in the initial SVG. I didn’t do so because when I was initially creating the animation, I wasn’t sure where I would position it. Keeping it separate when creating the assets let me retain a little more flexibility in iterations. If your storyboards and designs are more formalized, it might provide better cross-browser stability to have all elements contained within the same SVG DOM.</p>
+
+<p class="author1">The other <a contenteditable="false" data-primary="transforms" data-secondary="transform-origin values" data-type="indexterm" id="idm140658633431584" class="calibre7"></a>reason to separate the elements was the <code class="calibre15">transform-origin</code> values. If I were using a larger SVG structure the values would be more difficult to define, but when the line is encapsulated within its own SVG I can easily declare <code class="calibre15">50% 50%</code> and refer to the center of the ×:</p>
+
+<pre data-type="programlisting" class="calibre24">
+.x-out {
+  width: 6px;
+  padding: 5px 6px;
+  transition: 0.5s all $quad;
+  cursor: pointer;
+  line {
+    stroke-width: 2px;
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: 50% 50%;
+  }
+}
+
+// Firefox hack for padding on x, as mentioned previously in 
+// the warning about cross-browser stability issues
+@-moz-document url-prefix() { 
+  .x-out {
+   padding: 5px !important;
+  }
+}
+
+.open .x-out line {
+  opacity: 1;
+  transform: scale(1);
+  transition: 0.75s all $quad;
+}
+</pre>
+
+<p class="author1">In future chapters, I’ll cover some GreenSock features that help a great deal with <code class="calibre15">transform-origin</code> values and designation, but for CSS, it’s worth it to tread lightly, due to cross-browser bugs and only one option for declaration.</p>
+
+<p class="author1">Finally, we can see that we’ll need to add an input for this to truly work. We’ll make sure the SVG and the input are in the same height placement with some absolute positioning:</p>
+
+<pre data-type="programlisting" class="calibre24">
+.magnifier, input, .x-out {
+  margin-left: 30vw;
+  margin-top: 40vh;
+  pointer: cursor;
+  position: absolute;
+}
+
+.magnifier, input {
+  width: 400px;
+}
+</pre>
+
+<p class="author1">Then, we’ll make sure that the input has no default native browser styling but that the <code class="calibre15">font-size</code> matches the size of the SVG:</p>
+
+<pre data-type="programlisting" class="calibre24">
+input {
+  font-size: 35px;
+  padding-left: 30px;
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
+  outline: none;
+}</pre>
+
+<p class="author1"><a data-type="xref" href="part0010_split_011.html#fig5.11" class="calibre7">Figure 5-11</a> is the final result after all of our styling. Be sure to <a href="http://codepen.io/sdras/full/BKaYyG" class="calibre7">check out this particular animation in action</a> as well.</p>
+
+<figure class="calibre25"><div id="fig5.11" class="figure"><img alt="" class="iimagesimage11png" src="../images/00044.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 5-11. </span>The result of our styling</h6>
+</div></figure>
+
+<p class="author1">If you’re morphing an entire path in SVG, please check out <a data-type="xref" href="part0015_split_000.html#ch10" class="calibre7">Chapter 10</a>, because JavaScript (and GreenSock’s MorphSVG in particular) is the best option for that kind of motion. But simple movements can be achieved without any additional libraries.</p>
+
+<p class="author1">This is, of course, just one way of working with one UX pattern. You’ll find that most UX patterns will employ this type of problem solving to achieve some nice effects.</p>
+
+<p class="author1">There are some open source libraries that already do this type of interaction out of the box, such as Sara Soueidan’s <a href="http://bit.ly/2mAJDdL" class="calibre7">Navicon Transformicons</a> or <a contenteditable="false" data-primary="fork" data-type="indexterm" id="idm140658633418416" class="calibre7"></a><a contenteditable="false" data-primary="Navicon Transformations" data-type="indexterm" id="idm140658633417408" class="calibre7"></a>Dennis Gaebel’s <a href="http://www.transformicons.com/" class="calibre7">fork</a>. These might be worth checking out if you don’t desire <a contenteditable="false" data-primary="icons" data-startref="i5" data-type="indexterm" id="idm140658633412896" class="calibre7"></a><a contenteditable="false" data-primary="transforms" data-startref="t5" data-type="indexterm" id="idm140658633413920" class="calibre7"></a><a contenteditable="false" data-primary="UI/UX animations" data-secondary="example use case with icons" data-startref="uiuxa5eucwi" data-type="indexterm" id="idm140658633411200" class="calibre7"></a>something <a contenteditable="false" data-primary="UI/UX animations" data-startref="uiuxa5" data-type="indexterm" id="idm140658633409408" class="calibre7"></a>custom.</p>
+</div></section>
+</div></section>
+</div></section></body></html>

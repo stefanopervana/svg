@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Animating Data Visualizations</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 6. Animating Data Visualizations" class="praise">
+<div class="praise" id="animating_data_viz">
+<section data-type="sect1" data-pdf-bookmark="Chartist with CSS Animation Example" class="praise"><div class="praise" id="idm140658633354096">
+<h1 class="calibre12" id="calibre_pb_4">Chartist with CSS Animation Example</h1>
+
+<p class="author1">Let’s <a contenteditable="false" data-primary="Chartist" data-secondary="with CSS" data-type="indexterm" id="c6wcss" class="calibre7"></a><a contenteditable="false" data-primary="CSS animations" data-secondary="example with Chartist" data-type="indexterm" id="css6aewc" class="calibre7"></a>also make a simple Chartist example for comparison. Working from the point where we have a full line chart that’s styled for our needs, we’ve decided it would be most interesting to have these lines animate in. This allows users to see the data unveil itself, and the staggering pieces are easier for them to process.</p>
+
+<p class="author1">In order create the illusion of an SVG drawing, we need to get the length of the SVG path, which we can do with <code class="calibre15">.getTotalLength()</code>:<sup class="calibre42"><a data-type="noteref" id="idm140658633302864-marker" href="part0011_split_007.html#idm140658633302864" class="calibre7">2</a></sup></p>
+
+<pre data-type="programlisting" class="calibre24">
+setTimeout (
+  function() { 
+    var path = document.querySelector('.ct-series-d path');
+    var length = path.getTotalLength();
+    console.log(length);
+  }, 
+3000);
+
+// output
+a: 1060.49267578125
+b: 1665.3359375
+c: 1644.7210693359375
+d: 1540.881103515625
+</pre>
+
+<p class="author1">We’re going to use that data to animate the path in. We can make it look like it’s drawing itself with CSS.</p>
+
+<p class="author1">First, let’s set a <code class="calibre15">stroke-dasharray</code> on <a contenteditable="false" data-primary="stroke-dasharray" data-type="indexterm" id="sda6" class="calibre7"></a>one of the paths:</p>
+
+<pre data-type="programlisting" class="calibre24">
+.ct-series-a {
+  fill: none;
+  stroke-dasharray: 20;
+  stroke: $color1;
+}
+</pre>
+
+<p class="author1">The result looks like <a data-type="xref" href="part0011_split_004.html#fig6.9" class="calibre7">Figure 6-9</a>.</p>
+
+<figure class="calibre25"><div id="fig6.9" class="figure"><img alt="" class="iimagesimage11png" src="../images/00053.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 6-9. </span>The path with a stroke-dasharray</h6>
+</div></figure>
+
+<p class="author1">That can be as long as we want it to be. We can also set a <code class="calibre15">stroke-dashoffset</code>, which can also be as long as we want it to be. As the name <a contenteditable="false" data-primary="stroke-dashoffset" data-type="indexterm" id="sdo6" class="calibre7"></a>suggests, <code class="calibre15">stroke-dashoffset</code> offsets the stroke by any amount, and, thankfully, it’s also an animatable property.</p>
+
+<p class="author1">We can now use the console output and our little table to create an animation that takes the full length of the whole stroke and also offsets it by that much. This makes our <a href="http://codepen.io/sdras/full/oxNmRM" class="calibre7">data visualization</a> look like it was drawn into the <code class="calibre15">viewBox</code> (see Figures <a href="part0011_split_004.html#fig6.10" class="calibre7">6-10</a> and <a href="part0011_split_004.html#fig6.11" class="calibre7">6-11</a>). We are using the same information a few times, so we can use a mixin to DRY it out. We also have different values for the <code class="calibre15">dashoffset</code> and <code class="calibre15">dasharray</code>, so to keep it <a contenteditable="false" data-primary="DRY (Don't Repeat Yourself)" data-type="indexterm" id="idm140658633282448" class="calibre7"></a>DRY, we animate to <code class="calibre15">0</code> instead of the other way around:</p>
+
+<pre data-type="programlisting" class="calibre24">
+@mixin pathseries($length, $delay, $strokecolor) {
+  stroke-dasharray: $length;
+  stroke-dashoffset: $length;
+  animation: draw 1s $delay ease both;
+  fill: none;
+  stroke: $strokecolor;
+  opacity: 0.8;
+}
+
+.ct-series-a {
+  @include pathseries(1093, 0s, $color1);
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+</pre>
+
+<figure class="calibre25"><div id="fig6.10" class="figure"><img alt="" class="iimagesimage11png" src="../images/00054.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 6-10. </span>Here we see the progressive drawing of the stroke…</h6>
+</div></figure>
+
+<figure class="calibre25"><div id="fig6.11" class="figure"><img alt="" class="iimagesimage11png" src="../images/00055.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 6-11. </span>And here its conclusion</h6>
+</div></figure>
+
+<p class="author1">This is just <a contenteditable="false" data-primary="stroke-dashoffset" data-startref="sdo6" data-type="indexterm" id="idm140658633274624" class="calibre7"></a><a contenteditable="false" data-primary="stroke-dasharray" data-startref="sda6" data-type="indexterm" id="idm140658633273136" class="calibre7"></a>one way we can animate Chartist visualizations. You can see many examples on <a href="https://gionkunz.github.io/chartist-js/examples.html" class="calibre7">the library’s website</a>. The way you code entrances, exits, and persistent states in Chartist and CSS is entirely up to you—the sky’s the limit.</p>
+
+<p class="author1">We’re going to get into even more exciting ways of working with data visualization in future chapters, but for that we’ll need to learn how to work with JavaScript. Up next is a quick comparison of animation techniques, and then we’ll <a contenteditable="false" data-primary="Chartist" data-secondary="with CSS" data-startref="c6wcss" data-type="indexterm" id="idm140658633273536" class="calibre7"></a><a contenteditable="false" data-primary="CSS animations" data-secondary="example with Chartist" data-startref="css6aewc" data-type="indexterm" id="idm140658633269712" class="calibre7"></a>switch languages.</p>
+</div></section>
+
+</div></section></body></html>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>A Comparison of Web Animation Technologies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 7. A Comparison of Web Animation Technologies" class="praise">
+<div class="praise" id="comparison">
+<section data-type="sect1" data-pdf-bookmark="Native Animation" class="praise">
+<div class="praise" id="idm140658633213280">
+<section data-type="sect2" data-pdf-bookmark="Canvas" class="praise"><div class="praise" id="canvas_section">
+<h2 class="pagebreak-before" id="calibre_pb_4">Canvas</h2>
+
+<p class="author1">Despite <a contenteditable="false" data-primary="canvas" data-type="indexterm" id="idm140658633173792" class="calibre7"></a><a contenteditable="false" data-primary="native animation" data-secondary="canvas" data-type="indexterm" id="idm140658633172400" class="calibre7"></a>the fact that canvas is <a href="http://bit.ly/2lQqDKt" class="calibre7">raster-based</a> <a contenteditable="false" data-primary="raster" data-type="indexterm" id="idm140658633164128" class="calibre7"></a>and SVG is vector-based, you can still <a href="https://mzl.la/2kWzon3" class="calibre7">work with SVGs in canvas</a>. <a contenteditable="false" data-primary="SVGs" data-secondary="in canvas" data-type="indexterm" id="idm140658633162304" class="calibre7"></a>Because it is raster-based, though, the SVGs won’t look as crisp as they normally do without a little bit of extra work:</p>
+
+<pre data-type="programlisting" class="calibre24">
+var canvas = document.querySelector('canvas'),
+       ctx = canvas.getContext('2d')
+       pixelRatio = window.devicePixelRatio,
+       w = canvas.width,
+       h = canvas.height;
+
+canvas.width = w * pixelRatio
+canvas.height = h * pixelRatio
+
+ctx.arc (
+  canvas.width / 2,
+  canvas.height / 2,
+  canvas.width / 2,
+  0,
+  Math.PI * 2
+)
+ctx.fill();
+canvas.style.width = w + 'px';</pre>
+
+<p class="author1">It doesn’t take much code, but if you’re used to SVG being resolution-independent, this can be a small gotcha. There’s <a href="http://bit.ly/2moovaE" class="calibre7">a great video on egghead</a> that breaks this down.</p>
+
+<p class="author1">I don’t work with SVGs in this environment much, but I’ve seen <a href="http://bit.ly/2laHqnp" class="calibre7">Tiffany Rayside</a> and <a href="http://bit.ly/2lkYFDy" class="calibre7">Ana Tudor</a> do some great stuff on CodePen with it. It’s worth exploring their profiles.</p>
+</div></section>
+
+</div></section>
+
+</div></section></body></html>

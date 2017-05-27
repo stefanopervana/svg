@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>UI/UX Animations with No External Libraries</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 5. UI/UX Animations with No External Libraries" class="praise">
+<div class="praise" id="idm140658633651280">
+<section data-type="sect1" data-pdf-bookmark="Putting It All Together" class="praise">
+<div class="praise" id="idm140658633644832">
+<section data-type="sect2" data-pdf-bookmark="Icons That Transform" class="praise"><div class="praise" id="idm140658633480592">
+<h2 class="pagebreak-before" id="calibre_pb_10">Icons That Transform</h2>
+
+<p class="author1">Now <a contenteditable="false" data-primary="transforms" data-type="indexterm" id="trans5" class="calibre7"></a><a contenteditable="false" data-primary="icons" data-type="indexterm" id="i5" class="calibre7"></a><a contenteditable="false" data-primary="UI/UX animations" data-secondary="example use case with icons" data-type="indexterm" id="uiuxa5eucwi" class="calibre7"></a>that we’ve discussed the “why” for animation in UI/UX patterns, let’s go over the “how.” For this example, we’ll build out a pretty common use case so you can see step-by-step how to create an interaction. This doesn’t mean we’ll always use the same approach, but if you follow along, you can see how we’d break down a simple interaction like this one to build it into our site using an SVG.</p>
+
+<p class="author1">Icons are a nice way to add simple, useful, and informative animations to a site. Subtlety in this type of animation is key. If it’s too verbose or flashy, it can distract rather than serving the user.</p>
+
+<p class="author1">This type of interaction should never feel like it takes too long. A common practice is keeping the transition between 0 and 300 ms. Anything longer than that, and the user feels like the transition is less than instantaneous.</p>
+
+<p class="author1">It’s also important to remember that any common UI or UX pattern that a user might see again and again should be subtle enough that it doesn’t feel taxing on repeated viewing.</p>
+
+<p class="author1">In <a href="http://codepen.io/sdras/pen/BKaYyG" class="calibre7">our example</a>, we’re going to make a magnifying glass that morphs into a search field. Figures <a href="part0010_split_010.html#fig5.9" class="calibre7">5-9</a> and <a href="part0010_split_010.html#fig5.10" class="calibre7">5-10</a> show the beginning and end states.</p>
+
+<figure class="calibre25"><div id="fig5.9" class="figure"><img alt="" class="iimagesimage11png" src="../images/00042.gif"/>
+<h6 class="calibre26"><span class="keep-together">Figure 5-9. </span>The beginning state of the magnifying glass</h6>
+</div></figure>
+
+<figure class="calibre25"><div id="fig5.10" class="figure"><img alt="" class="iimagesimage11png" src="../images/00043.gif"/>
+<h6 class="calibre26"><span class="keep-together">Figure 5-10. </span>The end state, once the magnifying glass icon is clicked and the stem has become the input field, and the circle of the magnifying glass has become the dismiss area</h6>
+</div></figure>
+
+<p class="author1">We’re going to morph the stem into the line, and make the circle turn into the container for the ×. Let’s start with the magnifying glass.</p>
+
+<p class="author1">In this example, we’re going to reveal the input when the event fires. In the case of simple UI animations, we’re moving a couple of small shapes from here to there, so simple storyboards are very helpful for planning them.</p>
+
+<p class="author1">Focusing first on the stem being lengthened, let’s consider the things that need to happen between states. The stem itself must get longer, it has to rotate slightly, and it has to transform into place.</p>
+
+<p class="author1">Let’s accommodate the change in the size of the stem by lengthening the <code class="calibre15">viewBox</code>. <a contenteditable="false" data-primary="viewBox" data-secondary="sizing" data-type="indexterm" id="idm140658633459200" class="calibre7"></a>Considering where we’re starting with the SVG:</p>
+
+<pre data-type="programlisting" class="calibre24">
+ &lt;svg class="magnifier" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 34"&gt;
+    &lt;circle class="cls-1" cx="12.1" cy="12.1" r="11.6"/&gt;
+    &lt;line class="cls-1" x1="20.5" y1="20" x2="33.1" y2="32.6"/&gt;
+  &lt;/svg&gt;
+</pre>
+
+<p class="author1">we adjust the <code class="calibre15">viewBox</code> to:</p>
+
+<pre data-type="programlisting" class="calibre24">
+&lt;svg class="magnifier" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 34"&gt;</pre>
+
+<p class="author1">We’ll also make sure the SVG is primed in CSS (SCSS) for the future transformation, and back:</p>
+
+<pre data-type="programlisting" class="calibre24">
+.magnifier {
+  line {
+    transform: rotate(0deg) translateY(0px);
+  }
+  circle {
+    transform: scale(1);
+  }
+}
+</pre>
+
+<p class="author1">We can change the state in a few ways: in <a contenteditable="false" data-primary="jQuery" data-type="indexterm" id="idm140658633453200" class="calibre7"></a>jQuery we would use a simple class operation, and in React we would address the state directly by calling <code class="calibre15">getInitialState()</code> <a contenteditable="false" data-primary="getInitialState()" data-type="indexterm" id="idm140658633454336" class="calibre7"></a>and then setting state with event handlers. Because most people at the time of publishing are more familiar with jQuery, I’ve used it to demonstrate this, though we’ll address React in future chapters. We’ll use jQuery 3.0 (now backported to 1.X and 2.X as well) because it supports class operations on SVG.</p>
+
+<p class="author1">All we need to do to update the length of the line is alter the value of the <code class="calibre15">x2</code> attribute. In this case, we’ll lengthen it from 33.1 to 300:</p>
+
+<pre data-type="programlisting" class="calibre24">
+$( document ).ready(function() {
+  $(".main").on("click", function() {
+    var magLine = $(this).find(".magnifier line"),
+        mainInput = $(this).find("input");
+
+    if ($(this).hasClass("open")) {
+      $(this).removeClass("open");
+      magLine.attr("x2", 33.1);
+      mainInput.blur();
+      mainInput.val("");
+    } else {
+      $(this).addClass("open");
+      magLine.attr("x2", 300);
+      mainInput.focus();
+    }
+    
+  });
+});
+</pre>
+
+<p class="author1">We’re also focusing the input when the button is clicked so that screen readers are guided to the input for searching capabilities, and removing focus on exit. We want to clear the selection too, in the event that the user closes the search open state. At this point, the line is lengthened, but it’s drawn outside the <code class="calibre15">viewBox</code> because we haven’t rotated and transformed it yet. Let’s do that in CSS:</p>
+
+<pre data-type="programlisting" class="calibre24">
+.open .magnifier {
+  line {
+    transform: rotate(-2.5deg) translateY(14px);
+  }
+  circle {
+    transform: scale(0.5);
+  }
+}
+</pre>
+
+</div></section>
+</div></section>
+</div></section></body></html>

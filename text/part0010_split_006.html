@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>UI/UX Animations with No External Libraries</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 5. UI/UX Animations with No External Libraries" class="praise">
+<div class="praise" id="idm140658633651280">
+<section data-type="sect1" data-pdf-bookmark="Context-Shifting in UX Patterns" class="praise">
+<div class="praise" id="idm140658633647664">
+<section data-type="sect2" data-pdf-bookmark="Anticipatory Cues" class="praise"><div class="praise" id="idm140658633534656">
+<h2 class="pagebreak-before" id="calibre_pb_6">Anticipatory Cues</h2>
+
+<p class="author1">Eli Fitch <a contenteditable="false" data-primary="anticipatory cues" data-type="indexterm" id="acues5" class="calibre7"></a><a contenteditable="false" data-primary="UI/UX animations" data-secondary="anticipatory cues" data-type="indexterm" id="uiuxa5ac" class="calibre7"></a>gave <a href="http://bit.ly/2mGXAGq" class="calibre7">a talk at CSS Dev Conf</a> called “Perceived Performance: The Only Kind That Really Matters,” which is one of my favorite talk titles of all time. In it, he discussed how we tend to measure things like timelines and network requests because they are more quantifiable—and therefore easier to measure—but that measuring how a user <em class="calibre2">feels</em> when visiting our site is more important and well worth the time and attention.</p>
+
+<p class="author1">In his talk, he states that “humans over-estimate passive waits by 36%,” <a href="http://bit.ly/2lkBmJ0" class="calibre7">citing Richard Larson of MIT</a>. This means that if you’re not using animation to speed up a form submission, users <a contenteditable="false" data-primary="perception of wait times" data-type="indexterm" id="idm140658633525648" class="calibre7"></a>are <em class="calibre2">perceiving</em> it to be much slower than the dev tools timeline is recording.</p>
+
+<p class="author1">Users providing information to a site experience a period of unrest: they’re not sure what has happened, who they gave their information to, or whether it worked.  It often takes more than a second for their information to be processed, which makes anticipatory actions extremely important.</p>
+
+<p class="author1">Other small examples of anticipation states are:</p>
+
+<ul class="printings">
+	<li class="calibre10">A drop-down selection changing other contexts on the page</li>
+	<li class="calibre10">A loading state</li>
+	<li class="calibre10">A button being pushed</li>
+	<li class="calibre10">A login being rejected</li>
+	<li class="calibre10">Data being saved</li>
+</ul>
+
+<p class="author1">When changes like these occur, it might not make sense to make a grand presentation of the event, but you can still signify that the state of the page has changed or is in the process of doing so, creating a context in and of itself. Considering the techniques I spoke of earlier, you might ask yourself:</p>
+
+<ul class="printings">
+	<li class="calibre10">Are we captivating the viewer during the <a contenteditable="false" data-primary="transitional states" data-type="indexterm" id="idm140658633518880" class="calibre7"></a>transitional state, or is it simply a small means to arrive at the end state?</li>
+	<li class="calibre10">Will this transitional state be reused for other instances? Does it need to be designed to be flexible enough for multiple placements and failure conditions?</li>
+	<li class="calibre10">Does the movement need to express the activity? An example of this would be the user saving something that’s not complete yet, in which case an anthropomorphization of “wait” would help communicate this. </li>
+</ul>
+
+<p class="author1">Giving users a loading state not only informs them that something is going on in the background but, if it’s a custom loader, can make the wait time <em class="calibre2">feel</em> less long and obtrusive, giving your site or app the <em class="calibre2">appearance of higher performance</em>.</p>
+
+<p class="author1">Consider the image capture in <a data-type="xref" href="part0010_split_006.html#fig5.6" class="calibre7">Figure 5-6</a> of <a href="http://codepen.io/sdras/full/LEorev/" class="calibre7">the higher-performance demo</a>.</p>
+
+<figure class="calibre25"><div id="fig5.6" class="figure"><img alt="" class="iimagesimage11png" src="../images/00039.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 5-6. </span>Form that shows morphing loading states and success state to reduce perceived wait time</h6>
+</div></figure>
+
+<p class="author1">The wait transforms directly from the button, providing a smooth transition state. The user sees a bright green confirmation screen, but not before the loader animates: the user actually waits a second or two before the final confirmation, but this delay is almost <a contenteditable="false" data-primary="UI/UX animations" data-secondary="anticipatory cues" data-startref="uiuxa5ac" data-type="indexterm" id="idm140658633510208" class="calibre7"></a><a contenteditable="false" data-primary="anticipatory cues" data-startref="acues5" data-type="indexterm" id="idm140658633508416" class="calibre7"></a>unnoticeable.</p>
+</div></section>
+
+</div></section>
+
+</div></section></body></html>

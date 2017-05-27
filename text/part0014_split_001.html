@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>GreenSock’s Timeline</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 9. GreenSock’s Timeline" class="praise">
+<div class="praise" id="ch09">
+<section data-type="sect1" data-pdf-bookmark="A Simple Timeline" class="praise"><div class="praise" id="idm140658632808752">
+<h1 class="calibre12" id="calibre_pb_1">A Simple Timeline</h1>
+
+<p class="author1">In the last chapter we talked about GreenSock’s syntax, focusing on <a contenteditable="false" data-primary="TweenMax" data-type="indexterm" id="idm140658632805360" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="TweenMax" data-type="indexterm" id="idm140658632805968" class="calibre7"></a>the <code class="calibre15">TweenMax</code> part of the statement. You might recall that I mentioned TweenMax includes TimelineMax, GreenSock’s full-featured timeline tool. <a contenteditable="false" data-primary="GreenSock (GSAP) timeline" data-secondary="TimelineMax" data-type="indexterm" id="idm140658632803632" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP) timeline" data-secondary="TimelineLite" data-type="indexterm" id="idm140658632802208" class="calibre7"></a> Why is this such a good thing?</p>
+
+<p class="author1">TimelineMax <a contenteditable="false" data-primary="GreenSock (GSAP) timeline" data-secondary="instantiating" data-type="indexterm" id="idm140658632800224" class="calibre7"></a>is a really powerful tool for controlling multiple animations and sequencing. In order to use it, you need to instantiate it. We do this by calling <code class="calibre15">var tl = new TimelineMax();</code> (you could also use <code class="calibre15">let</code> or <code class="calibre15">const</code> here , if you’re using ES6, and you can call <code class="calibre15">tl</code> whatever you wish—<code class="calibre15">tl</code> tends to be the industry standard).</p>
+
+<p class="author1">You could just use TweenMax for everything, but the default for TweenMax is to have everything fire at once. You would have to add delays to each animation to get them to fire one after another.</p>
+
+<p class="author1">Let’s say we want to animate the three shapes in <a data-type="xref" href="part0014_split_001.html#fig9.1" class="calibre7">Figure 9-1</a> in a row from left to right, one after another.</p>
+
+<figure class="calibre25"><div id="fig9.1" class="figure"><img alt="" class="iimagesimage11png" src="../images/00060.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 9-1. </span>Animating in a row</h6>
+</div></figure>
+
+<p class="author1">So far, we’ve learned to express it like this:</p>
+
+<pre data-type="programlisting" class="calibre24">
+TweenMax.to(".star", 3, {x: 300, ease: Power4.easeOut});
+TweenMax.to(".circle", 3, {x: 300, delay:3, ease: Power4.easeOut});
+TweenMax.to(".hex", 3, {x: 300, delay:6, ease: Power4.easeOut});
+</pre>
+
+<p class="author1">This works, but if we had more elements, we’d have to keep calculating these values. It makes a lot more sense to use a timeline, which automatically cascades them one after another for us (note that we don’t need the delays here):</p>
+
+<pre data-type="programlisting" class="calibre24">
+<strong class="calibre16">var tl = new TimelineMax();</strong>
+
+<strong class="calibre16">tl</strong>.to(".star", 3, {x: 300, ease: Power4.easeOut});
+<strong class="calibre16">tl</strong>.to(".circle", 3, {x: 300, ease: Power4.easeOut});
+<strong class="calibre16">tl</strong>.to(".hex", 3, {x: 300, ease: Power4.easeOut});</pre>
+
+<p class="author1">This is really great, because we can keep going all day and the timeline will automatically put our animations in order for us.</p>
+
+<p class="author1">So what happens if we watch this animation and decide we want the circle to start moving just a little before the star is done? We can use the position parameter that we previously saw <a contenteditable="false" data-primary=".staggerTo" data-primary-sortas="staggerTo" data-type="indexterm" id="idm140658632785296" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="staggerTo" data-type="indexterm" id="idm140658632787296" class="calibre7"></a>in <code class="calibre15">.staggerTo</code> animations  (see <a data-type="xref" href="part0013_split_004.html#staggering" class="calibre7">“Staggering”</a>), through <a contenteditable="false" data-primary="GreenSock (GSAP) timeline" data-secondary="relative incrementations" data-type="indexterm" id="idm140658632781296" class="calibre7"></a><a contenteditable="false" data-primary="relative incrementations" data-type="indexterm" id="idm140658632779968" class="calibre7"></a><em class="calibre2">relative incrementation</em>:</p>
+
+<pre data-type="programlisting" class="calibre24">
+var tl = new TimelineMax();
+
+tl.to(".star", 3, {x: 300, ease: Power4.easeOut});
+tl.to(".circle", 3, {x: 300, ease: Power4.easeOut}<strong class="calibre16">, "-=1"</strong>);
+tl.to(".hex", 3, {x: 300, ease: Power4.easeOut});
+</pre>
+
+</div></section>
+
+</div></section></body></html>

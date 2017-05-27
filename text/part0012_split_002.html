@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>A Comparison of Web Animation Technologies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 7. A Comparison of Web Animation Technologies" class="praise">
+<div class="praise" id="comparison">
+<section data-type="sect1" data-pdf-bookmark="Native Animation" class="praise">
+<div class="praise" id="idm140658633213280">
+<section data-type="sect2" data-pdf-bookmark="CSS/Sass/SCSS" class="praise"><div class="praise" id="idm140658633209792">
+<h2 class="pagebreak-before" id="calibre_pb_2">CSS/Sass/SCSS</h2>
+
+<p class="author1">The <a contenteditable="false" data-primary="native animation" data-secondary="CSS/Sass/SCSS" data-type="indexterm" id="na7css" class="calibre7"></a>reason we go over <a contenteditable="false" data-primary="CSS animations" data-secondary="pros and cons" data-type="indexterm" id="idm140658633219744" class="calibre7"></a>CSS so much in the beginning is because it can tend to be the Occam’s razor of web animation technologies—all things being equal, the simplest solution is sometimes the best, especially if you need to get something up and running quickly. CSS animations make it possible to transition between different states using a set of keyframes.</p>
+
+<p class="author1">Pros:</p>
+
+<ul class="printings">
+	<li class="calibre10">You don’t need an external library.</li>
+	<li class="calibre10">The performance is beautiful. Preprocessors (like Sass and LESS) allow you to produce staggering effects with <code class="calibre15">nth:child</code> <a contenteditable="false" data-primary="nth:child pseudo-classes" data-type="indexterm" id="idm140658633208000" class="calibre7"></a>pseudoclasses in functions. Variables also allow for things like easing functions that you’d like to remain consistent.</li>
+	<li class="calibre10">You can listen for <code class="calibre15">onAnimationEnd</code> and <a contenteditable="false" data-primary="onAnimationEnd" data-type="indexterm" id="idm140658633206512" class="calibre7"></a>some other animation hooks with <a href="http://codepen.io/sdras/full/PqXeMX/" class="calibre7">native JavaScript</a>.</li>
+	<li class="calibre10">Motion along a path is coming down the pipeline; this is very powerful for realistic motion, which has become important because of the deprecation of SMIL.</li>
+</ul>
+
+<p class="author1">Cons:</p>
+
+<ul class="printings">
+	<li class="calibre10">The <a href="http://bit.ly/2lPNF3G" class="calibre7">Bézier easings</a> <a contenteditable="false" data-primary="Bézier easings" data-type="indexterm" id="idm140658633199568" class="calibre7"></a>can be a bit limiting. Due to having a Bézier with only two handles, you can’t produce some complex physics effects, like bounces or elastic vibrations, that are pretty nice for realistic motion (but not necessary that often).</li>
+	<li class="calibre10">If you go beyond three sequences, I suggest moving to <a contenteditable="false" data-primary="JavaScript" data-type="indexterm" id="idm140658633197440" class="calibre7"></a>JavaScript. Sequencing in CSS <a contenteditable="false" data-primary="CSS animations" data-secondary="sequencing in" data-type="indexterm" id="idm140658633194224" class="calibre7"></a>becomes complex with delays and you end up having to do a lot of recalculation if you adjust the timing.You can hook into the native JavaScript events I mentioned earlier to work around this, but then you’re switching contexts between languages, which isn’t ideal either. Long, complex, sequential animations are easier to write and read in JavaScript.</li>
+	<li class="calibre10">The support for motion along a path isn’t quite there yet. You can <a href="https://mzl.la/2lSTls5" class="calibre7">vote on support for Firefox</a>. Voting for support in Safari, as far as I can gather, is a little more individual. I registered to <a href="http://apple.co/2kWpOQN" class="calibre7">fill out a bug report</a> and requested a motion path module in CSS as a feature.</li>
+	<li class="calibre10">CSS + SVG animation <a contenteditable="false" data-primary="CSS animations" data-secondary="CSS + SVG" data-type="indexterm" id="idm140658633188448" class="calibre7"></a>has some strange quirkiness in behavior. One example is that in Safari browsers, opacity and transforms combined can fail or have strange effects. Another is that the spec’s definition of transformation origin, when applied sequentially, can <a href="http://codepen.io/1Marc/full/DCvFm/" class="calibre7">appear in a nonintuitive fashion</a>. It’s the way the spec is written. Hopefully <a contenteditable="false" data-primary="SVG2" data-type="indexterm" id="idm140658633190176" class="calibre7"></a>SVG2 will help out with this, but for now, CSS and SVG on <a contenteditable="false" data-primary="mobile browser issues" data-type="indexterm" id="idm140658633186960" class="calibre7"></a>mobile sometimes requires strange hacks to get right. This goes as well for any library that uses CSS under the hood, unless it’s done a lot of work, like <a contenteditable="false" data-primary="GSAP" data-type="indexterm" id="idm140658633186080" class="calibre7"></a>GSAP has, to correct it.</li>
+	<li class="calibre10">When you write a CSS animation, you declare <a contenteditable="false" data-primary="CSS animations" data-secondary="keyframes" data-type="indexterm" id="idm140658633184032" class="calibre7"></a>keyframes and then use the animation on the element itself. This means that you’re maintaining the code it takes to run the animation in two places. This can be good because you can reuse an animation, but mostly, it means legibility is compromised as you have to update things in two <a contenteditable="false" data-primary="native animation" data-secondary="CSS/Sass/SCSS" data-startref="na7css" data-type="indexterm" id="idm140658633184848" class="calibre7"></a>places.</li>
+</ul>
+</div></section>
+
+</div></section>
+
+</div></section></body></html>

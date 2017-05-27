@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>A Comparison of Web Animation Technologies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 7. A Comparison of Web Animation Technologies" class="praise">
+<div class="praise" id="comparison">
+<section data-type="sect1" data-pdf-bookmark="React-Specific Workflows" class="praise">
+<div class="praise" id="idm140658633072096">
+<section data-type="sect2" data-pdf-bookmark="React-Motion" class="praise"><div class="praise" id="idm140658633066384">
+<h2 class="pagebreak-before" id="calibre_pb_15">React-Motion</h2>
+
+<p class="author1"><a href="http://bit.ly/2lSUy2l" class="calibre7">React-Motion</a> by Cheng Lou is <a contenteditable="false" data-primary="React-specific workflows" data-secondary="React-Motion" data-type="indexterm" id="rsw7rm" class="calibre7"></a><a contenteditable="false" data-primary="React-Motion" data-type="indexterm" id="rm7" class="calibre7"></a>considered to be the best way to animate in React, and the community has pretty much adopted it over the old <a href="http://bit.ly/2lkVbRs" class="calibre7"><code class="calibre15">ReactCSSTransitionGroup</code></a>. I like React-Motion a lot, but there are some keys to working with it that will have you banging your head for a little while if you don’t get them.</p>
+
+<p class="author1">React-Motion is pretty similar to <a href="http://bit.ly/2lQv5Jf" class="calibre7">game-based animation</a>, <a contenteditable="false" data-primary="game-based animation" data-type="indexterm" id="idm140658633058672" class="calibre7"></a>where you give an element mass and physics and send it on its way, and it gets there when it gets there—you aren’t specifying an amount of time like you do with CSS or any other traditional web-based sequential motion. The motion can <a href="http://codepen.io/sdras/full/pyedJE/" class="calibre7">look realistic, which can be beautiful</a>. But the hard part is that if you have two different things that have to fire at the same time and get there at the same time, it can be tough to line them up exactly.</p>
+
+<p class="author1">Recently, Cheng Lou added in <a href="http://bit.ly/2lQKuJh" class="calibre7"><code class="calibre15">onRest</code></a>, <a contenteditable="false" data-primary="onRest" data-type="indexterm" id="idm140658633055488" class="calibre7"></a>which allows for this kind of callback workflow. It hasn’t advanced much, though, as it’s counter to the original premise of the tool. It’s still not easy to write a loop (without writing an infinite loop, which is bad for a whole slew of reasons). You might never come across this use case, but I did once.</p>
+
+<p class="author1">Pros:</p>
+
+<ul class="printings">
+	<li class="calibre10">The animation can look really beautiful and realistic, and the spring options are nice.</li>
+	<li class="calibre10">The staggering effect is pretty unique—staggering is available in most JS libraries (like GSAP and Velocity) but the spring is based directly off of the last element’s movement, not <em class="calibre2">duplicating</em> the last one, so there are some nice motion possibilities.</li>
+	<li class="calibre10">This is probably the animation tool that plays with React the best.</li>
+</ul>
+
+<p class="author1">Cons:</p>
+
+<ul class="printings">
+	<li class="calibre10">It’s not super plug-and-play like some other libraries or native, which means you end up writing quite a bit more code. Some people like this about it; some people don’t. It’s not kind to beginners, though.</li>
+	<li class="calibre10">Because of the complex nature of the code, the sequencing is not as straightforward or legible as with some of the alternatives.</li>
+	<li class="calibre10"><code class="calibre15">onRest</code> still doesn’t work for staggering <a contenteditable="false" data-primary="React-Motion" data-startref="rm7" data-type="indexterm" id="idm140658633045216" class="calibre7"></a><a contenteditable="false" data-primary="React-specific workflows" data-secondary="React-Motion" data-startref="rsw7rm" data-type="indexterm" id="idm140658633046656" class="calibre7"></a>parameters.</li>
+</ul>
+</div></section>
+
+</div></section>
+
+</div></section></body></html>

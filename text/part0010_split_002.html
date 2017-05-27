@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>UI/UX Animations with No External Libraries</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 5. UI/UX Animations with No External Libraries" class="praise">
+<div class="praise" id="idm140658633651280">
+<section data-type="sect1" data-pdf-bookmark="Context-Shifting in UX Patterns" class="praise">
+<div class="praise" id="idm140658633647664">
+<section data-type="sect2" data-pdf-bookmark="Morphing" class="praise"><div class="praise" id="idm140658633622688">
+<h2 class="pagebreak-before" id="calibre_pb_2">Morphing</h2>
+
+<p class="author1">Morphing <a contenteditable="false" data-primary="morphing" data-type="indexterm" id="morph5" class="calibre7"></a><a contenteditable="false" data-primary="UI/UX animations" data-secondary="morphing" data-type="indexterm" id="uiuxa5m" class="calibre7"></a>is probably the simplest way to help users retain context. Morphing means that the same element can become multiple pieces of information in different contexts, guiding the user’s flow without changing anything very abruptly. Consider the animation in <a data-type="xref" href="part0010_split_001.html#fig5.2" class="calibre7">Figure 5-2</a>. There are many forms of morphing in the one interactive element used in the CodePen example. In this example, one frame morphs into the next: the pin expands to create the dialog, the contact button becomes the title, the text boxes shrink to become the loader dots, and so on, to provide a smooth user experience.</p>
+
+<p class="author1">Both SVG and CSS are good options for these kinds of UI animations. I’ve found from working with both that each has its strengths and weaknesses. CSS easily interpolates round to square and back again <a contenteditable="false" data-primary="border-radius" data-type="indexterm" id="idm140658633618624" class="calibre7"></a><a contenteditable="false" data-primary="CSS animations" data-secondary="border-radius" data-type="indexterm" id="idm140658633613488" class="calibre7"></a>with <a href="http://bit.ly/2lHGrjB" class="calibre7"><code class="calibre15">border-radius</code></a>. It can also handle large quantities of scale transforms gracefully; SVG, beyond a few great numbers, will appear pixelated before recovering. However, SVG is built for drawing. It is well suited for complex shapes.</p>
+
+<p class="author1">You can tween path or even shape data with <a contenteditable="false" data-primary="JavaScript" data-type="indexterm" id="idm140658633617056" class="calibre7"></a>JavaScript and  <a href="https://greensock.com/morphSVG" class="calibre7">GreenSock’s MorphSVG plug-in</a>. This is an unbeatable tool for this kind of technique: unlike Snap.svg or <a contenteditable="false" data-primary="Snap.svg" data-type="indexterm" id="idm140658633608528" class="calibre7"></a>even the poorly supported <a contenteditable="false" data-primary="SMIL (Synchronized Multimedia Integration Language)" data-type="indexterm" id="idm140658633610192" class="calibre7"></a>SMIL, MorphSVG allows you to easily transform between <em class="calibre2">uneven amounts</em> of path data, which allows for tons of wonderful effects. If you’re interested in learning more about what you can do with SVG morphing, please refer to <a data-type="xref" href="part0015_split_000.html#ch10" class="calibre7">Chapter 10</a> of this book, where we discuss it at <a contenteditable="false" data-primary="morphing" data-startref="morph5" data-type="indexterm" id="idm140658633606048" class="calibre7"></a>length.</p>
+</div></section>
+
+</div></section>
+
+</div></section></body></html>

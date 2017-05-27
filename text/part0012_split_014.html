@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>A Comparison of Web Animation Technologies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 7. A Comparison of Web Animation Technologies" class="praise">
+<div class="praise" id="comparison">
+<section data-type="sect1" data-pdf-bookmark="React-Specific Workflows" class="praise"><div class="praise" id="idm140658633072096">
+<h1 class="calibre12" id="calibre_pb_14">React-Specific Workflows</h1>
+
+<p class="author1">Before <a contenteditable="false" data-primary="React-specific workflows" data-type="indexterm" id="rsw7" class="calibre7"></a>we talk about React, let’s cover why we have to treat animations in React differently. The main difference lies in the Document Object Model (DOM), <a contenteditable="false" data-primary="DOM (Document Object Model)" data-secondary="virtual versus native" data-type="indexterm" id="idm140658633069056" class="calibre7"></a>which is how we create a structured document with objects, and is mostly expressed as a tree.</p>
+
+<p class="author1">React has a <em class="calibre2">virtual</em> DOM, which is an abstraction of this structure. React does this for a number of reasons, the most compelling of which to me is the ability to figure out what’s changed and update only the pieces it needs to. This abstraction comes at a price, of course, and some of the old tricks that you’re used working with will give you trouble in a React environment. jQuery, for instance, will not play nice with React, as its primary function is to interact with and manipulate the browser’s native DOM. But I’ve even seen some strange CSS race conditions. Here are some of my recommendations for nice animations in a React workflow.</p>
+
+</div></section>
+
+</div></section></body></html>

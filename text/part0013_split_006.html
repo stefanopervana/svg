@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Animating with GreenSock</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 8. Animating with GreenSock" class="praise">
+<div class="praise" id="ch08">
+<section data-type="sect1" data-pdf-bookmark="Basic GreenSock Syntax" class="praise">
+<div class="praise" id="idm140658632991248">
+<section data-type="sect2" data-pdf-bookmark="Elements" class="praise"><div class="praise" id="idm140658632926336">
+<h2 class="pagebreak-before" id="calibre_pb_6">Elements</h2>
+
+<pre data-type="programlisting" class="calibre44">
+TweenMax.to(<span class="keep-together">".element"</span>, 2, { x: 100 });
+</pre>
+
+<p class="author1">The way <a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="element" data-type="indexterm" id="idm140658632923376" class="calibre7"></a> that GreenSock targets elements is similar to <code class="calibre15">querySelector()</code> or <code class="calibre15"><span class="keep-together">querySelector</span>All()</code> in native JavaScript and even closer to the behavior of a jQuery selector, in that you can pass in one or multiple elements, and they can be classes, IDs, or attributes like <code class="calibre15">path</code>, <code class="calibre15">circle</code>, or <code class="calibre15">rect</code>. You don’t have to worry about nodelists; all of that is abstracted away for you, which makes working with the DOM and cross-browser support much simpler.</p>
+
+<p class="author1">You can use a quoted selector string, like in this example, to target elements directly, but GreenSock will happily accept <a contenteditable="false" data-primary="variables" data-type="indexterm" id="idm140658632917056" class="calibre7"></a>variables too, if that’s your jam (for example, <code class="calibre15">var el = <span class="keep-together">document.querySelector(".el");).</span></code> I tend to use variables like this when I am targeting an element multiple times, to avoid repetition and multiple lookups.</p>
+</div></section>
+
+</div></section>
+</div></section></body></html>

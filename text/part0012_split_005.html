@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>A Comparison of Web Animation Technologies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 7. A Comparison of Web Animation Technologies" class="praise">
+<div class="praise" id="comparison">
+<section data-type="sect1" data-pdf-bookmark="Native Animation" class="praise">
+<div class="praise" id="idm140658633213280">
+<section data-type="sect2" data-pdf-bookmark="Web Animations API" class="praise"><div class="praise" id="idm140658633155824">
+<h2 class="pagebreak-before" id="calibre_pb_5">Web Animations API</h2>
+
+<p class="author1">The <a contenteditable="false" data-primary="Web Animations API" data-type="indexterm" id="idm140658633154352" class="calibre7"></a><a contenteditable="false" data-primary="native animation" data-secondary="Web Animations API" data-type="indexterm" id="idm140658633153152" class="calibre7"></a>Web Animations API is a common language for browsers and developers to describe animations on DOM elements, in native JavaScript.  This allows you to create more complex sequential animations without loading any external scripts (or it will, anyway, when support climbs—for now, you’ll probably need a <a contenteditable="false" data-primary="polyfill" data-type="indexterm" id="idm140658633152064" class="calibre7"></a>polyfill). This API was created to distill all of the great libraries and work that people were already making with JavaScript. The Web Animations API is part of a movement to align the performance of CSS animations and the flexibility of sequencing in JavaScript under one roof, natively.</p>
+
+<p class="author1">Pros:</p>
+
+<ul class="printings">
+	<li class="calibre10">Sequencing is easy and super legible. <a href="http://codepen.io/danwilson/pen/QwrZwd" class="calibre7">Dan Wilson has a great example</a> that compares CSS keyframes and the Web Animations API.</li>
+	<li class="calibre10">Performance seems to be really great at this point. It’s always a good idea to run your own performance tests, though.</li>
+</ul>
+
+<p class="author1">Cons:</p>
+
+<ul class="printings">
+	<li class="calibre10">At the time of publishing, the support was not great. There are good polyfills for it, but it’s still changing, so until the spec is closer to final I would be cautious about running it in a production environment. This stands to be the future of web animation, though, so it might be worth at least playing around with in the meantime.</li>
+	<li class="calibre10">There are still a lot of things about the timeline in  GSAP that are more powerful. The important ones for me are the cross-browser stability for SVG and the ability to animate large swaths of sequences in a line of code; you might not care about these things, <a contenteditable="false" data-primary="native animation" data-startref="na7" data-type="indexterm" id="idm140658633144704" class="calibre7"></a>though.</li>
+</ul>
+</div></section>
+</div></section>
+
+</div></section></body></html>

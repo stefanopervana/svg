@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>CSS Animation and Hand-Drawn SVG Sprites</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 3. CSS Animation and Hand-Drawn SVG Sprites" class="praise">
+<div class="praise" id="css_animation">
+<section data-type="sect1" data-pdf-bookmark="Keyframe Animation with steps() and SVG Sprites, Two Ways" class="praise">
+<div class="praise" id="idm140658633880432">
+<div data-type="note" epub:type="note" class="calibre19">
+<h1 class="calibre27" id="calibre_pb_2">Cel Animations as Scoping</h1>
+
+<p class="author1">You can think of this technique like writing web page templates: you start from the base template and create smaller pieces, so you can manage an individual thing that’s happening in one piece separately from everything else.</p>
+</div>
+
+<figure class="calibre25"><div id="fig3.2" class="figure"><img alt="" class="iimagesimage11png" src="../images/00024.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 3-2. </span>Hand-painted cel with painted background behind (image courtesy of John Gunn)</h6>
+</div></figure>
+
+<p class="author1">We can mimic this analog process by using a single motionless background, then quickly showing a series of images on top. This gives the illusion of movement without any real interpolation. Instead of a series of separate image files, we will simultaneously reduce the number of HTTP requests and simplify our keyframes by using a single SVG <a contenteditable="false" data-primary="SVG sprites" data-type="indexterm" id="idm140658633867696" class="calibre7"></a>sprite sheet (<a data-type="xref" href="part0008_split_002.html#fig3.3" class="calibre7">Figure 3-3</a>). This technique is great for more complex shapes and expressive movement than simple transforms can offer.</p>
+
+<p class="author1">Because this technique relies heavily on design, we’ll go through the design workflow first, and then go through the code. You can find what the final animation looks like <a href="http://codepen.io/sdras/pen/LEzdea/" class="calibre7">on my CodePen page</a>.</p>
+
+<p class="author1">Typically when showing interpolated (i.e., rapidly changing) images on the web, we should push the maximum frames per second (fps) possible to achieve the silkiest animation. This technique is one exception to that rule. Since we have to draw every single frame, we’re going to try to get as much bang for our hand-drawn buck as possible (see <a data-type="xref" href="part0008_split_002.html#fig3.4" class="calibre7">Figure 3-4</a>). Years ago, animators spent a lot of time trying to find a good balance between realistic movement and the fewest number of drawings. Old film was shot at 24 fps, and animators largely regarded “shooting on twos” (meaning one drawing over two frames, or 12 fps) as the standard for an illusion of movement. Drop to anything lower than this, and your eye will discern a slight choppiness (which some animators even used as a creative decision!). We’ll use their work in finding these bounds of illusion to our benefit, stick to the 12 fps rule, and create a 21-part drawing for a 1.8 s animation. The 21 here comes from the number of frames that we chose, but can be any number you like.</p>
+
+<figure class="calibre25"><div id="fig3.3" class="figure"><img alt="" class="iimagesimage11png" src="../images/00025.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 3-3. </span>Stills for our splash animation</h6>
+</div></figure>
+
+<figure class="calibre25"><div id="fig3.4" class="figure"><img alt="" class="iimagesimage11png" src="../images/00026.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 3-4. </span>Our artboard with guides and frame-by-frame drawing</h6>
+</div></figure>
+
+</div></section>
+</div></section></body></html>

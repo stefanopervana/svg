@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Animating with GreenSock</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 8. Animating with GreenSock" class="praise">
+<div class="praise" id="ch08">
+<section data-type="sect1" data-pdf-bookmark="Basic GreenSock Syntax" class="praise">
+<div class="praise" id="idm140658632991248">
+<section data-type="sect2" data-pdf-bookmark=".to/.from/.fromTo" class="praise"><div class="praise" id="idm140658632975744">
+<h2 class="pagebreak-before" id="calibre_pb_3">.to/.from/.fromTo</h2>
+
+<pre data-type="programlisting" class="calibre46">
+<span class="calibre45">TweenMax<span class="keep-together">.to</span>(".element", 2, { x: 100 });</span>
+</pre>
+
+<p class="author1">The <a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="to/from/fromTo" data-type="indexterm" id="gsap8tfft" class="calibre7"></a>next piece is the <code class="calibre15">.to</code> <a contenteditable="false" data-primary=".to" data-primary-sortas="to" data-type="indexterm" id="idm140658632972544" class="calibre7"></a>method, which, as you might expect, tells the element to change to a different state.</p>
+
+<p class="author1">You can also use <code class="calibre15">.from</code>, <a contenteditable="false" data-primary=".from" data-primary-sortas="from" data-type="indexterm" id="idm140658632970160" class="calibre7"></a>which means the element originates from whatever you specify in the curly braces (the animation object) and changes to its default values, or <code class="calibre15">.fromTo</code>, <a contenteditable="false" data-primary=".fromTo" data-primary-sortas="fromTo" data-type="indexterm" id="idm140658632965664" class="calibre7"></a>which gives you more granular control over where something starts and where it ends.</p>
+
+<p class="author1"><code class="calibre15">.fromTo</code> becomes very useful for animations that will be retriggered, because you can be more certain of the starting and ending points. For example, say you fire an animation and it scales up by 50%. Then you ask it again to scale up by 50%—but it’s already there. That animation will look like it does nothing on the secondary trigger.</p>
+
+<p class="author1">When we use <code class="calibre15">.fromTo</code>, the syntax looks a little bit different:</p>
+
+<pre data-type="programlisting" class="calibre44">
+TweenMax<span class="keep-together">.fromTo</span>(".element", 2, {
+  x: 0
+ }, {
+  x: 100
+ });
+</pre>
+
+<p class="author1">You can see I also broke things out over a few more lines so it’s a little more legible. Now we can see fairly clearly that the element will go from the 0 coordinate on the x-axis to <a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="to/from/fromTo" data-startref="gsap8tfft" data-type="indexterm" id="idm140658632956624" class="calibre7"></a>100.</p>
+</div></section>
+
+</div></section>
+</div></section></body></html>

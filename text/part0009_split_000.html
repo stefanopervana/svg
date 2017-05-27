@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:epub="http://www.idpf.org/2007/ops" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Creating a Responsive SVG Sprite</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body data-type="book" class="calibre">
+<section data-type="chapter" epub:type="chapter" data-pdf-bookmark="Chapter 4. Creating a Responsive SVG Sprite" class="praise"><div class="praise" id="ch04">
+<h1 class="calibre11" id="calibre_pb_0"><span class="keep-together">Chapter 4. </span>Creating a Responsive SVG Sprite</h1>
+
+<p class="author1">The <a contenteditable="false" data-primary="resizing" data-see="scalability" data-type="indexterm" id="idm140658633745680" class="calibre7"></a><a contenteditable="false" data-primary="scalability" data-type="indexterm" id="s4" class="calibre7"></a>“scalable” part of SVG is perhaps the most powerful aspect of the graphics format. Using the <code class="calibre15">viewBox</code> <a contenteditable="false" data-primary="viewBox" data-type="indexterm" id="idm140658633749760" class="calibre7"></a>attribute and our knowledge of shapes and paths, we can crop an SVG to any size on the fly, knowing that our intentions within the coordinate space will be preserved.</p>
+
+<p class="author1">If we remove the <code class="calibre15">width</code> and <code class="calibre15">height</code> attributes from a common SVG, we’ll see something interesting. The SVG expands itself to the full width of the viewport, maintaining the aspect ratio of everything within the DOM.</p>
+
+<p class="author1">If we use <a contenteditable="false" data-primary="CSS animations" data-secondary="keyframes" data-type="indexterm" id="idm140658633739680" class="calibre7"></a>CSS keyframes or JavaScript <a contenteditable="false" data-primary="JavaScript" data-type="indexterm" id="idm140658633742528" class="calibre7"></a>to move SVG elements such as <code class="calibre15">circle</code> or <code class="calibre15">path</code> while scaling this SVG up or down, the increments that they will move will scale as well, along with the graphic. <em class="calibre2">This means that if you scale a complex SVG using<a contenteditable="false" data-primary="flexbox" data-type="indexterm" id="idm140658633736912" class="calibre7"></a> <a contenteditable="false" data-primary="percentage" data-type="indexterm" id="idm140658633738176" class="calibre7"></a>percentages, a flexbox, or other techniques, your animation will scale accordingly.</em> You don’t have to adjust anything for mobile or other sizes; you can focus on writing the code correctly one time.</p>
+
+<p class="author1">The completed animation is completely scalable. In the following <a href="http://codepen.io/sdras/full/jPLgQM/" class="calibre7">CodePen example</a>, you can randomly resize the animation while it’s running and watch it instantly adjust. This is very useful for responsive development. The animation in <a data-type="xref" href="part0009_split_000.html#fig4.1" class="calibre7">Figure 4-1</a> uses a completely fluid approach.</p>
+
+<figure class="calibre25"><div id="fig4.1" class="figure"><img alt="" class="iimagesimage11png" src="../images/00029.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 4-1. </span>Different states of the same animation at different sizes</h6>
+</div></figure>
+
+<p class="author1">We design the whole thing first, and then slowly reveal things. <a data-type="xref" href="part0009_split_000.html#fig4.2" class="calibre7">Figure 4-2</a> is what our initial SVG (before we add any animation) looks like.</p>
+
+<figure class="calibre25"><div id="fig4.2" class="figure"><img alt="" class="iimagesimage11png" src="../images/00030.jpeg"/>
+<h6 class="calibre26"><span class="keep-together">Figure 4-2. </span>Original design in Illustrator—we design everything first, and then slowly reveal things</h6>
+</div></figure>
+
+<p class="author1">We could also design for responsiveness SVG in two other ways. In this chapter, we’ll do a deep dive into a technique that uses SVG sprites, similar to the ones we created in <a data-type="xref" href="part0008_split_000.html#css_animation" class="calibre7">Chapter 3</a>. This is easy to work with in CSS. In <a data-type="xref" href="part0020_split_000.html#animating_the_unanimatable" class="calibre7">Chapter 15</a>, we’ll cover a more advanced JavaScript approach as we hide, show, collapse, and rearrange our <a contenteditable="false" data-primary="scalability" data-startref="s4" data-type="indexterm" id="idm140658633721920" class="calibre7"></a>content.</p>
+
+</div></section></body></html>
