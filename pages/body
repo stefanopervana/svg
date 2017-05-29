@@ -1,0 +1,176 @@
+<body>
+<h1 class="calibre11" id="calibre_pb_0"><span class="keep-together">Capítulo 8.</font></font></span> Animación con GreenSock</font></font></h1>
+
+<p class="author1">En el </font></font><a contenteditable="false" data-primary="TweenMax" data-type="indexterm" id="tm8" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="background" data-type="indexterm" id="idm140658633010960" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-type="indexterm" id="gsap8" class="calibre7"></a>capítulo anterior, nos fuimos sobre algunas de las razones que usted puede elegir GreenSock como una biblioteca de animación. </font>En este capítulo, vamos a cubrir lo básico de cómo animar.</font></font></p>
+
+<p class="author1">Incluso si se siente más cómodo con CSS, todavía se puede dominar GreenSock. </font>No necesariamente tienen que saber todo acerca de JavaScript para usarlo para la animación. </font>Ciertamente, las personas que se sienten cómodos con el lenguaje Java lo recogerá un poco más rápido y ser capaz de depurar con un poco más de facilidad, pero creo que la sintaxis es bastante simple y sencillo que un desarrollador CSS será capaz de llegar a enfrentarse con él. </font>¡Infierno! </font>Es incluso más fácil que en cierto modo CSS: CSS separa preocupaciones poniendo los fotogramas clave en un área y su aplicación en las propiedades por separado, mientras GreenSock le permite manipular todo en un solo lugar.</font></font></p>
+
+<p class="author1">GreenSock ha estado en desarrollo durante 10 años: lo que era anteriormente una herramienta de Flash. </font><font class="">Esto le da una enorme ventaja sobre la competencia, ya que los diseñadores están íntimamente familiarizados con los problemas de los usuarios se ejecutan en. </font>También son muy accesibles, y hay algunos clientes habituales alrededor para ayudar en los foros, así que si te quedas atascado hay una muy buena comunidad en torno a ayudarle a volver a sus pies.</font></font></p>
+
+<p class="author1">¡Empecemos!</font></font></p>
+
+<div id="goog-gt-tt" class="goog-tooltip skiptranslate" dir="ltr" style="visibility: hidden; left: 45px; top: 263px; display: none;"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google Traduttore"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Testo originale</h1></div><div class="middle" style="padding: 8px;"><div class="original-text">This gives it an enormous leg up on the competition, as the designers are intimately familiar with the issues users run into.</div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribuisci a una traduzione migliore</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none; opacity: 0;"></div></div><aside data-type="sidebar" epub:type="sidebar" class="calibre37"><div class="sidebar" id="idm140658633002576">
+<h5 class="calibre38">En marcha con GreenSock</font></font></h5>
+
+<p class="author1">En </font></font><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="running" data-type="indexterm" id="idm140658633003696" class="calibre7"></a>Para utilizar GreenSock, es necesario incluir </font></font><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="TweenMax" data-type="indexterm" id="gsap8tm" class="calibre7"></a>TweenMax en su página mediante la inclusión de esta línea de código en la base de su documento:&nbsp; </font></font><code class="calibre15">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"&gt;&lt;/script&gt;</code>.</font></font></p>
+
+<p class="author1">Reemplazar el </font></font><code class="calibre15">/1.19.0/</code>con lo que la versión más reciente de la biblioteca es; </font>usted puede encontrar que en </font></font><a href="https://cdnjs.com/" class="calibre7"><em class="calibre2">https://cdnjs.com/</font></font></em></a> .</font></font></p>
+
+<p class="author1">O puede utilizar </font></font><code class="calibre15">yarn</code>o </font></font><code class="calibre15">npm</code>en su terminal:</font></font></p>
+
+<pre data-type="programlisting" class="calibre24">NPM instalar GSAP
+</font></font></pre>
+
+<pre data-type="programlisting" class="calibre24">hilo de instalar GSAP 
+</font></font></pre>
+<h1 class="calibre12" id="calibre_pb_1">Sintaxis básica GreenSock</font></font></h1>
+
+<p class="author1">Vamos a empezar con una muy simple </font></font><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="basic syntax" data-type="indexterm" id="gsap8bs" class="calibre7"></a>ejemplo, el resultado de las cuales se muestra en la </font></font><a data-type="xref" href="part0013_split_001.html#fig8.1" class="calibre7">Figura 8-1</font></font></a> :</font></font></p>
+
+<pre data-type="programlisting" class="calibre44"><span class="calibre45">TweenMax.to ( "elemento", 2, {x: 100});</font></font></span></pre>
+
+<figure class="calibre25"><div id="fig8.1" class="figure"><img alt="" class="iimagesimage11png" src="../images/00057.gif">
+<h6 class="calibre26"><span class="keep-together">Figura 8-1. </font></font></span>Si tenemos una bola con una clase de .element, esto es lo que vamos a ver</font></font></h6>
+</div></figure>
+
+<p class="author1">En este ejemplo, la bola se mueve hacia la derecha por 100 píxeles. </font>Vamos a romper algo de esto poco a poco la sintaxis, y considerar algunas opciones adicionales.</font></font></p>
+
+<h2 class="pagebreak-before" id="calibre_pb_2">TweenMax / TweenLite</font></font></h2>
+
+<pre data-type="programlisting" class="calibre46">TweenMax </font></font><span class="calibre45">.TO ( "elemento"., 2, {x: 100});</font></font></span>
+</pre>
+
+<p class="author1">El&nbsp; </font></font><code class="calibre15">TweenMax</code>&nbsp;&nbsp;&nbsp;al comienzo de la declaración indica al navegador que vamos a utilizar el código API GreenSock animación que se ha cargado desde la biblioteca importamos. </font>Esto puede ser intercambiado con</font></font><a contenteditable="false" data-primary="TweenLite" data-type="indexterm" id="idm140658632978864" class="calibre7"></a><code class="calibre15">TweenLite</code>, Si decide usar la versión más pequeña de la biblioteca. </font>La ventaja de TweenLite es que es muy pequeño, mientras que la ventaja de TweenMax es que viene equipado con cosas como los lazos, las propiedades CSS (que encontrará lo que necesite), y la biblioteca TimelineMax, que se extiende la TimelineLite menor (nosotros' ll cavar en la línea de tiempo en el siguiente capítulo). </font>Los dos son intercambiables y no cambian la forma en que funciona la animación, además de uno que tenga ofertas más amplias.</font></font></p>
+
+<h2 class="pagebreak-before" id="calibre_pb_3">.para / .de / .fromTo</font></font></h2>
+
+<pre data-type="programlisting" class="calibre46"><span class="calibre45">TweenMax </font></font><span class="keep-together">.TO</font></font></span> ( ".element", 2, {x: 100});</font></font></span>
+</pre>
+
+<p class="author1">los </font></font><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="to/from/fromTo" data-type="indexterm" id="gsap8tfft" class="calibre7"></a>siguiente pieza es la </font></font><code class="calibre15">.to</code> <a contenteditable="false" data-primary=".to" data-primary-sortas="to" data-type="indexterm" id="idm140658632972544" class="calibre7"></a>método, que, como era de esperar, dice el elemento para cambiar a un estado diferente.</font></font></p>
+
+<p class="author1">También se puede utilizar </font></font><code class="calibre15">.from</code>,</font></font><a contenteditable="false" data-primary=".from" data-primary-sortas="from" data-type="indexterm" id="idm140658632970160" class="calibre7"></a>lo que significa que el elemento se origina a partir de lo que se especifica en las llaves (el objeto de animación) y los cambios en sus valores por defecto, o </font></font><code class="calibre15">.fromTo</code>,</font></font><a contenteditable="false" data-primary=".fromTo" data-primary-sortas="fromTo" data-type="indexterm" id="idm140658632965664" class="calibre7"></a>que le da un control más granular sobre el lugar donde algo empieza y dónde termina.</font></font></p>
+
+<p class="author1"><code class="calibre15">.fromTo</code>se vuelve muy útil para animaciones que se puede reactivar, porque se puede estar más seguro de los puntos de inicio y finalización. </font>Por ejemplo, digamos que el fuego una animación y se puede ampliar hasta en un 50%. </font>Entonces te preguntas de nuevo para ampliar en un 50% -pero ya está allí. </font>Que la animación se verá como no hace nada en el gatillo secundario.</font></font></p>
+
+<p class="author1">Cuando usamos </font></font><code class="calibre15">.fromTo</code>, la sintaxis es un poco diferente:</font></font></p>
+
+<pre data-type="programlisting" class="calibre44">TweenMax </font></font><span class="keep-together">.fromTo</font></font></span> ( ".element", 2, {</font></font></font>
+&nbsp; x: 0</font></font></font>
+&nbsp;}, {</font></font></font>
+&nbsp; x: 100</font></font></font>
+&nbsp;});</font></font></font>
+</pre>
+
+<p class="author1">Se puede ver también rompí cosas a lo largo de varias líneas más, así que es un poco más legible. </font>Ahora podemos ver con bastante claridad que el elemento irá desde el 0 de coordenadas en el eje x de</font></font><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="to/from/fromTo" data-startref="gsap8tfft" data-type="indexterm" id="idm140658632956624" class="calibre7"></a>100.</font></font></p>
+
+<h2 class="pagebreak-before" id="calibre_pb_4">Asombroso</font></font></h2>
+
+<p class="author1">Nosotros </font></font><a contenteditable="false" data-primary="staggers" data-type="indexterm" id="s8" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="staggering" data-type="indexterm" id="gsap8s" class="calibre7"></a>puede también </font></font><a contenteditable="false" data-primary=".staggerFromTo" data-primary-sortas="staggerFromTo" data-type="indexterm" id="idm140658632952544" class="calibre7"></a><a contenteditable="false" data-primary=".staggerFrom" data-primary-sortas="staggerFrom" data-type="indexterm" id="idm140658632951024" class="calibre7"></a><a contenteditable="false" data-primary=".staggerTo" data-primary-sortas="staggerTo" data-type="indexterm" id="idm140658632949568" class="calibre7"></a>utilizar </font></font><code class="calibre15">.staggerTo</code>, </font></font><code class="calibre15">.staggerFrom</code>o&nbsp; </font></font><code class="calibre15">.staggerFromTo</code>. </font>Las mismas se llevarán la misma animación y repetirlo en una especie de cascada, aplicado a un grupo de objetos que usted designe. </font>Con SVG Me resulta muy útil para colocar los artículos en un grupo y añadir una clase al grupo para lograr esto. </font>Por ejemplo, en este código, la animación se puede aplicar a todos los círculos dentro del grupo con la clase </font></font><code class="calibre15">.element</code>:</font></font></p>
+
+<pre data-type="programlisting" class="calibre44">TweenMax </font></font><span class="keep-together">.stagge </font></font></span><span class="keep-together">rPara</font></font></span> ( "círculo .element", 2, {</font></font></font>
+  x: 100</font></font></font>
+}, </font></font><span class="keep-together">0,1</font></font></span> );
+</font></font></pre>
+
+<p class="author1">Este fragmento de código muestra lo que hemos cambiado: estamos usando </font></font><code class="calibre15">.staggerTo</code>en lugar de </font></font><code class="calibre15">.to</code>y hemos añadido un parámetro extra al final de la declaración: </font></font><code class="calibre15">0.1</code>. </font></font><em class="calibre2">Esto controla el tiempo entre cada uno de los tambalea. </font></font></em>Estamos ahora también la orientación de todos los círculos en un grupo con una clase de </font></font><code class="calibre15">.element</code>. </font>La salida será similar a </font></font><a data-type="xref" href="part0013_split_004.html#fig8.2" class="calibre7">la Figura 8-2</font></font></a> .</font></font></p>
+
+<figure class="calibre25"><div id="fig8.2" class="figure"><img alt="" class="iimagesimage11png" src="../images/00058.gif">
+<h6 class="calibre26"><span class="keep-together">Figura 8-2. </font></font></span>Las bolas están todos Animación con los mismos valores, pero escalonados en el tiempo, uno tras otro</font></font></h6>
+</div></figure>
+
+<h1 class="calibre27" id="calibre_pb_5">Reverse-Solicitar tambalea</font></font></h1>
+
+<p class="author1">Si desea </font></font><a contenteditable="false" data-primary="reverse order staggers" data-type="indexterm" id="idm140658632935232" class="calibre7"></a>como el tambalearse a empezar desde el último elemento y vaya a la primera, es muy fácil de hacer. </font>Sólo tiene que utilizar un valor negativo para el intervalo (que se muestra aquí como el </font></font><code class="calibre15">-0.1</code>valor):</font></font></p>
+
+<pre data-type="programlisting" class="calibre47">TweenMax.staggerTo (". Elemento </font></font></font>
+   círculo", 2, {</font></font></font>
+  x: 100</font></font></font>
+}, </font></font><span class="keep-together">-0,1</font></font></span> );
+</font></font></pre>
+</div>
+
+<p class="author1">Hay tipos más avanzados de tambalea disponibles, incluyendo el uso de la </font></font><code class="calibre15">cycle</code>propiedad y los valores de escalonamiento aleatorios. </font>Para obtener más información sobre esto, lee</font></font><a contenteditable="false" data-primary="staggers" data-startref="s8" data-type="indexterm" id="idm140658632929232" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="staggering" data-startref="gsap8s" data-type="indexterm" id="idm140658632929520" class="calibre7"></a>a cabo </font></font><a data-type="xref" href="part0016_split_000.html#cyclestagger_hsla_splittext" class="calibre7">el Capítulo 11</font></font></a> .</font></font></p>
+
+
+<h2 class="pagebreak-before" id="calibre_pb_6">Elementos</font></font></h2>
+
+<pre data-type="programlisting" class="calibre44">TweenMax.to ( </font></font><span class="keep-together">".element"</font></font></span> , 2, {x: 100});
+</font></font></pre>
+
+<p class="author1">La manera </font></font><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="element" data-type="indexterm" id="idm140658632923376" class="calibre7"></a>&nbsp;que los elementos objetivos GreenSock es similar a </font></font><code class="calibre15">querySelector()</code>o </font></font><code class="calibre15"><span class="keep-together">querySelector</span>All()</code>en JavaScript nativo y aún más cerca del comportamiento de un selector de jQuery, en el que se puede pasar de uno o varios elementos, y también pueden ser clases, identificaciones, o atributos como </font></font><code class="calibre15">path</code>, </font></font><code class="calibre15">circle</code>o </font></font><code class="calibre15">rect</code>. </font>Usted no tiene que preocuparse por NodeLists; </font>todo eso se abstrae de distancia para usted, lo que hace que trabajar con el DOM y soporte multi-navegador mucho más simple.</font></font></p>
+
+<p class="author1">Puede utilizar una cadena de selección citado, como en este ejemplo, para apuntar los elementos directamente, sino que se acepte también GreenSock </font></font><a contenteditable="false" data-primary="variables" data-type="indexterm" id="idm140658632917056" class="calibre7"></a>las variables también, si eso es su atasco (por ejemplo, </font>que tienden a utilizar las variables así cuando estoy apuntando un elemento varias veces, para evitar la repetición y múltiples operaciones de búsqueda.</font></font><code class="calibre15">var el = <span class="keep-together">document.querySelector(".el");).</span></code></font></p>
+
+
+<h2 class="pagebreak-before" id="calibre_pb_8">Retrasar</font></font></h2>
+
+<pre data-type="programlisting" class="calibre44">TweenMax.to (.element", 2, {x: 100, </font></font><span class="keep-together">de retardo:</font></font></font>
+   2</font></font></span> });
+</font></font></pre>
+
+<p class="author1">Si desea hacer </font></font><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="delay" data-type="indexterm" id="idm140658632904160" class="calibre7"></a><a contenteditable="false" data-primary="delay" data-type="indexterm" id="idm140658632902736" class="calibre7"></a>su espera animación para un poco antes de la cocción, se puede utilizar </font></font><code class="calibre15">delay</code>. </font></font><code class="calibre15">Delay</code>es útil para encadenar, o la creación de las cosas un poco antes o uno después del otro, pero en el siguiente capítulo vamos a cubrir de una manera mucho más eficiente y organizada a efectos de cadena con la herramienta de línea de tiempo.</font></font></p>
+
+<h1 class="calibre12" id="calibre_pb_9">Propiedades para animar</font></font></h1>
+
+<p class="author1">Nosotros </font></font><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="animation properties" data-type="indexterm" id="gsap8ap" class="calibre7"></a>hablado brevemente acerca de cómo nuestro código de ejemplo se moverá la pelota a la derecha por 100 píxeles, pero vamos a profundizar en eso un poco más. </font>Que hace</font></font><a contenteditable="false" data-primary="x" data-type="indexterm" id="idm140658632896832" class="calibre7"></a>que </font></font><code class="calibre15">x</code>representan? </font>Que en realidad significa </font></font><code class="calibre15">transform: translateX(100px)</code>. </font>(Debería </font></font><em class="calibre2">no</font></font></em> ser confundido con el </font></font><code class="calibre15">x</code>atributo de elementos como </font></font><code class="calibre15">rects</code>en SVG.) Recuerde que cuando he mencionado que transforma y la opacidad son las cosas mas potente para animar?</font></font><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="rotation" data-type="indexterm" id="idm140658632893216" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="z" data-type="indexterm" id="idm140658632892240" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="y" data-type="indexterm" id="idm140658632890064" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="x" data-type="indexterm" id="idm140658632888640" class="calibre7"></a>Así, los desarrolladores de GreenSock saben, por lo que muy bien crearon algunas taquigrafía para nosotros, podemos utilizar </font></font><code class="calibre15">x</code>, </font></font><code class="calibre15">y</code>, </font></font><code class="calibre15">z</code>, </font></font><code class="calibre15">scale</code>,</font></font><a contenteditable="false" data-primary="scale" data-type="indexterm" id="idm140658632885184" class="calibre7"></a><a contenteditable="false" data-primary="z" data-type="indexterm" id="idm140658632884112" class="calibre7"></a><a contenteditable="false" data-primary="y" data-type="indexterm" id="idm140658632882992" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="scale" data-type="indexterm" id="idm140658632881840" class="calibre7"></a>y </font></font><code class="calibre15">rotation</code> <a contenteditable="false" data-primary="rotation" data-type="indexterm" id="idm140658632879872" class="calibre7"></a>(en lugar de </font></font><code class="calibre15">rotate</code>en el CSS). </font>Convenientemente, porque han roto las propiedades, podemos utilizar de forma individual y en diferentes momentos. </font>Eso nos ahorra un montón de escribir y hace que nuestro código mucho más fácil de leer.</font></font></p>
+
+<p class="author1">Tenga en cuenta que si estás </font></font><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="transforms" data-type="indexterm" id="idm140658632878016" class="calibre7"></a><a contenteditable="false" data-primary="transforms" data-type="indexterm" id="idm140658632876464" class="calibre7"></a>la transformación dentro del DOM SVG, se utilizará el sistema de coordenadas en el </font></font><code class="calibre15">viewBox</code>, por lo que no será realmente usando verdaderos píxeles. </font>Se puede recordar de los capítulos anteriores que esto es realmente una característica realmente grande, porque significa que podemos escalar y crear animaciones complejas de respuesta (más sobre esto en facilidad </font></font><a data-type="xref" href="part0021_split_000.html#ch16" class="calibre7">Capítulo 16</font></font></a> ).</font></font></p>
+
+<h1 class="calibre27" id="calibre_pb_10">Animación transforma en Equivalente CSS</font></font></h1>
+
+<p class="author1">Debido a que </font></font><code class="calibre15">transform</code>es una propiedad de CSS, que es una molestia para aplicar diferentes transformaciones en diferentes momentos a un elemento. </font>Ellos acaban de tener un orden de apilamiento y se aplican una a una, a menos que escribir cada valor en el porcentaje interpolado para cada cambio.</font></font></p>
+
+<p class="author1">He escrito más sobre esto en </font></font><a href="http://bit.ly/2ivvcrP" class="calibre7">un artículo para CSS-trucos</font></font></a> .</font></font></p>
+
+<p class="author1">GreenSock nos da una enorme mejora la vida rompiendo estas propiedades aparte para que podamos tener un control más preciso del movimiento.</font></font></p>
+
+<p class="author1">El Grupo de Trabajo de CSS tiene la intención de romper transforma a cabo en sus propias propiedades, pero en el momento de la publicación de la línea de tiempo para la aplicación y el alcance de soporte de los navegadores no estaban claros. </font>Chrome tiene algunas implementaciones experimentales.</font></font></p>
+
+
+<p class="author1">También tenemos </font></font><code class="calibre15">opacity</code>,</font></font><a contenteditable="false" data-primary="opacity" data-type="indexterm" id="idm140658632865264" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="opacity" data-type="indexterm" id="idm140658632869552" class="calibre7"></a>que funciona como lo hace en CSS: podemos suministrar los valores de </font></font><code class="calibre15">0</code>a </font></font><code class="calibre15">1</code>, con </font></font><code class="calibre15">0</code>ser completamente transparente y </font></font><code class="calibre15">1</code>ser completamente opaca. </font>Además, ofrece un valor GreenSock personalizada llamada </font></font><code class="calibre15">autoAlpha</code>,</font></font><a contenteditable="false" data-primary="autoAlpha" data-type="indexterm" id="idm140658632862896" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="autoAlpha" data-type="indexterm" id="idm140658632861296" class="calibre7"></a>que también toma valores de </font></font><code class="calibre15">0</code>a </font></font><code class="calibre15">1</code>. </font>Este valor parejas </font></font><code class="calibre15">opacity</code>y</font></font><a contenteditable="false" data-primary="visibility: hidden" data-type="indexterm" id="idm140658632858496" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="visibility: hidden" data-type="indexterm" id="idm140658632857280" class="calibre7"></a> <code class="calibre15">visibility: hidden</code>, Por lo que elimina el elemento de la / lo añade en el DOM por completo.&nbsp;</font></font></p>
+
+<p class="author1">Esto es importante porque un elemento con </font></font><code class="calibre15">opacity: 0</code>todavía es capaz de reaccionar a los eventos / Touch ratón / teclado y se incluye en el árbol de acceso utilizado por los lectores de pantalla. </font>Un elemento con </font></font><code class="calibre15">visibility: hidden</code>no lo es. </font></font><code class="calibre15">autoAlpha</code>asegura que cuando el elemento se ha desvanecido totalmente a cabo, se oculta correctamente de interacción, así como a la vista.</font></font></p>
+
+<p class="author1">También puede animar cualquier número de otros valores CSS. </font>Color, ancho, altura, perspectiva juego-son todos justo. </font>Hay algunas cosas a tener en cuenta, sin embargo. </font>En primer lugar, cualquier propiedad con un guión en su nombre se convierte</font></font><a contenteditable="false" data-primary="camelCase" data-type="indexterm" id="idm140658632851888" class="calibre7"></a>CamelCased. </font>Por ejemplo, </font></font><code class="calibre15">background-color</code>sería </font></font><code class="calibre15">backgroundColor</code>, y </font></font><code class="calibre15">border-radius</code>sería </font></font><code class="calibre15">borderRadius</code>. </font>También, cualquier valor que no es un número tiene que ser aprobada en forma de cadena, rodeado entre comillas. </font>Por lo tanto, un valor de color sería </font></font><code class="calibre15">color: "#333333"</code>.</font></font></p>
+
+<p class="author1">Cuando la animación de dos propiedades, los separamos por comas (tratamos las propiedades que estamos animando al igual </font></font><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="animation properties" data-startref="gsap8ap" data-type="indexterm" id="idm140658632848000" class="calibre7"></a>objetos):</font></font></p>
+
+<pre data-type="programlisting" class="calibre44">TweenMax.to (.element", 2, {</font></font></font>
+ x: 100, </font></font></font>
+ <span class="keep-together">y: 50</font></font></span> </font>
+});</font></font></font>
+</pre>
+
+<h1 class="calibre12" id="calibre_pb_11">aliviar</font></font></h1>
+
+<p class="author1">aliviar </font></font><a contenteditable="false" data-primary="eases" data-secondary="in GreenSock (GSAP)" data-secondary-sortas="GreenSock" data-type="indexterm" id="e8igsap" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="easing" data-type="indexterm" id="gsap8e" class="calibre7"></a>es opcional, así que no lo incluyó en el primer ejemplo. </font>Pero la flexibilización es quizás la herramienta más poderosa en GreenSock: trae piezas de código estático para la vida. </font>Podemos añadir flexibilización de la siguiente manera:</font></font></p>
+
+<pre data-type="programlisting" class="calibre44">TweenMax.to (.element", 2, {</font></font></font>
+ x: 100, </font></font></font>
+ y: 50,</font></font></font>
+ <span class="keep-together">facilidad: Sine.easeOut</font></font></span> </font>
+});</font></font></font>
+</pre>
+
+<p class="author1">Cuando escribimos esto, </font></font><code class="calibre15">ease:</code>siempre permanece constante. </font>En este caso, </font></font><code class="calibre15">Sine</code>es el tipo de facilidad. </font>La mayoría de los tipos de curva de aceleración tienen tres opciones: </font></font><code class="calibre15">.easeIn</code>, </font></font><code class="calibre15">.easeOut</code>, y </font>. </font>Afectan a la dirección en la forma Bézier de la facilidad fluye en. Hay muchos tipos diferentes de GreenSock alivia. </font>Cuando era el primer aprendizaje, he encontrado el </font><a href="http://greensock.com/ease-visualizer" class="calibre7">GreenSock Ease visualizador</font></a> ser una herramienta muy valiosa para visualizar y explorar todas las diferentes opciones (ver </font><a data-type="xref" href="part0013_split_011.html#fig8.3" class="calibre7">Figura 8-3</font></a> ).</font></font><code class="calibre15">.ease<span class="keep-together">InOut</span></code></font><a href="http://greensock.com/ease-visualizer" class="calibre7"></font></a></font><a data-type="xref" href="part0013_split_011.html#fig8.3" class="calibre7"></font></a></font></p>
+
+<figure class="calibre25"><div id="fig8.3" class="figure"><img alt="" class="iimagesimage11png" src="../images/00059.jpeg">
+<h6 class="calibre26"><span class="keep-together">Figura 8-3. </font></font></span>El visualizador GreenSock Facilidad: una herramienta interactiva de gran valor</font></font></h6>
+</div></figure>
+
+<p class="author1">Recientemente, GreenSock introdujo un nuevo tipo de facilidad llamada personalizada. </font>Es necesario para cargar el plug-in CustomEase con el fin de usarlo, pero que le permite pasar por sendas SVG, y se puede jugar con el Visualizador Facilidad para manipular los caminos (lo cual es especialmente agradable porque se puede ver el movimiento de demostración) . </font>Esta es una característica increíble, ya que a veces el tipo de suavizado se utiliza hace toda la diferencia entre la torpeza y realista, impresionante movimiento.</font></font></p>
+
+<h1 class="calibre27" id="calibre_pb_12">Tip flexibilización caliente</font></font></h1>
+
+<p class="author1">A pesar de lo que sus nombres podrían sugerir, </font></font><code class="calibre15">.easeOut</code>es realmente muy bueno para las entradas. </font></font><code class="calibre15">.easeIn</code>es ideal para las salidas, y tiendo a usar </font></font><code class="calibre15">.easeInOut</code>con moderación, a menudo por estados intermedios.</font></font></p>
+
+<p class="author1"><em class="calibre2">En</font></font></em> y </font></font><em class="calibre2">hacia fuera</font></font></em> en el alivio se refieren al principio y al final de la animación, y desea que la parte “fácil” (más lento) de la animación que es la parte que está más cerca el estado de reposo del objeto (al final de las entradas, el principio para las salidas), con un movimiento rápido, ya que</font></font><a contenteditable="false" data-primary="TweenMax" data-startref="tm8" data-type="indexterm" id="idm140658632821664" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="TweenMax" data-startref="gsap8tm" data-type="indexterm" id="idm140658632825184" class="calibre7"></a>se mueve fuera de la pantalla.</font></font></p>
+
+
+<p class="author1">Esto puede parecer mucho a cavar en y entender, pero una vez que usted ha trabajado con la sintaxis de un par de veces, es relativamente fácil de memorizarlo porque lo utilizará el mismo patrón general una y otra vez. </font>Le recomiendo a escribir a cabo una parte del código en este capítulo para mantenerlo fresco en su mente.</font></font></p>
+
+<p class="author1">En los siguientes capítulos, vamos a profundizar en algunas cosas muy avanzadas y divertidos, ahora que usted tiene los fundamentos </font></font><a contenteditable="false" data-primary="eases" data-secondary="in GreenSock (GSAP)" data-secondary-sortas="GreenSock" data-startref="e8igsap" data-type="indexterm" id="idm140658632818736" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="eases" data-startref="gsap8e" data-type="indexterm" id="idm140658632820176" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-secondary="basic syntax" data-startref="gsap8bs" data-type="indexterm" id="idm140658632816736" class="calibre7"></a><a contenteditable="false" data-primary="GreenSock (GSAP)" data-startref="gsap8" data-type="indexterm" id="idm140658632815072" class="calibre7"></a>¡abajo!</font></font></p>
+
+
+</aside><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div></body>

@@ -1,0 +1,2029 @@
+<body>
+<div class="breadcrumb-head-container block-container">
+	<div class="docs-head block">
+		<div class="breadcrumbs">
+			<a class="home-button" href="/"><img width="20" src="/wp-content/themes/greensock/images/breadcrumb-home.jpg"></a>
+			<a href="/learning/">Learning</a>
+			<span class="last">Getting Started with GSAP (GreenSock Animation Platform)</span>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<h1>Getting Started with GSAP (GreenSock Animation Platform)</h1>
+
+<h2>Quick links:</h2>
+<ul class="compact">
+
+<li classname="it"><a href="#intro">Introducción</a></li>
+<li className="p"><a href="#intro">Introduction</a></li>
+
+
+
+
+
+<li classname="it"><a href="#loading">Carga del archivo (s)</a></li>
+
+<li className="p"><a href="#loading">Loading the file(s)</a></li>
+
+
+
+
+
+
+<li classname="it"><a href="#basics">interpolación básica</a></li>
+<li className="p"><a href="#basics">Basic tweening</a></li>
+
+
+
+
+
+<li classname="it"><a href="#special">propiedades especiales</a></li>
+
+<li className="p"><a href="#special">Special properties</a></li>
+
+
+
+
+
+<li classname="it"><a href="#easing">aliviar</a></li>
+
+<li className="p"><a href="#easing">Easing</a></li>
+
+
+
+
+
+<li classname="it"><a href="#plugins">plugins</a></li>
+
+<li className="p"><a href="#plugins">Plugins</a></li>
+
+
+
+
+
+<li classname="it"><a href="#css">interpolación propiedades CSS </a></li>
+
+<li className="p"><a href="#css">Tweening CSS properties </a></li>
+
+
+
+
+
+<li classname="it"><a href="#controlling">El control de los preadolescentes</a></li>
+
+<li className="p"><a href="#controlling">Controlling tweens</a></li>
+
+
+
+
+
+<li classname="it"><a href="#sequencing">Secuenciación y tweens agrupación con TimelineLite</a></li>
+
+<li className="p"><a href="#sequencing">Sequencing and grouping tweens with TimelineLite</a></li>
+
+
+
+
+
+<li classname="it"><a href="#tweenmax">Un paso adelante para TweenMax y TimelineMax</a></li>
+
+<li className="p"><a href="#tweenmax">Stepping up to TweenMax and TimelineMax</a></li>
+
+
+
+
+
+<li classname="it"><a href="#overwriting">Sobrescribiendo otros preadolescentes</a></li>
+
+<li className="p"><a href="#overwriting">Overwriting other tweens</a></li>
+
+
+
+
+
+
+
+</ul>
+
+
+<h2>Jump Start</h2>
+<table border="0">
+<tbody>
+<tr>
+<td><a href="/jump-start-js/" target="_blank"><img style="margin-right: 10px;" src="/wp-content/uploads/custom/getting-started/img/jump_start_thumb.jpg" alt="Jump Start: GSAP JS" width="240" height="178"></a></td>
+<td>If you haven't done so already, please <a href="/jump-start-js/" target="_blank">check out the Jump Start for GSAP JS</a> - it visually demonstrates the basics of the API and gets you up and running fast. The interactive slides make it easy (or dare we say it..."fun!"). Then, if you're still hungry for more, circle back here because this page goes into a bit more detail. <strong>The Jump Start is the best place to begin learning.</strong></td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h2>Introduction</h2>
+
+
+<p className="it">Animación con código puede parecer intimidante al principio, pero no se preocupe - la animación Plataforma GreenSock (GSAP) se ha diseñado para que sea sencillo e intuitivo. La plataforma también está muy optimizado para un rendimiento y una flexibilidad sin precedentes. Colgar en él a través de la curva de aprendizaje y se le alegra que usted lo hizo. Por ahora, nos centraremos en conseguir que en funcionamiento con el motor central, TweenLite. A continuación, vamos a discutir si (y cuando) es posible que desee poner las otras herramientas para trabajar (como TweenMax, TimelineLite, TimelineMax, etc.). Si ha utilizado la versión flash de la plataforma, se debe notar que la sintaxis es idéntica (aunque sin duda querrá leer sobre el <a href="#css">CSSPlugin</a> y echa un vistazo a la <a href="#css">sección de preguntas frecuentes</a> a continuación).</p>
+
+
+<p className="p">Animating with code may seem intimidating at first, but don't worry – the GreenSock Animation Platform (GSAP) was engineered to make it simple and intuitive. The platform is also highly optimized for performance and unprecedented flexibility. Hang in there through the learning curve and you'll be glad you did. For now, we'll focus on getting you up and running with the core engine, TweenLite. Then we'll discuss if (and when) you might want to put the other tools to work (like TweenMax, TimelineLite, TimelineMax, etc.). If you've used the Flash version of the platform, you should notice that the syntax is identical (although you'll definitely want to read up on the <a href="#css">CSSPlugin</a> and check out the <a href="#css">FAQ section</a> below).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>What exactly is GSAP?</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+<p className="it">GSAP es un conjunto de herramientas para la animación mediante scripts. Incluye:</p>
+
+
+<p className="p">GSAP is a suite of tools for scripted animation. It includes:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+<li classname="it"><strong><a href="/docs/#/HTML5/GSAP/TweenLite/">TweenLite</a></strong> : el núcleo del motor que maneja la animación de casi cualquier propiedad de cualquier objeto. Es relativamente ligero pero con todas las funciones y se puede ampliar el uso de plugins opcionales (como CSSPlugin DOM para la animación de estilos de elementos en el navegador, o ScrollToPlugin desplazarse a una ubicación específica en una página o div, etc.)</li>
+<li className="p"><strong><a href="/docs/#/HTML5/GSAP/TweenLite/">TweenLite</a></strong>: the core of the engine which handles animating just about any property of any object. It is relatively lightweight yet full-featured and can be expanded using optional plugins (like CSSPlugin for animating DOM element styles in the browser, or ScrollToPlugin scrolling to a specific location on a page or div, etc.)</li>
+
+
+
+
+
+
+<li classname="it"><strong><a href="/docs/#/HTML5/GSAP/TweenMax/">TweenMax</a></strong> : hermano mayor del rollizo TweenLite; hace todo lo que puede hacer más TweenLite no esencial como el de repetición, yoyo, repeatDelay, etc. Incluye muchos plugins comunes también como<a href="/docs/#/HTML5/GSAP/Plugins/CSSPlugin/"> CSSPlugin</a> de manera que no es necesario cargar tantos archivos. La atención se centra en ser con todas las funciones en lugar de peso ligero.</li>
+<li className="p"><strong><a href="/docs/#/HTML5/GSAP/TweenMax/">TweenMax</a></strong>: TweenLite's beefy big brother; it does everything TweenLite can do plus non-essentials like repeat, yoyo, repeatDelay, etc. It includes many common plugins too like <a href="/docs/#/HTML5/GSAP/Plugins/CSSPlugin/">CSSPlugin</a> so that you don't need to load as many files. The focus is on being full-featured rather than lightweight.</li>
+
+
+
+
+
+
+<li classname="it"><strong><a href="/docs/#/HTML5/GSAP/TimelineLite/">TimelineLite</a></strong> : una herramienta poderosa secuenciación y liviano, que actúa como un contenedor para los adolescentes, lo que facilita el control de ellos en su conjunto y gestionar con precisión su calendario en relación el uno al otro. Puede incluso líneas de tiempo de nido dentro de otras líneas de tiempo tan profundamente como usted quiera. Esto le permite modularizar el flujo de trabajo de animación con facilidad.</li>
+<li className="p"><strong><a href="/docs/#/HTML5/GSAP/TimelineLite/">TimelineLite</a></strong>: a powerful, lightweight sequencing tool that acts like a container for tweens, making it simple to control them as a whole and precisely manage their timing in relation to each other. You can even nest timelines inside other timelines as deeply as you want. This allows you to modularize your animation workflow easily.</li>
+
+
+
+
+
+<li classname="it"><strong><a href="/docs/#/HTML5/GSAP/TimelineMax/">TimelineMax</a></strong> : extiende TimelineLite, ofreciendo exactamente la misma funcionalidad más útil (pero no esencial) Características tales como la repetición, repeatDelay, yoyo, currentLabel (), y muchos más. Una vez más, al igual que lo hace para TweenMax TweenLite, TimelineMax pretende ser la herramienta con todas las funciones último lugar de peso ligero.</li>
+
+<li className="p"><strong><a href="/docs/#/HTML5/GSAP/TimelineMax/">TimelineMax</a></strong>: extends TimelineLite, offering exactly the same functionality plus useful (but non-essential) features like repeat, repeatDelay, yoyo, currentLabel(), and many more. Again, just like TweenMax does for TweenLite, TimelineMax aims to be the ultimate full-featured tool rather than lightweight.</li>
+
+
+
+
+
+<li classname="it"><strong>Extras como herramientas de flexibilización, plugins, los servicios públicos, como <a href="/draggable/">pueden arrastrar</a>, y más</strong></li>
+
+<li className="p"><strong>Extras like easing tools, plugins, utilities like <a href="/draggable/">Draggable</a>, and more</strong></li>
+
+
+
+
+
+
+
+</ul>
+
+<div>
+<a href="https://ihatetomatoes.net/greensock-cheat-sheet/#more-6001" target="_blank"><img src="http://greensock.com/wp-content/uploads/2012/05/cheat-sheet.png" alt="cheat-sheet" width="826" height="288" class="alignleft size-full wp-image-6354"></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Loading the GSAP files</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+<p className="it">Echa un vistazo a la <a href="#" onclick="showDownload('js.GSAP'); return false;">pantalla de descarga</a> donde se puede descargar un zip que contiene los archivos minified y sin comprimir, o simplemente puede pegar un vínculo CDN a la derecha en su página. La forma más sencilla de conseguir un montón de golosinas es vincular a la última archivo TweenMax CDN.</p>
+
+
+<p className="p">Check out the <a href="#" onclick="showDownload('js.GSAP'); return false;">download screen</a> where you can download a zip containing minified and uncompressed files, or you can just paste a CDN link right into your page. The simplest way to get a bunch of goodies is to link to the latest TweenMax CDN file. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="Rp9X2xKqRd57n72psS0L" class="pre-container">
+<pre id="h92V2lQCjBhRgEBCdXIN" class="shortcode prettyprint lang-js   prettyprinted"><span class="pun">&lt;!--</span><span class="pln">CDN link </span><span class="kwd">for</span><span class="pln">  </span><span class="typ">TweenMax</span><span class="pun">--&gt;</span><span class="pln">
+</span><span class="pun">&lt;</span><span class="pln">script src</span><span class="pun">=</span><span class="str">"http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"</span><span class="pun">&gt;&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<p className="it">Desde TweenMax incluye TweenLite, CSSPlugin, EasePack, TimelineLite, TimelineMax, RoundPropsPlugin, BezierPlugin, AttrPlugin y DirectionalRotationPlugin, esto <strong>solo archivo</strong> le proporciona toneladas de golosinas para jugar y el CDN debe ayudar a cargar las cosas muy rápidamente. Sin embargo, si usted está más preocupado por el tamaño del archivo, usted puede escoger y elegir los componentes básicas y complementos para cargar (una opción ligera común es TweenLite, CSSPlugin y EasePack). Por ejemplo:</p>
+
+
+<p className="p"> Since TweenMax includes TweenLite, CSSPlugin, EasePack, TimelineLite, TimelineMax, RoundPropsPlugin, BezierPlugin, AttrPlugin, and DirectionalRotationPlugin, this <strong>one file</strong> gives you tons of goodies to play with and the CDN should help things load very quickly. If, however, you're more concerned about file size, you can pick and choose which core components and plugins to load (a common lightweight choice is TweenLite, CSSPlugin, and EasePack). For example: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="TAg6CGzuHkYZWGW814g" class="pre-container">
+<pre id="tiCJXcl983Ws4WuCGVs" class="shortcode prettyprint lang-js   prettyprinted"><span class="pun">&lt;!--</span><span class="pln">CDN links </span><span class="kwd">for</span><span class="pln"> </span><span class="typ">TweenLite</span><span class="pun">,</span><span class="pln"> </span><span class="typ">CSSPlugin</span><span class="pun">,</span><span class="pln"> and </span><span class="typ">EasePack</span><span class="pun">--&gt;</span><span class="pln">
+</span><span class="pun">&lt;</span><span class="pln">script src</span><span class="pun">=</span><span class="str">"http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/plugins/CSSPlugin.min.js"</span><span class="pun">&gt;&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span><span class="pln">
+</span><span class="pun">&lt;</span><span class="pln">script src</span><span class="pun">=</span><span class="str">"http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/easing/EasePack.min.js"</span><span class="pun">&gt;&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span><span class="pln">
+</span><span class="pun">&lt;</span><span class="pln">script src</span><span class="pun">=</span><span class="str">"http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenLite.min.js"</span><span class="pun">&gt;&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<p className="it"><a href="/account/?action=signup">Inscribirse</a> para una cuenta GreenSock para unirse a la lista de correo y recibir notificaciones sobre actualizaciones importantes que podrían afectar su código. Por supuesto que no es necesario utilizar los enlaces de CDN en absoluto. Si descarga, mirar dentro de la carpeta "src" y verá "minified" y carpetas "sin compresión" con todo el código fuente - no dude en dejar caer los en su servidor o sistema de archivos local. Por lo general va desea utilizar los archivos miniaturizada para el despliegue porque van a cargar más rápido, pero funcionalmente todo es idéntico entre las versiones sin comprimir y miniaturizada. Los archivos "sin comprimir" se incluyen en caso de que desee abrir una grieta en la fuente y ver lo que está ocurriendo allí (que contienen comentarios y el código más legible).</p>
+
+
+<p className="p"><a href="/account/?action=signup">Sign up</a> for a GreenSock account to join the mailing list and get notifications about important updates that could affect your code. Of course you don't need to use CDN links at all. If you download, look inside the "src" folder and you'll see "minified" and "uncompressed" folders with all the source code - feel free to drop those onto your server or local file system. You'll typically want to use the minified files for deployment because they'll load faster but functionally everything is identical between the uncompressed and minified versions. The "uncompressed" files are included just in case you want to crack open the source and see what's happening in there (they contain comments and more human-readable code). </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p className="it">También puede comprobar nuestra <a href="https://github.com/greensock/GreenSock-JS" target="_blank">repositorio de Github</a> . Si no es necesario para animar DOM estilos de elementos, que no es necesario CSSPlugin. Puede, por ejemplo, sólo tiene que utilizar el TweenLite muy ligero para animar objetos EaselJS en un lienzo. Y si no es necesario ecuaciones de flexibilización especiales más allá de las normales (power0, POWER1, Power2, Power3, Power4, lineales, Quad, Cubic, Quart, Quint, y Strong están incluidos dentro del archivo TweenLite), puede omitir EasePack lo cual se suma elástico, cámara lenta, de rebote, SteppedEase, seno, Circ y Expo. No se olvide de cargar el archivo (s) de JavaScript <strong>ANTES</strong> cualquiera de su código de animación (de lo contrario cuando el navegador se pone a su código de animación, que no sé qué "TweenMax" o "TweenLite" es ya que no se ha cargado todavía ). <strong>Es muy recomendable que mantenga sus archivos actualizados GSAP</strong> porque estamos mejorando activamente características, trabajar con los errores del navegador / inconsistencias, etc. oscilación por el sitio de vez en cuando y se enganchen los archivos más recientes.</p>
+
+
+<p className="p">You can also check out our <a href="https://github.com/greensock/GreenSock-JS" target="_blank">Github repository</a>. If you don't need to animate DOM element styles, you don't need CSSPlugin. You can, for example, just use the very lightweight TweenLite to animate EaselJS objects on a canvas. And if you don't need special easing equations beyond the standard ones (Power0, Power1, Power2, Power3, Power4, Linear, Quad, Cubic, Quart, Quint, and Strong are all included inside the TweenLite file), you can skip EasePack which adds Elastic, SlowMo, Bounce, SteppedEase, Sine, Circ, and Expo. Don't forget to load the JavaScript file(s) <strong>BEFORE</strong> any of your animation code (otherwise when the browser gets to your animation code, it won't know what "TweenMax" or "TweenLite" is since it hasn't loaded yet). <strong>We strongly recommend that you keep your GSAP files updated</strong> because we're actively enhancing features, working around browser bugs/inconsistencies, etc. Swing by the site once in a while and snag the latest files.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Looking for a jQuery plugin?</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+<p className="it">GSAP tiene ninguna dependencia de jQuery, pero si estás acostumbrado a la <strong>jQuery.animate ()</strong> método o si tiene un proyecto existente que hace un amplio uso de ella y prefiere obtener los beneficios de velocidad de GSAP bajo el capó (más todas las propiedades adicionales de interpolación como las transformaciones 3D, colores boxShadow, etc.), el <a href="/jquery-gsap-plugin/">plug-in jquery.gsap</a> es perfecto para usted. Básicamente secuestra el método jQuery.animate regular () y hace GSAP conducir las animaciones bajo el capó. Nos gustaría recomendar cambiará al GSAP herramientas / API regulares con el tiempo en lugar del plugin jquery.gsap porque obtendrá mucha más flexibilidad y potencia con su naturaleza orientada a objetos, pero el plugin de jQuery puede ser una gran manera de añadir algo jugo de GSAP a su proyecto jQuery con casi sin esfuerzo. <a href="/jquery-gsap-plugin/">Obtener detalles sobre el plugin aquí</a> .<a name="basics"></a></p>
+
+
+<p className="p">GSAP has no dependencies on jQuery, but if you're used to the <strong>jQuery.animate()</strong> method or you have an existing project that makes extensive use of it and you'd prefer to get the speed benefits of GSAP under the hood (plus all the extra tweenable properties like 3D transforms, colors, boxShadow, etc.), the <a href="/jquery-gsap-plugin/">jquery.gsap plugin</a> is perfect for you. It basically hijacks the regular jQuery.animate() method and makes GSAP drive the animations under the hood. We'd recommend shifting to the regular GSAP tools/API eventually rather than the jquery.gsap plugin because you'll get a lot more flexibility and power with its object-oriented nature, but the jQuery plugin can be a great way to add some GSAP juice to your jQuery project with almost zero effort. <a href="/jquery-gsap-plugin/">Get details about the plugin here</a>. <a name="basics"></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Basic tweening</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+<p className="it">TweenLite puede interpolar <strong>CUALQUIER</strong> propiedad numérica de <strong>cualquier</strong> objeto de JavaScript, no sólo una lista predeterminada de propiedades de ciertos tipos de objetos. Por ejemplo, podríamos crear un objeto genérico y asignar una propiedad arbitraria y luego interpolar es de 0 a 100 más de 2 segundos de esta manera:</p>
+
+
+<p className="p">TweenLite can tween <strong>ANY</strong> numeric property of <strong>ANY</strong> JavaScript object, not just a predetermined list of properties of certain object types. For example, we could create a generic object and assign an arbitrary property and then tween it from 0 to 100 over 2 seconds like this: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="mVNlQtgYukezku6pF75v" class="pre-container">
+<pre id="4fx4b1GRW8KVJ1lGAQ" class="shortcode prettyprint lang-js   prettyprinted"><span class="kwd">var</span><span class="pln"> obj </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">myProp</span><span class="pun">:</span><span class="lit">0</span><span class="pun">};</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">obj</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">myProp</span><span class="pun">:</span><span class="lit">100</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<p className="it">El primer parámetro que alimentamos la interpolación es el <strong>objetivo</strong> (el objeto cuyas propiedades desea interpolar), el segundo es la <strong>duración</strong> (normalmente en segundos), y el último es un objeto con una o más <strong>propiedades</strong> que deben ser interpolada a la prevista <strong>valores finales</strong> . Digamos, por ejemplo, tiene una <code>&lt;img&gt;</code>con un ID de "foto" y desea interpolar su propiedad "Ancho" a un valor de 100 en el transcurso de 1,5 segundos. Se puede utilizar de TweenLite <code>to()</code>método:</p>
+
+
+<p className="p"> The first parameter we feed the tween is the <strong>target</strong> (the object whose properties you want to tween), the second is the <strong>duration</strong> (typically in seconds), and the last is an object with one or more<strong> properties</strong> that should be tweened to the provided <strong>end values</strong>. Let's say, for example, you have an <code>&lt;img&gt;</code> with an id of "photo" and you'd like to tween its "width" property to a value of 100 over the course of 1.5 seconds. You can use TweenLite's <code>to()</code> method: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="cxqw0wVGEaHdpGaEGsy" class="pre-container">
+<pre id="3deZXe0hUA7gvUBlmSiR" class="shortcode prettyprint lang-js   prettyprinted"><span class="kwd">var</span><span class="pln"> photo </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">"photo"</span><span class="pun">);</span><span class="pln"> </span><span class="com">//or use jQuery's $("#photo")</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">photo</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="lit">100</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<p className="it">Dado que este es un <code>to()</code>Tween, la propiedad "ancho" se va a interpolar a 100 de lo que pasa a ser en el momento en que comience la interpolación. Si desea interpolar también la propiedad "altura" a 200 al mismo tiempo, que haría:</p>
+
+
+<p className="p"> Since this is a <code>to()</code> tween, the "width" property is tweened to 100 from whatever it happens to be at the time the tween begins. If you want to also tween the "height" property to 200 simultaneously, you'd do: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="UNY7cDhQiKnzibjMBpBR" class="pre-container">
+<pre id="gzOLtp5QgoGtW6ZWCUCg" class="shortcode prettyprint lang-js   prettyprinted"><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">photo</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="lit">100</span><span class="pun">,</span><span class="pln"> height</span><span class="pun">:</span><span class="lit">200</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<p className="it">No hay límite para el número de propiedades que se pueden Tween. Y el orden en el que se definen no importa. Nótese que usamos <code>document.getElementById()</code>para ver el elemento "foto" de modo que podemos interpolar ella. ¿No sería agradable si usted podría pasar esa cadena a TweenLite / Max y lo han encontrarlo para usted? Por supuesto. Desde la versión 1.13.0, GSAP trata <strong>de cuerda</strong> objetivos como texto selector y lo alimenta al motor de selección de su elección. Se buscará <code>window.$</code>y luego <code>window.jQuery</code>y si no se encuentra ninguno, se usará por defecto <code>document.querySelectorAll()</code>o por último, <code>document.getElementById()</code>(en cuyo caso será también tira a incluir ningún "#" en ninguna ID que recibe). Siéntase libre de utilizar cualquier selector que desee: <a href="http://www.jquery.com" target="_blank">jQuery</a> , <a href="http://www.zeptojs.com" target="_blank">Zepto</a> , <a href="http://www.sizzlejs.com" target="_blank">chisporroteo</a> , o en su propio. Establecer de esta manera:</p>
+
+
+<p className="p"> There is no limit to the number of properties you can tween. And the order in which they are defined doesn't matter. Notice we used <code>document.getElementById()</code> above to get the "photo" element so that we can tween it. Wouldn't it be nice if you could just pass that string to TweenLite/Max and have it find it for you? Of course. As of version 1.13.0, GSAP treats <strong>string</strong> targets as selector text and feeds it to the selector engine of your choice. It will look for <code>window.$</code> and then <code>window.jQuery</code> and if neither is found, it will default to <code>document.querySelectorAll()</code> or lastly, <code>document.getElementById()</code> (in which case it will also strip out any leading "#" in any IDs it receives). Feel free to use any selector you want: <a href="http://www.jquery.com" target="_blank">jQuery</a>, <a href="http://www.zeptojs.com" target="_blank">Zepto</a>, <a href="http://www.sizzlejs.com" target="_blank">Sizzle</a>, or your own. Set it like this: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="esGxDidoU4baoUyHyxT" class="pre-container">
+<pre id="NhjIniEcgf52cdePv47" class="shortcode prettyprint lang-js   prettyprinted"><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">selector </span><span class="pun">=</span><span class="pln"> YOUR_SELECTOR_ENGINE</span><span class="pun">;</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<p className="it">Si se carga jQuery (o cualquier cosa que se define como el estándar de la industria <code>window.$</code>), usted no necesita hacer nada - GSAP detectará automáticamente (y uso) de ella. Pero GSAP <strong>NO tiene dependencias en jQuery</strong> o cualquier motor de selección específico.</p>
+
+
+<p className="p"> If jQuery is loaded (or anything that's defined as the industry standard <code>window.$</code>), you don't need to do anything - GSAP will automatically sense (and use) it. But GSAP <strong>does NOT have any dependencies on jQuery</strong> or any specific selector engine. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="Ev9PU2mAATtnFsdDEhqk" class="pre-container">
+<pre id="OMZQYc4NH8VWAAsdALqY" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//tween the element with ID of "myID"</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="str">"#myID"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">backgroundColor</span><span class="pun">:</span><span class="str">"#ff0000"</span><span class="pun">,</span><span class="pln"> width</span><span class="pun">:</span><span class="str">"50%"</span><span class="pun">,</span><span class="pln"> top</span><span class="pun">:</span><span class="str">"100px"</span><span class="pun">,</span><span class="pln"> ease</span><span class="pun">:</span><span class="typ">Power2</span><span class="pun">.</span><span class="pln">easeInOut</span><span class="pun">});</span><span class="pln">
+ 
+</span><span class="com">//or if jQuery is loaded, you can do more advanced selecting like all the elements with the class "myClass" like this: </span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="str">".myClass"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">boxShadow</span><span class="pun">:</span><span class="str">"0px 0px 20px red"</span><span class="pun">,</span><span class="pln"> color</span><span class="pun">:</span><span class="str">"#FC0"</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Definir el objetivo como una cadena de texto de selección es simplemente una conveniencia - es completamente opcional. En última instancia, el objetivo debe ser un objeto de todos modos, por lo que se puede definir como tal en la delantera. Pasar en un objeto jQuery o una matriz o un elemento HTML o un objeto genérico como el objetivo. Hay una gran utilidad <strong>a partir de ()</strong> método que le permite ir esencialmente a la inversa, la definición de los valores de partida y la interpolación de los valores actuales. Esto hace que sea fácil para animar las cosas en su lugar. Por ejemplo:</p>
+
+<p className="p"> Defining the target as a string of selector text is simply a convenience - it's completely optional. Ultimately the target must be an object anyway, so you can define it as such up front. Pass in a jQuery object or an array or an HTML element or a generic object as the target. There is a very useful <strong>from()</strong> method that allows you to essentially go in reverse, defining the starting values and tweening to the current values. This makes it easy to animate things into place. For example: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="a5APxOsb5SvwbLw5tKAW" class="pre-container">
+<pre id="qkf0VIdusEs69BW2DhDd" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//animate from 0 to whatever the scaleX/scaleY is now</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">from</span><span class="pun">(</span><span class="pln">photo</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">scaleX</span><span class="pun">:</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> scaleY</span><span class="pun">:</span><span class="lit">0</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it">También hay una <strong>() Juntas</strong> método que le permite definir los valores iniciales y los valores finales:</p>
+
+<p className="p"> There is also a <strong>fromTo()</strong> method that allows you to define the starting values and the ending values: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="xwrIgYOJHoE4qGB2DaiR" class="pre-container">
+<pre id="n11xDXzfectoh3dPRG0W" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//tweens from width 0 to 100 and height 0 to 200</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">fromTo</span><span class="pun">(</span><span class="pln">photo</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> height</span><span class="pun">:</span><span class="lit">0</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="lit">100</span><span class="pun">,</span><span class="pln"> height</span><span class="pun">:</span><span class="lit">200</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Si prefiere un enfoque más orientado a objetos y / o desea almacenar referencias a sus preadolescentes en las variables para que pueda controlarlos más tarde (por ejemplo, <code>pause()</code>, <code>resume()</code>, <code>reverse()</code>, <code>restart()</code>), puede crear una interpolación de esta manera (que es idéntica a un <code>to()</code>Tween):</p>
+
+<p className="p"> If you prefer a more object-oriented approach and/or would like to store references to your tweens in variables so that you can control them later (for example, <code>pause()</code>, <code>resume()</code>, <code>reverse()</code>, <code>restart()</code>), you can create a tween like this (which is identical to a <code>to()</code> tween): </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="ADKil1WvkNS42vTvZxE" class="pre-container">
+<pre id="mLfEOttE8tAGZ1ofcZG" class="shortcode prettyprint lang-js   prettyprinted"><span class="kwd">var</span><span class="pln"> myTween </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">TweenLite</span><span class="pun">(</span><span class="pln">photo</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="lit">100</span><span class="pun">,</span><span class="pln"> height</span><span class="pun">:</span><span class="lit">200</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Por defecto, todos los preadolescentes jugar de inmediato, pero se puede hacer una pausa en ellos inicialmente por el que pasa <code>paused:true</code>en el parámetro VARS o llamando <code>pause()</code>en la instancia.</p>
+
+<p className="p"> By default, all tweens play immediately, but you can pause them initially by passing <code>paused:true</code> in the vars parameter or by calling <code>pause()</code> on the instance. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="PfgUhMMNKirbpLCxsgFm" class="pre-container">
+<pre id="r6kq8IF7UDOtfytyTvto" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//pause the tween initially</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> myTween </span><span class="pun">=</span><span class="pln"> </span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">photo</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="lit">100</span><span class="pun">,</span><span class="pln"> paused</span><span class="pun">:</span><span class="kwd">true</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">//then later, resume</span><span class="pln">
+myTween</span><span class="pun">.</span><span class="pln">resume</span><span class="pun">();</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<h2>Special properties</h2>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Una propiedad especial es una palabra clave reservada que TweenLite reconoce y maneja de manera diferente de lo que sería una propiedad normal. Un ejemplo es el "retraso", que le permite retrasar la hora de inicio de una interpolación por un número determinado de segundos.</p>
+
+<p className="p">A special property is a reserved keyword that TweenLite recognizes and handles differently than it would a normal property. One example is "delay" which allows you to delay a tween's start time by a certain number of seconds. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="zWeYGQv869u0CjaCCSvp" class="pre-container">
+<pre id="UsQ90iIUNbhCqyvIjgv2" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//waits 2 seconds before beginning ("delay" is a special property TweenLite recognizes)</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">photo</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="lit">100</span><span class="pun">,</span><span class="pln"> delay</span><span class="pun">:</span><span class="lit">2</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it">TweenLite reconoce varias propiedades especiales que son muy útiles, como <code>onComplete</code>, <code>ease</code>, <code>overwrite</code>, <code>paused</code>, <code>useFrames</code>, <code>immediateRender</code>, <code>onStart</code>, <code>onUpdate</code>, <code>onCompleteParams</code>, y mucho más. Por favor leer la completa <a class="" href="/docs/#/HTML5/GSAP/TweenLite/" target="_self">documentación TweenLite</a> para más detalles. Dos de las propiedades especiales más comunes son <code>ease</code>e <code>onComplete</code>. Vamos a hablar de <code>ease</code>más adelante, pero <code>onComplete</code>le da una forma de llamar a una función cuando la interpolación completa (comúnmente conocido como "callback"), por lo que es sencillo para crear una cadena de acciones. Aquí es una interpolación que retrasa su hora de inicio en 0,5 segundos, y llama <code>myFunction()</code>cuando finaliza:</p>
+
+<p className="p"> TweenLite recognizes several special properties that are quite useful, like <code>onComplete</code>, <code>ease</code>, <code>overwrite</code>, <code>paused</code>, <code>useFrames</code>, <code>immediateRender</code>, <code>onStart</code>, <code>onUpdate</code>, <code>onCompleteParams</code>, and more. Please read the full <a class="" href="/docs/#/HTML5/GSAP/TweenLite/" target="_self">TweenLite Documentation</a> for details. Two of the most common special properties are <code>ease</code> and <code>onComplete</code>. We'll talk about <code>ease</code> later, but <code>onComplete</code> gives you a way to call a function when the tween completes (commonly known as a "callback"), making it simple to create a chain of actions. Here is a tween that delays its start time by 0.5 seconds, and calls <code>myFunction()</code> when it completes: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="YVSze1bQUHeXufqOMBry" class="pre-container">
+<pre id="2N0tkwbDNGGlCVjhLOqR" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//notice there's no "()" after the onComplete function because it's just a reference to the function itself (you don't want to call it yet)</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">photo</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="lit">100</span><span class="pun">,</span><span class="pln"> delay</span><span class="pun">:</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> onComplete</span><span class="pun">:</span><span class="pln">myFunction</span><span class="pun">});</span><span class="pln">
+</span><span class="kwd">function</span><span class="pln"> myFunction</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"tween finished"</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Easing</h2>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Un "facilidad" altera la velocidad de cambio durante una interpolación. En esencia, esto da al movimiento una "sensación" diferente. Hay muchos para elegir y la mejor manera de entender las diversas opciones es experimentar con ellos. A continuación se muestra una herramienta interactiva que le permite reproducir y descubrir visualmente cómo se comportan diversas facilidades. <strong>Nota: puede hacer clic en las partes subrayadas del código en la parte inferior para cambiar las cosas</strong> .</p>
+
+<p className="p">An "ease" alters the rate of change during a tween. This essentially gives the movement a different "feel". There are many to choose from and the best way to understand the various options is to experiment with them. Below is an interactive tool that allows you to play around and visually discover how various eases behave. <strong>Note: you can click on the underlined parts of the code at the bottom to change things</strong>.</p>
+
+
+
+
+
+<h2>GreenSock Ease Visualizer</h2>
+<div class="ease-instructions">
+	<h2>Hints</h2>
+	
+
+
+
+
+
+
+
+
+
+<p className="it">Añadir punto: Alt + clic en la línea</p>
+
+    <p className="p">Add point: ALT-CLICK on line</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+<p className="it">Alternar suave / esquina: ancla pulsada la tecla Alt</p>
+
+    <p className="p">Toggle smooth/corner: ALT-CLICK anchor</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+<p className="it">Obtener mango de anclaje esquina: Pulse Alt</p>
+
+
+
+    <p className="p">Get handle from corner anchor: ALT-DRAG</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+<p className="it">La selección de alternancia: anclaje Mayús-clic</p>
+
+
+    <p className="p">Toggle select: SHIFT-CLICK anchor</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+<p className="it">Eliminar anclaje: pulse la tecla BORRAR</p>
+
+
+    <p className="p">Delete anchor: press DELETE key</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+<p className="it">Deshacer: CTRL-Z</p>
+
+    <p className="p">Undo: CTRL-Z</p>
+
+
+
+
+
+
+
+<p className="it">La facilidad defecto en TweenLite es <code>Power1.easeOut</code>(lo que da una sensación más natural que una facilidad lineal). Aquí es la sintaxis para definir la facilidad durante unos preadolescentes:</p>
+
+<p className="p">The default ease in TweenLite is <code>Power1.easeOut</code> (which gives a more natural feel than a linear ease). Here is the syntax for defining the ease for a few tweens: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="oNnS2NGOn7mEefwgsG3r" class="pre-container">
+<pre id="g7US2c9NADXuvwJxHyq" class="shortcode prettyprint lang-js   prettyprinted"><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">photo</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="lit">100</span><span class="pun">,</span><span class="pln"> ease</span><span class="pun">:</span><span class="typ">Power2</span><span class="pun">.</span><span class="pln">easeOut</span><span class="pun">});</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">photo</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">height</span><span class="pun">:</span><span class="lit">200</span><span class="pun">,</span><span class="pln"> ease</span><span class="pun">:</span><span class="typ">Elastic</span><span class="pun">.</span><span class="pln">easeOut</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Si lo prefiere, puede definir la facilidad como una cadena, ya sea en el formato normal como <code>Elastic.easeOut</code>o en el (al estilo de jQuery) sin revertir-punto SYNAX gusta <code>"easeOutElastic"</code>.</p>
+
+<p className="p"> If you prefer, you can define the ease as a string instead, either in the normal format like <code>Elastic.easeOut</code> or in the reverse no-dot synax (jQuery-style) like <code>"easeOutElastic"</code>. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="EiTfP9Huc8KTxu4rWM2" class="pre-container">
+<pre id="fHoKbUsIB08OvRQhxEF" class="shortcode prettyprint lang-js   prettyprinted"><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">photo</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="lit">100</span><span class="pun">,</span><span class="pln"> ease</span><span class="pun">:</span><span class="str">"Elastic.easeOut"</span><span class="pun">});</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">photo</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">height</span><span class="pun">:</span><span class="lit">200</span><span class="pun">,</span><span class="pln"> ease</span><span class="pun">:</span><span class="str">"easeOutElastic"</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Para conseguir un movimiento lineal, sólo tiene que utilizar la <code>Linear.easeNone</code>facilidad. Francamente, las facilidades más útiles son todas las <code>Power</code>facilidades, <code>Back.easeOut</code>, <code>Elastic.easeOut</code>, <code>SlowMo.ease</code>, <code>Bounce.easeOut</code>y, a veces <code>Linear.easeNone</code>. El resto son más por el código heredado y que no se ve muy diferente de una de las facilidades eléctricas. Las facilidades eléctricas están al horno en el núcleo TweenLite por lo que están acelerados en términos de rendimiento.<a name="plugins"></a></p>
+
+<p className="p"> To get linear motion, just use the <code>Linear.easeNone</code> ease. Frankly, the most useful eases are all the <code>Power</code> eases, <code>Back.easeOut</code>, <code>Elastic.easeOut</code>, <code>SlowMo.ease</code>, <code>Bounce.easeOut</code> and sometimes <code>Linear.easeNone</code>. The rest are more for legacy code and they don't look much different than one of the Power eases. The Power eases are all baked into the TweenLite core so that they're accelerated in terms of performance. <a name="plugins"></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Plugins</h2>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Pensar en plugins como propiedades especiales que se agregan dinámicamente a TweenLite, dándole habilidades extra. Esto mantiene el motor de núcleo pequeño y eficiente, sin embargo, permite capacidades prácticamente ilimitadas que se añaden de forma dinámica. Cada plugin se asocia con un nombre de propiedad y toma la responsabilidad de manejar esa propiedad. Por ejemplo, el CSSPlugin se asocia con el "css" nombre de la propiedad por lo que si se ha cargado, se interceptará la propiedad "css", y el ScrollToPlugin interceptará el valor "scrollTo", etc .:</p>
+
+<p className="p">Think of plugins like special properties that are dynamically added to TweenLite, giving it extra abilities. This keeps the core engine small and efficient, yet allows for virtually unlimited capabilities to be added dynamically. Each plugin is associated with a property name and it takes responsibility for handling that property. For example, the CSSPlugin is associated with the "css" property name so if it loaded, it will intercept the "css" property, and the ScrollToPlugin will intercept the "scrollTo" value, etc.: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="gjF8Q8dg4Zj1TkLhdlXC" class="pre-container">
+<pre id="XU1KpTAGpek2eDVtr4aW" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//CSSPlugin will intercept the "css" value...</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">photo</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">css</span><span class="pun">:{</span><span class="pln">scaleX</span><span class="pun">:</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> rotation</span><span class="pun">:</span><span class="lit">30</span><span class="pun">},</span><span class="pln"> ease</span><span class="pun">:</span><span class="typ">Power3</span><span class="pun">.</span><span class="pln">easeOut</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">//ScrollToPlugin will intercept the "scrollTo" value (if it's loaded)...</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">window</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">scrollTo</span><span class="pun">:{</span><span class="pln">y</span><span class="pun">:</span><span class="lit">300</span><span class="pun">},</span><span class="pln"> ease</span><span class="pun">:</span><span class="typ">Bounce</span><span class="pun">.</span><span class="pln">easeOut</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Originalmente, las propiedades de CSS específica que se necesita para ser envuelto en su propio objeto y aprobada en igual <code>TweenLite.to(element, 1, {css:{left:"100px", top:"50px"}});</code>forma que el motor podría discernir que esas propiedades deben ser manejados por CSSPlugin, pero debido a la animación de los elementos DOM en el navegador es tan común, TweenLite y TweenMax (como se de la versión 1.8.0) comprobar automáticamente si el objetivo es un elemento DOM y si es así, se crea ese objeto css para usted y cambia las propiedades que no están reservadas (como <code>onComplete</code>, <code>ease</code>, <code>delay</code>, etc, o plugin de palabras clave como <code>scrollTo</code>, <code>raphael</code>, <code>easel</code>, etc.) en ese objeto css cuando la interpolación hace por primera vez. En los ejemplos de código siguientes, usaremos el estilo más conciso que omite el <code>css:{}</code>objeto, sino ser conscientes de que cualquiera de los estilos es aceptable.</p>
+
+<p className="p"> Originally, css-specific properties needed to be wrapped in their own object and passed in like <code>TweenLite.to(element, 1, {css:{left:"100px", top:"50px"}});</code> so that the engine could discern that those properties should be handled by CSSPlugin, but because animating DOM elements in the browser is so common, TweenLite and TweenMax (as of version 1.8.0) automatically check to see if the target is a DOM element and if so, it creates that css object for you and shifts any properties that aren't reserved (like <code>onComplete</code>, <code>ease</code>, <code>delay</code>, etc. or plugin keywords like <code>scrollTo</code>, <code>raphael</code>, <code>easel</code>, etc.) into that css object when the tween renders for the first time. In the code examples below, we'll use the more concise style that omits the <code>css:{}</code> object but be aware that either style is acceptable. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="e996uVoHfljPCYBwxRSb" class="pre-container">
+<pre id="zhFNUAglErgUKW2A3fR8" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//as of 1.8.0 the following lines produce identical results</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">top</span><span class="pun">:</span><span class="str">"20px"</span><span class="pun">,</span><span class="pln"> backgroundColor</span><span class="pun">:</span><span class="str">"#FF0000"</span><span class="pun">,</span><span class="pln"> ease</span><span class="pun">:</span><span class="typ">Power2</span><span class="pun">.</span><span class="pln">easeOut</span><span class="pun">});</span><span class="pln">
+</span><span class="com">//longer, less convenient syntax:</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">css</span><span class="pun">:{</span><span class="pln">top</span><span class="pun">:</span><span class="str">"20px"</span><span class="pun">,</span><span class="pln"> backgroundColor</span><span class="pun">:</span><span class="str">"#FF0000"</span><span class="pun">},</span><span class="pln"> ease</span><span class="pun">:</span><span class="typ">Power2</span><span class="pun">.</span><span class="pln">easeOut</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+<p className="it">No olvide que es necesario cargar el archivo JavaScript del plugin para asegurarse de que funciona. Para mayor comodidad, los principales plugins como CSSPlugin, RoundPropsPlugin y BezierPlugin se incluyen <strong>dentro</strong> del archivo TweenMax JavaScript.<a name="css"></a></p>
+
+
+<p className="p"> Don't forget that you need to load the plugin's JavaScript file to ensure that it works. For convenience, the major plugins like CSSPlugin, RoundPropsPlugin, and BezierPlugin are included <strong>inside</strong> of the TweenMax JavaScript file. <a name="css"></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Tweening CSS properties</h2>
+
+
+
+
+
+
+
+
+
+<p className="it">Con la ayuda de la CSSPlugin, <strong>GSAP puede animar casi cualquier propiedad relacionados con CSS</strong> de los elementos DOM incluyendo las cosas obvias como <code>width</code>, <code>height</code>, <code>margins</code>, <code>padding</code>, <code>top</code>, <code>left</code>, y más, más complejas propiedades como las transformadas ( <code>rotation</code>, <code>scaleX</code>, <code>scaleY</code>, <code>skewX</code>, <code>skewY</code>, <code>x</code>, <code>y</code>, <code>xPercent</code>, <code>yPercent</code>, <code>rotationX</code>, y <code>rotationY</code>) , colores, <code>backgroundPosition</code>, <code>opacity</code>, y mucho más. Cargar el archivo de la CSSPlugin js para permitir estas capacidades. <em><strong>Nota:</strong> un error común es que se olvide de utilizar representaciones de casos camello de las propiedades, así que en vez de <code>font-size</code>, tendrá que utilizar <code>fontSize</code>. <code>background-color</code>sería <code>backgroundColor</code>. </em>Incluso puede definir propiedades que no son generalmente de interpolación y GSAP se aplicará la propiedad para usted (como <code>position:"absolute"</code>o <code>borderStyle:"solid"</code>). Por lo general es una buena idea para definir una unidad de medida (como "24px" en lugar de "24" o "50%" en lugar de "50"), pero el valor por defecto en la mayoría de los casos es píxeles (px), por lo que se puede omitir el unidad, si lo prefiere. E incluso si la unidad de medida no coincide con la actual, GSAP intentará convertir para usted. Así, por ejemplo, puede interpolar una anchura de "50%" a "200px". CSSPlugin incluso puede animar valores complejos como <code>boxShadow:"0px 0px 20px 20px red"</code>y <code>borderRadius:"50% 50%"</code>y <code>border:"5px solid rgb(0,255,0)"</code>. Cuando sea necesario, se intenta averiguar si la propiedad necesita un <strong>prefijo de proveedor</strong> y lo aplica en consecuencia. Puede haber un pequeño subconjunto de las propiedades CSS complejas o con efectos de iluminación que CSSPlugin no puede manejar aún, pero la gran mayoría trabaja muy bien. Además de la casi totalidad de las propiedades CSS estandar, CSSPlugin reconoce algunos especiales que pueden ser muy conveniente:</p>
+
+
+<p className="p">With the help of the CSSPlugin, <strong>GSAP can animate almost any css-related property</strong> of DOM elements including the obvious things like <code>width</code>, <code>height</code>, <code>margins</code>, <code>padding</code>, <code>top</code>, <code>left</code>, and more plus complex properties like transforms (<code>rotation</code>, <code>scaleX</code>, <code>scaleY</code>, <code>skewX</code>, <code>skewY</code>, <code>x</code>, <code>y</code>, <code>xPercent</code>, <code>yPercent</code>, <code>rotationX</code>, and <code>rotationY</code>), colors, <code>backgroundPosition</code>, <code>opacity</code>, and lots more. Load the CSSPlugin js file to enable these capabilities. <em><strong>Note:</strong> a common mistake is to forget to use camel case representations of the properties, so instead of <code>font-size</code>, you'd use <code>fontSize</code>. <code>background-color</code> would be <code>backgroundColor</code>.</em> You can even define properties that are not generally tweenable and GSAP will apply the property for you (like <code>position:"absolute"</code> or <code>borderStyle:"solid"</code>). It is typically a good idea to define a unit of measurement (like "24px" instead of "24" or "50%" rather than "50") but the default in most cases is pixels (px), so you can omit the unit if you prefer. And even if the unit of measurement doesn't match the current one, GSAP will attempt to convert them for you. So, for example, you could tween a width from "50%" to "200px". CSSPlugin can even animate complex values like <code>boxShadow:"0px 0px 20px 20px red"</code> and <code>borderRadius:"50% 50%"</code> and <code>border:"5px solid rgb(0,255,0)"</code>. When necessary, it attempts to figure out if the property needs a <strong>vendor prefix</strong> and applies it accordingly. There may be a small subset of complex or bleeding-edge css properties that CSSPlugin can't handle yet, but the vast majority work great. In addition to almost all of the standard css properties, CSSPlugin recognizes some special ones that can be quite convenient:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+
+<li classname="it"><strong>2D transforma</strong> como <code>rotation</code>, <code>scaleX</code>, <code>scaleY</code>, <code>scale</code>, <code>skewX</code>, <code>skewY</code>, <code>x</code>, <code>y</code>, <code>xPercent</code>, y <code>yPercent</code>- una de las cosas más convenientes acerca de la CSSPlugin es que simplifica en gran medida las transformaciones en los distintos navegadores <strong>, incluyendo IE atrás a través de la versión 6! </strong>No hay necesidad de meterse con diferentes prefijos navegador y filtros de matriz enrrollados en IE. Puede acaba de establecer propiedades de transformación de manera intuitiva. </li>
+
+<li className="p"><strong>2D transforms</strong> like <code>rotation</code>, <code>scaleX</code>, <code>scaleY</code>, <code>scale</code>, <code>skewX</code>, <code>skewY</code>, <code>x</code>, <code>y</code>, <code>xPercent</code>, and <code>yPercent</code> - one of the most convenient things about the CSSPlugin is that it greatly simplifies transforms in the various browsers <strong>including IE back through version 6!</strong> No need to mess with various browser prefixes and funky matrix filters in IE. You can just set transform properties intuitively.
+<div id="r4l31XzzOqK5yP6BXIHk" class="pre-container">
+<pre id="i75127B6nseCBoI4i6Mx" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//much simpler</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">rotation</span><span class="pun">:</span><span class="lit">30</span><span class="pun">,</span><span class="pln"> scaleX</span><span class="pun">:</span><span class="lit">0.8</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+<p className="it">Por defecto, la rotación, skewX y grados de uso skewY pero se puede usar radianes, si lo prefiere. Simplemente añada uno de los sufijos estándar ( "rad" o "grados") como este:</p>
+
+
+<p className="p"> By default, rotation, skewX, and skewY use degrees but you can use radians if you prefer. Simply append one of the standard suffixes ("rad" or "deg") like this:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="dZjLOqlL824hZ2hDSTn" class="pre-container">
+<pre id="9WWLjEPBKB8aFudGrNfe" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//use "deg" or "rad"</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">rotation</span><span class="pun">:</span><span class="str">"1.25rad"</span><span class="pun">,</span><span class="pln"> skewX</span><span class="pun">:</span><span class="str">"30deg"</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Para ser claros, esto es como el establecimiento de CSS del elemento <code>transform:rotate(1.25rad) skewX(30deg)</code>junto con todos los otros valores del navegador IE prefijo y filtro de lo que sería mucho más detallado.</p>
+
+<p className="p"> To be clear, this is like setting the element's css <code>transform:rotate(1.25rad) skewX(30deg)</code> along with all the other browser prefix values and IE filter which would be much more verbose.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="margin: 0; padding: 0;"><strong><i>Notes about 2D transforms:</i></strong></div>
+<ol class="compact">
+
+ <li classname="it">Para hacer uso basado en un porcentaje traducción <code>xPercent</code>y <code>yPercent</code>(añadido en la versión 1.13.0) en lugar de <code>x</code>o <code>y</code>que son típicamente basadas en píxeles. ¿Por qué GSAP tienen propiedades especiales sólo para la traducción basada en porcentaje? Ya que le permite a <b><i>COMBINA</i></b> para realizar tareas útiles, como tal vez usted quiere construir su propio "mundo" en el que todo tiene su origen en el centro del mundo y luego mover las cosas de un modo basado en píxeles desde allí - podría establecer <code>xPercent</code>y <code>yPercent</code>a <code>-50</code>y <code>position:"absolute"</code>para que todo comienza con sus centros en el mismo lugar, y luego usar <code>x</code>y <code>y</code>moverlos de allí. Si se establece <code>x</code>o <code>y</code>a un valor basado ciento como <code>50%"</code>, GSAP reconocerá que ese valor y el embudo a <code>xPercent</code>o <code>yPercent</code>adecuada para su conveniencia.</li>
+
+
+<li className="p">To do percentage-based translation use <code>xPercent</code> and <code>yPercent</code> (added in version 1.13.0) instead of <code>x</code> or <code>y</code> which are typically px-based. Why does GSAP have special properties just for percentage-based translation? Because it allows you to <b><i>COMBINE</i></b> them to accomplish useful tasks, like perhaps you want to build your own "world" where everything has its origin in the very center of the world and then you move things in a px-based fashion from there - you could set <code>xPercent</code> and <code>yPercent</code> to <code>-50</code> and <code>position:"absolute"</code> so that everything starts with their centers in the same spot, and then use <code>x</code> and <code>y</code> to move them from there. If you set <code>x</code> or <code>y</code> to a percent-based value like <code>50%"</code>, GSAP will recognize that and funnel that value to <code>xPercent</code> or <code>yPercent</code> appropriately as a convenience.</li>
+
+
+
+
+
+<li classname="it">Por lo general es mejor para fijar el elemento de <code>position</code>que <code>"absolute"</code>para evitar el recorte en las versiones antiguas de IE.</li>
+
+<li className="p">It is typically best to set the element's <code>position</code> to <code>"absolute"</code> to avoid clipping in old versions of IE.</li>
+
+
+
+
+
+<li classname="it">Se puede utilizar <code>scale</code>como un acceso directo para controlar tanto los <code>scaleX</code>y <code>scaleY</code>las propiedades de forma idéntica.</li>
+
+<li className="p">You can use <code>scale</code> as a shortcut to control both the <code>scaleX</code> and <code>scaleY</code> properties identically.</li>
+
+
+
+
+
+<li classname="it">Se pueden definir valores relativos, como&nbsp;<code>rotation:"+=30"</code></li>
+
+<li className="p">You can define relative values, like&nbsp;<code>rotation:"+=30"</code></li>
+
+
+
+
+
+<li classname="it">El orden en el que se declara la propiedades de transformación no hace ninguna diferencia.</li>
+
+<li className="p">The order in which you declare the transform properties makes no difference.</li>
+
+
+
+
+
+<li classname="it">TweenLite no tiene nada que ver con la calidad de representación del elemento en el navegador. Algunos navegadores parecen representar elementos transformados muy bien, mientras que otros no manejan suavizado también.</li>
+
+<li className="p">TweenLite has nothing to do with the rendering quality of the element in the browser. Some browsers seem to render transformed elements beautifully while others don't handle anti-aliasing as well.</li>
+
+
+
+
+
+<li classname="it">IE6, IE7, IE8 y transformaciones no se aplican a los elementos secundarios (que es una limitación del navegador).</li>
+
+<li className="p">IE6, IE7, and IE8 transforms don't apply to child elements (that's a browser limitation).</li>
+
+
+
+
+
+<li classname="it">Por defecto, CSSPlugin utiliza una <code>skewType</code>de <code>"compensated"</code>que afecta a las <code>skewX</code>/ <code>skewY</code>los valores de una manera ligeramente diferente (posiblemente más intuitiva) porque visualmente el objeto no se estira. Por ejemplo, si se establece&nbsp; <code>transform:skewX(85deg)</code>&nbsp;en el navegador a través de CSS, el objeto se haría extremadamente largo (estirada) mientras que con <code>skewType:"compensated"</code>, se vería más como él esquilada en el espacio 3D. Esta fue una decisión de diseño deliberada porque este comportamiento es más probable que lo que desean los animadores. Si prefiere el comportamiento no compensada, se puede establecer <code>CSSPlugin.defaultSkewType = "simple"</code>que afecta el valor por defecto para todos los preadolescentes de inclinación, o para una persona de interpolación se puede establecer la propiedad especial <code>skewType:"simple"</code>.</li>
+
+<li className="p">By default, CSSPlugin uses a <code>skewType</code> of <code>"compensated"</code> which affects the <code>skewX</code>/<code>skewY</code> values in a slightly different (arguably more intuitive) way because visually the object isn't stretched. For example, if you set&nbsp;<code>transform:skewX(85deg)</code>&nbsp;in the browser via CSS, the object would become EXTREMELY long (stretched) whereas with <code>skewType:"compensated"</code>, it would look more like it sheared in 3D space. This was a purposeful design decision because this behavior is more likely what animators desire. If you prefer the uncompensated behavior, you can set <code>CSSPlugin.defaultSkewType = "simple"</code> which affects the default for all skew tweens, or for an individual tween you can set the special property <code>skewType:"simple"</code>.</li>
+
+
+
+
+
+
+
+</ol>
+</li>
+
+
+
+
+<li classname="it"><strong>3D transforma</strong> : además de todas las propiedades 2D regulares (x, y, scaleX scaleY, escala, rotación, skewX y skewY) que funciona en casi todos los navegadores, puede animar las propiedades 3D también, como <code>rotationX</code>, <code>rotationY</code>, <code>rotationZ</code>(idéntica a la normal "rotación"), <code>z</code>, <code>perspective</code>, y <code>transformPerspective</code>en la mayoría de los navegadores modernos (ver <a href="http://caniuse.com/transforms3d" target="_blank">http://caniuse.com/transforms3d</a> para obtener detalles sobre el apoyo del navegador para transforma en 3D). Una vez más, no hay necesidad de utilizar prefijos navegador; CSSPlugin maneja todo eso para que bajo el capó. Puede animar a transformar 3D propiedades y propiedades 2D (excepto inclinación) juntos de manera intuitiva: </li>
+
+
+<li className="p"><strong>3D transforms</strong>: in addition to all of the regular 2D properties (x, y, scaleX, scaleY, scale, rotation, skewX, and skewY) that work in almost all browsers, you can animate 3D properties too like <code>rotationX</code>, <code>rotationY</code>, <code>rotationZ</code> (identical to regular "rotation"), <code>z</code>, <code>perspective</code>, and <code>transformPerspective</code> in most modern browsers (see <a href="http://caniuse.com/transforms3d" target="_blank">http://caniuse.com/transforms3d</a> for details about browser support for 3D transforms). Again, there is no need to use browser prefixes; CSSPlugin handles all of that for you under the hood. You can animate 3D transform properties and 2D properties (except skew) together intuitively:
+<div id="UDjSDl9gc1DF3aLzWxvt" class="pre-container">
+<pre id="s1y6wLNXy1aL0uwOURz1" class="shortcode prettyprint lang-js   prettyprinted"><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">rotationX</span><span class="pun">:</span><span class="lit">45</span><span class="pun">,</span><span class="pln"> scaleX</span><span class="pun">:</span><span class="lit">0.8</span><span class="pun">,</span><span class="pln"> z</span><span class="pun">:-</span><span class="lit">300</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+<p className="it"> <a href="/css3/"><img style="margin-right: 8px; float: left;" src="/wp-content/uploads/custom/getting-started/img/css3_thumbnail.jpg" alt="" width="135" height="88"></a><a href="/css3/" target="_blank">Vea algunos ejemplos interactivos de 3D transforma y otras animaciones de propiedad CSS3</a> como boxShadow, textShadow, borderRadius, y el clip en <a href="/css3/" target="_blank">este artículo</a> . Demuestra principios perspectiva también. Para conseguir sus elementos para tener una verdadera perspectiva visual 3D aplicada, debe establecer el <strong>"punto de vista"</strong> la propiedad del elemento padre o establecer el especial "transformPerspective" del propio elemento (valores comunes van desde alrededor de 200 a 1000, más baja es la número más fuerte es la distorsión de la perspectiva). El "transformPerspective" es como añadir un <code>perspective()</code>directamente dentro de la CSS "transformar" estilo, como: <code>transform:perspective(500px) rotateX(45deg)</code>que sólo se aplica a ese elemento específico, mientras que si quieres un grupo de elementos de compartir una perspectiva común (el mismo punto de fuga), se debe configurar el regular de la propiedad "perspectiva" en la que el padre / contenedor de esos elementos. Para obtener más información acerca de la perspectiva, consulte <a href="http://desandro.github.com/3dtransforms/docs/perspective.html" target="_blank">este artículo</a> .</p>
+
+
+<p className="p"> <a href="/css3/"><img style="margin-right: 8px; float: left;" src="/wp-content/uploads/custom/getting-started/img/css3_thumbnail.jpg" alt="" width="135" height="88"></a><a href="/css3/" target="_blank">See some interactive examples of 3D transforms and other CSS3 property animations</a> like boxShadow, textShadow, borderRadius, and clip in <a href="/css3/" target="_blank">this article</a>. It demonstrates perspective principles too. To get your elements to have a true 3D visual perspective applied, you must either set the <strong>"perspective"</strong> property of the parent element or set the special "transformPerspective" of the element itself (common values range from around 200 to 1000, the lower the number the stronger the perspective distortion). The "transformPerspective" is like adding a <code>perspective()</code> directly inside the css "transform" style, like: <code>transform:perspective(500px) rotateX(45deg)</code> which only applies to that specific element whereas if you want to a group of elements share a common perspective (the same vanishing point), you should set the regular "perspective" property on the parent/container of those elements. For more information about perspective, see <a href="http://desandro.github.com/3dtransforms/docs/perspective.html" target="_blank">this article</a>. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="x3BBel99TFDskR0tAowa" class="pre-container">
+<pre id="zGez9Kn2BW4uzombKvrX" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//apply a perspective to the PARENT element (the container) to make the perspective apply to all child elements (typically best)</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="pln">container</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">perspective</span><span class="pun">:</span><span class="lit">500</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">//or set a default perspective that will be applied to every individual element that you tween in 3D:</span><span class="pln">
+</span><span class="typ">CSSPlugin</span><span class="pun">.</span><span class="pln">defaultTransformPerspective </span><span class="pun">=</span><span class="pln"> </span><span class="lit">500</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">//or apply perspective to a single element using "transformPerspective"</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">transformPerspective</span><span class="pun">:</span><span class="lit">500</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+<p className="it">En CSS regular, el orden en que se enumeran los asuntos transforma pero GSAP siempre las aplica en el mismo orden para mantener la coherencia: la escala, entonces la rotación (igual que rotationZ), entonces rotationY, entonces rotationX, a continuación, la traducción (x, y, z). Si desea girar el elemento en torno a un punto en el espacio 3D que no sea su centro, utilice la <code>transformOrigin</code>propiedad (véase más adelante).</p>
+
+
+<p className="p"> In regular CSS, the order that you list the transforms matters but GSAP always applies them in the same order for consistency: scale, then rotation (same as rotationZ), then rotationY, then rotationX, then translation (x, y, z). If you want to rotate the element around a point in 3D space other than its center, use the <code>transformOrigin</code> property (see below). </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="rzVMpWejLaDlPwkQA1l" class="pre-container">
+<pre id="kBFTZ03IwvE2zfDNANXt" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//sample css:</span><span class="pln">
+</span><span class="pun">.</span><span class="pln">myClass </span><span class="pun">{</span><span class="pln">
+    transform</span><span class="pun">:</span><span class="pln"> scale</span><span class="pun">(</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">)</span><span class="pln"> rotateY</span><span class="pun">(</span><span class="lit">45deg</span><span class="pun">)</span><span class="pln"> translate3d</span><span class="pun">(</span><span class="lit">10px</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0px</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">200px</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+ 
+</span><span class="com">//corresponding GSAP transform (tweened over 2 seconds):</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">scale</span><span class="pun">:</span><span class="lit">1.5</span><span class="pun">,</span><span class="pln"> rotationY</span><span class="pun">:</span><span class="lit">45</span><span class="pun">,</span><span class="pln"> x</span><span class="pun">:</span><span class="lit">10</span><span class="pun">,</span><span class="pln"> y</span><span class="pun">:</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> z</span><span class="pun">:-</span><span class="lit">200</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">//sample css that uses a perspective():</span><span class="pln">
+</span><span class="pun">.</span><span class="pln">myClass </span><span class="pun">{</span><span class="pln">
+    transform</span><span class="pun">:</span><span class="pln"> perspective</span><span class="pun">(</span><span class="lit">500px</span><span class="pun">)</span><span class="pln"> rotate</span><span class="pun">(</span><span class="lit">120deg</span><span class="pun">)</span><span class="pln"> translateY</span><span class="pun">(</span><span class="lit">50px</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="com">//corresponding GSAP transform (set, not tweened):</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">transformPerspective</span><span class="pun">:</span><span class="lit">500</span><span class="pun">,</span><span class="pln"> rotation</span><span class="pun">:</span><span class="lit">120</span><span class="pun">,</span><span class="pln"> y</span><span class="pun">:</span><span class="lit">50</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+<p className="it"> <i><strong>Notas sobre 3D transforma:</strong></i></p>
+
+
+
+<p className="p"> <i><strong>Notes about 3D transforms:</strong></i></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="compact">
+
+<li classname="it"><i>En los navegadores que no soportan las transformaciones 3D, que van a ser ignoradas. Por ejemplo, rotationX no puede funcionar, pero la rotación haría. Ver <a href="http://caniuse.com/transforms3d" target="_blank">http://caniuse.com/transforms3d</a> para un gráfico de los cuales versiones de navegadores compatibles con las transformaciones 3D.</i></li>
+
+
+<li className="p"><i>In browsers that don't support 3D transforms, they'll be ignored. For example, rotationX may not work, but rotation would. See <a href="http://caniuse.com/transforms3d" target="_blank">http://caniuse.com/transforms3d</a> for a chart of which browser versions support 3D transforms.</i></li>
+
+
+
+
+<li classname="it"><i>Todas las transformaciones se recuerdan, por lo que puede interpolar propiedades individuales sin tener que preocuparse de que van a perderse. No es necesario definir todas las propiedades de transformación en cada Tween - sólo los que desea animar.</i></li>
+
+
+<li className="p"><i>All transforms are remembered, so you can tween individual properties without worrying that they'll be lost. You don't need to define all of the transform properties on every tween - only the ones you want to animate.</i></li>
+
+
+
+
+<li classname="it"><i>TweenLite no tiene nada que ver con la calidad de representación del elemento en el navegador. Algunos navegadores parecen representar elementos transformados muy bien, mientras que otros no manejan suavizado también.</i></li>
+
+
+
+<li className="p"><i>TweenLite has nothing to do with the rendering quality of the element in the browser. Some browsers seem to render transformed elements beautifully while others don't handle anti-aliasing as well.</i></li>
+
+
+
+
+
+<li classname="it"><i>Para obtener más información acerca de CSS 3D transforma, consulte <a href="http://coding.smashingmagazine.com/2012/01/06/adventures-in-the-third-dimension-css-3-d-transforms/" target="_blank">este artículo</a> </i></li>
+
+<li className="p"><i>To learn more about css 3D transforms, see <a href="http://coding.smashingmagazine.com/2012/01/06/adventures-in-the-third-dimension-css-3-d-transforms/" target="_blank">this article</a> </i></li>
+
+
+
+
+
+
+
+</ol>
+</li>
+
+
+
+
+<li classname="it"><strong>transformOrigin</strong> - Define el origen alrededor de la cual se producen todas las transformaciones. Por defecto, se está en el centro del elemento ( "50% 50%"). Se pueden definir los valores utilizando las palabras clave "arriba", "izquierda", "derecha", o "inferior" o puede utilizar porcentajes (esquina inferior derecha sería "100% 100%") o píxeles. Si, por ejemplo, desea un objeto a girar alrededor de su esquina superior izquierda se puede hacer esto: </li>
+
+
+<li className="p"><strong>transformOrigin</strong> - Sets the origin around which all transforms occur. By default, it is in the center of the element ("50% 50%"). You can define the values using the keywords "top", "left", "right", or "bottom" or you can use percentages (bottom right corner would be "100% 100%") or pixels. If, for example, you want an object to spin around its top left corner you can do this:
+<div id="0uLmihG8RIuVnSyiUZNI" class="pre-container">
+<pre id="4GoDV1qvPmZgWU1kPgk8" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//spins around the element's top left corner</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">rotation</span><span class="pun">:</span><span class="lit">360</span><span class="pun">,</span><span class="pln"> transformOrigin</span><span class="pun">:</span><span class="str">"left top"</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it"> El primer valor de las cotizaciones se refiere al eje X y el segundo se refiere al eje Y (se puede añadir opcionalmente un tercio valor para definir un punto en el espacio 3D), así que para el objeto de transformar todo exactamente 50px desde su 20 píxeles del borde y de su borde superior izquierdo, se puede hacer: </p>
+
+<p className="p"> The first value in the quotes refers to the x-axis and the second refers to the y-axis (you can optionally add a 3rd value to define a point in 3D space), so to make the object transform around exactly 50px in from its left edge and 20px from its top edge, you could do: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="0hpn9XG3WtLfeJvTJ5mZ" class="pre-container">
+<pre id="kMYfFAtfUBgnmDGEiOu" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//spins/scales around a point offset from the top left by 50px, 20px</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">rotation</span><span class="pun">:</span><span class="lit">270</span><span class="pun">,</span><span class="pln"> scale</span><span class="pun">:</span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> transformOrigin</span><span class="pun">:</span><span class="str">"50px 20px"</span><span class="pun">});</span></pre>
+</div>
+</li>
+
+
+
+
+
+
+
+<li className="p"><img style="border: solid #CCC 1px;" src="//greensock.com/_img/directionalRotation.gif" alt="" align="right"><strong>directionalRotation</strong> - tweens rotation in a particular direction which can be either <strong>clockwise</strong> (<code>"_cw"</code> suffix), <strong>counter-clockwise</strong> (<code>"_ccw"</code> suffix), or in the shortest direction (<code>"_short"</code> suffix) in which case the plugin chooses the direction for you based on the shortest path. For example, if the element's rotation is currently 170 degrees and you want to tween it to -170 degrees, a normal rotation tween would travel a total of 340 degrees in the counter-clockwise direction, but if you use the "_short" suffix, it would travel 20 degrees in the clockwise direction instead.
+<p style="margin-top: 20px;">Example</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+<div id="G5YVPsNxy9ww6LTqCVmM" class="pre-container">
+<pre id="ZYemjS2XaQra7QyhNdkI" class="shortcode prettyprint lang-js   prettyprinted"><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">rotation</span><span class="pun">:</span><span class="str">"-170_short"</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">//or even use it on 3D rotations and use relative prefixes:</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">rotation</span><span class="pun">:</span><span class="str">"-170_short"</span><span class="pun">,</span><span class="pln"> rotationX</span><span class="pun">:</span><span class="str">"-=30_cw"</span><span class="pun">,</span><span class="pln"> rotationY</span><span class="pun">:</span><span class="str">"1.5rad_ccw"</span><span class="pun">});</span></pre>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it"><i>Antes de la versión 1.9.0, directionalRotation fue llamado shortRotation y sólo maneja va en la dirección más corta. La nueva funcionalidad directionalRotation es mucho más flexible y fácil de usar (sólo una palmada a un sufijo en la propiedad regular). Por razones de compatibilidad hacia atrás, CSSPlugin todavía reconoce "shortRotation", pero ya no se utiliza.</i></p>
+
+<p className="p"><i>Prior to version 1.9.0, directionalRotation was called shortRotation and it only handled going in the shortest direction. The new directionalRotation functionality is much more flexible and easy to use (just slap a suffix on the regular property). For backwards compatibility, CSSPlugin still recognizes "shortRotation", but it has been deprecated.</i></p>
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+
+
+
+
+
+
+
+<li className="p"><strong>autoAlpha</strong> - the same thing as "opacity" except that when the value hits "0", the "visibility" property will be set to "hidden" in order to improve browser rendering performance and prevent clicks/interactivity on the target. When the value is anything other than 0, "visibility" will be set to "visible". Example:
+<div id="drBjbuJNo5y9Ut1wXaWD" class="pre-container">
+<pre id="LOWTDt9pHu7nz4hox4V4" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//fade out and set visibility:hidden</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">autoAlpha</span><span class="pun">:</span><span class="lit">0</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">//in 2 seconds, fade back in with visibility:visible</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">autoAlpha</span><span class="pun">:</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> delay</span><span class="pun">:</span><span class="lit">2</span><span class="pun">});</span></pre>
+</div>
+</li>
+
+
+
+
+
+
+
+<li className="p"><strong>className</strong> - allows you to morph between classes on an element. For example, let's say myElement has a class of "class1" currently and you want to change to "class2" and animate the differences, you could do this:
+<div id="IrlBVm6Sx2va5vncMYR7" class="pre-container">
+<pre id="E20d7hBFlwJzXkT7OCUc" class="shortcode prettyprint lang-js   prettyprinted"><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">myElement</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">className</span><span class="pun">:</span><span class="str">"class2"</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Y si desea agregar la clase a la ya existente, sólo puede utilizar el signo "+ =" prefijo. Para eliminar una clase, utilizar el "- =" prefijo de la siguiente manera:</p>
+
+
+<p className="p"> And if you want to ADD the class to the existing one, you can simply use the "+=" prefix. To remove a class, use the "-=" prefix like this: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="C8iHEGUpEKx7kdyeM4XX" class="pre-container">
+<pre id="uAHqVzxIaqVSSfsNCzE8" class="shortcode prettyprint lang-js   prettyprinted"><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">myElement</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">className</span><span class="pun">:</span><span class="str">"+=class2"</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it"> <em>Nota: hay algunas propiedades relacionados con CSS que no Tween como filtros de IE, pero eso es una <strong>muy</strong> rara excepción. También, hay una penalización de velocidad leve cuando se utiliza className porque el motor necesita bucle a través de todas las propiedades css para analizar cuáles son diferentes.</em></p>
+
+
+<p className="p"> <em>Note: there are a few css-related properties that don't tween like IE filters, but that is a <strong>very</strong> rare exception. Also, there is a slight speed penalty when using className because the engine needs to loop through all of the css properties to analyze which ones are different.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+
+
+
+
+
+
+
+<li className="p"><strong>autoRound</strong> - By default, CSSPlugin will round pixel values and zIndex to the closest integer during the tween (the inbetween values) because it improves browser performance, but if you'd rather disable that behavior, pass <code>autoRound:false</code> in the css object. You can still use the RoundPropsPlugin to manually define properties that you want rounded.</li>
+
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Controlling tweens</h2>
+
+
+
+
+
+
+
+
+
+<p className="it">La mayoría de las otras herramientas de animación ofrecen controles muy limitadas, pero GSAP fue construido desde cero para ser un conjunto robusto de calidad profesional de herramientas de animación. Puede hacer una pausa con facilidad (), resume () inversa (), restart (), seek (), o incluso alterar la escala de tiempo de cualquier interpolación. De hecho, se puede interpolar la escala de tiempo de otro Tween para frenar poco a poco hacia abajo o acelerarlo. Para controlar una interpolación, sin embargo, se necesita una instancia de trabajar. El a (), a partir de (), y Juntas () todos los métodos devolver una instancia, por lo que se puede volcar en una variable tan fácilmente como:</p>
+
+
+<p className="p">Most other animation tools offer very limited controls, but GSAP was built from the ground up to be a professional-grade robust set of animation tools. You can easily pause(), resume() reverse(), restart(), seek(), or even alter the timeScale of any tween. In fact, you can tween the timeScale of another tween to gradually slow it down or speed it up. To control a tween, however, you need an instance to work with. The to(), from(), and fromTo() methods all return an instance, so you can dump it into a variable as easily as: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="LwB5J8jvdgrI7f4dwdWm" class="pre-container">
+<pre id="vRPm6g9IQNQrW87zP0Zt" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//using the static to() method...</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> tween </span><span class="pun">=</span><span class="pln"> </span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="str">"50%"</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">//or use the object-oriented syntax...</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> tween </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">TweenLite</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="str">"50%"</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+<p className="it"> A continuación, puede llamar a cualquiera de sus métodos: </p>
+
+
+<p className="p"> Then, you can call any of its methods: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="kFQsVVFr7AN7lA3guyZq" class="pre-container">
+<pre id="0MNWVVvJWucGNLIW4d8" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//pause</span><span class="pln">
+tween</span><span class="pun">.</span><span class="pln">pause</span><span class="pun">();</span><span class="pln">
+
+</span><span class="com">//resume (honors direction - reversed or not)</span><span class="pln">
+tween</span><span class="pun">.</span><span class="pln">resume</span><span class="pun">();</span><span class="pln">
+
+</span><span class="com">//reverse (always goes back towards the beginning)</span><span class="pln">
+tween</span><span class="pun">.</span><span class="pln">reverse</span><span class="pun">();</span><span class="pln">
+
+</span><span class="com">//jump to exactly 0.5 seconds into the tween</span><span class="pln">
+tween</span><span class="pun">.</span><span class="pln">seek</span><span class="pun">(</span><span class="lit">0.5</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//make the tween go half-speed</span><span class="pln">
+tween</span><span class="pun">.</span><span class="pln">timeScale</span><span class="pun">(</span><span class="lit">0.5</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//make the tween go double-speed</span><span class="pln">
+tween</span><span class="pun">.</span><span class="pln">timeScale</span><span class="pun">(</span><span class="lit">2</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//immediately kill the tween and make it eligible for garbage collection</span><span class="pln">
+tween</span><span class="pun">.</span><span class="pln">kill</span><span class="pun">();</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+<p className="it"> También puede matar a todos los preadolescentes de un elemento / objetivo particular de esta manera: </p>
+
+
+<p className="p"> You can also kill ALL of the tweens of a particular element/target like this: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="XK1ij4yODxdFJjHHaqB5" class="pre-container">
+<pre id="1b51ZRKUWX2gCTIwNnXU" class="shortcode prettyprint lang-js   prettyprinted"><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">killTweensOf</span><span class="pun">(</span><span class="pln">myElement</span><span class="pun">);</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+<p className="it">Consulte la <a class="" href="/docs/#/HTML5/GSAP/TweenLite/" target="_self">documentación TweenLite</a> para obtener detalles sobre todas las propiedades y métodos disponibles.<a name="sequencing"></a></p>
+
+
+<p className="p"> See the <a class="" href="/docs/#/HTML5/GSAP/TweenLite/" target="_self">TweenLite Documentation</a> for details about all of the properties and methods available. <a name="sequencing"></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Sequencing and grouping tweens with TimelineLite</h2>
+
+
+
+
+
+
+
+
+
+
+<p className="it">A diferencia de la mayoría de las otras herramientas de animación JS, secuenciación en GSAP es mucho más flexible que la construcción de una cola de los preadolescentes que se ejecutan una sola después de los otros. Usted tiene el control completo sobre el tiempo relativo de cada uno de Tween - pueden solaparse tanto como usted desee. Y se puede controlar secuencias enteras en su conjunto, revertir sin problemas en cualquier momento y saltar a cualquier punto, ajustar la escala de tiempo, etc., y todo lo que hace que en el orden correcto. <a href="/sequence-video/">Vea este vídeo</a> para una demostración visual que muestra cómo TimelineLite le puede ahorrar mucho tiempo. Por supuesto, se podría secuenciar preadolescentes utilizando el "retardo" propiedad especial en todos sus preadolescentes, pero que puede complicarse cuando se construye una secuencia larga y más tarde desea cambiar el tiempo de algo pronto en la secuencia (que tendría que ajustar todos los valores de retardo en preadolescentes después de eso). Además de que sería un dolor para controlar toda la secuencia, como para hacer una pausa () o reanudar () o hacia atrás () el grupo en la marcha. La secuenciación es mucho más fácil con TimelineLite y su hermano mayor, TimelineMax. Vayamos a un código de ejemplo:</p>
+
+<p className="p">Unlike most other JS animation tools, sequencing in GSAP is much more flexible than building a queue of tweens that run one-after-the-other. You have complete control over the relative timing of each tween - they can overlap as much as you want. And you can control entire sequences as a whole, reverse smoothly anytime, jump to any point, adjust the timeScale, etc. and everything renders in the proper order. <a href="/sequence-video/">Watch this video</a> for a visual demo showing how TimelineLite can save you a lot of time. Of course you could sequence tweens by using the "delay" special property on all your tweens, but that can get complicated when you build a long sequence and then later want to change the timing of something early in the sequence (you'd have to adjust all the delay values in tweens after that). Plus it would be a pain to control the whole sequence, like to pause() or resume() or reverse() the group on-the-fly. Sequencing is much easier with TimelineLite and its big brother, TimelineMax. Let's jump into some sample code: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="MwBuPhaHL53or1TvwaW" class="pre-container">
+<pre id="nDmZv3uhqrbnbdGuieiW" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//create a TimelineLite instance</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> tl </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">TimelineLite</span><span class="pun">();</span><span class="pln">
+
+</span><span class="com">//append a to() tween</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="str">"50%"</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">//add another sequenced tween (by default, tweens are added to the end of the timeline which makes sequencing simple)</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">height</span><span class="pun">:</span><span class="str">"300px"</span><span class="pun">,</span><span class="pln"> ease</span><span class="pun">:</span><span class="typ">Elastic</span><span class="pun">.</span><span class="pln">easeOut</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">//offset the next tween by 0.75 seconds so there's a gap between the end of the previous tween and this new one</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">opacity</span><span class="pun">:</span><span class="lit">0.5</span><span class="pun">},</span><span class="pln"> </span><span class="str">"+=0.75"</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//overlap the next tween with the previous one by 0.5 seconds (notice the negative offset at the end)</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">backgroundColor</span><span class="pun">:</span><span class="str">"#FF0000"</span><span class="pun">},</span><span class="pln"> </span><span class="str">"-=0.5"</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//animate 3 elements (e1, e2, and e3) to a rotation of 60 degrees, and stagger their start times by 0.2 seconds</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">staggerTo</span><span class="pun">([</span><span class="pln">e1</span><span class="pun">,</span><span class="pln"> e2</span><span class="pun">,</span><span class="pln"> e3</span><span class="pun">],</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">rotation</span><span class="pun">:</span><span class="lit">60</span><span class="pun">},</span><span class="pln"> </span><span class="lit">0.2</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//then call myFunction()</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">call</span><span class="pun">(</span><span class="pln">myFunction</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//now we can control the entire sequence with the standard methods like these:</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">pause</span><span class="pun">();</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">resume</span><span class="pun">();</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">restart</span><span class="pun">();</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">reverse</span><span class="pun">();</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">play</span><span class="pun">();</span><span class="pln">
+
+</span><span class="com">//jump to exactly 2.5 seconds into the animation</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">seek</span><span class="pun">(</span><span class="lit">2.5</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//slow down playback to 10% of the normal speed</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">timeScale</span><span class="pun">(</span><span class="lit">0.1</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//add a label named "myLabel" at exactly 3 seconds:</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"myLabel"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//add a tween that starts at "myLabel"</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln"> </span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">scale</span><span class="pun">:</span><span class="lit">0.5</span><span class="pun">}),</span><span class="pln"> </span><span class="str">"myLabel"</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//jump to "myLabel" and play from there:</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">play</span><span class="pun">(</span><span class="str">"myLabel"</span><span class="pun">);</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Piense en una línea de tiempo (como en un TimelineLite o instancia TimelineMax) como una colección de tweens que están posicionadas en lugares específicos sobre que línea de tiempo. Se controla su reproducción. Líneas de tiempo se pueden anidar dentro de otras líneas de tiempo tan profundamente como usted quiera. Este es un concepto muy potente, ya que le permite controlar secuencias enteras de una manera modular. Imagínese 100 caracteres animación de forma individual en su lugar de forma escalonada (100 preadolescentes). Podrían todos pueden agrupar en una instancia TimelineLite y luego controlados en su conjunto (utilizando métodos comunes como Pausa (), resume (), reverse (), restart (), etc.). De hecho, se podría crear funciones que devuelven animaciones envueltos en una TimelineLite de modo que usted puede construir fácilmente una animación más grande, más compleja de una manera modular. Un concepto fundamental para entender es que cada Tween se inserta en una línea de tiempo. Por defecto, es la raíz de tiempo dentro del motor. Cuando una línea de tiempo está jugando, avanza en su cabeza lectora virtual. Si se invierte () una línea de tiempo, la cabeza lectora se desplaza en la dirección opuesta de vuelta hacia su comienzo. Como cabeza lectora de la línea de tiempo se encuentra con preadolescentes, que los reproduce en consecuencia. Por ejemplo, si la cabeza lectora se posiciona a mitad de camino a través de una interpolación, que tween rendirá como si está terminado 50%. Si timeScale de la línea de tiempo se establece en 0,5, que haría que la cabeza lectora se desplace a la mitad de velocidad. En consecuencia, cualquier preadolescentes que encuentra también aparecerían a progresar a media velocidad. Una vez que el cuelgue de cómo funcionan las líneas de tiempo, <strong>que puede revolucionar su flujo de trabajo de animación</strong> . Al igual que los preadolescentes, líneas de tiempo juegan inmediatamente por defecto, pero se puede hacer una pausa en ellos inicialmente utilizando <code>pause()</code>o estableciendo <code>paused:true</code>en el parámetro VARS del constructor. Hay algunos métodos bastante disponibles en las clases de línea que le dan un control preciso, y animo a mirar a través de la <a class="" href="/docs/#/HTML5/GSAP/TimelineLite/" target="_self">documentación TimelineLite</a> para ver lo que está disponible. Si usted puede pensar en algo que te gusta hacer, lo más probable es que hay una manera de hacerlo.<a name="tweenmax"></a></p>
+
+<p className="p"> Think of a timeline (as in a TimelineLite or TimelineMax instance) like a collection of tweens that are positioned at specific places on that timeline. It controls their playback. Timelines can be nested inside other timelines as deeply as you want. This is a very powerful concept because it allows you to control entire sequences in a modular way. Imagine 100 characters individually animating into place in a staggered fashion (100 tweens). They could all be grouped into a TimelineLite instance and then controlled as a whole (using common methods like pause(), resume(), reverse(), restart(), etc.). In fact, you could create functions that return animations wrapped in a TimelineLite so that you can easily build a larger, more complex animation in a modular way. A central concept to grasp is that every tween is inserted into a timeline. By default, it's the root timeline inside the engine. When a timeline is playing, its virtual playhead advances. If you reverse() a timeline, the playhead travels in the opposite direction back towards its beginning. As the timeline's playhead encounters tweens, it plays them accordingly. For example, if the playhead is positioned halfway through a tween, that tween will render as though it is 50% finished. If the timeline's timeScale is set to 0.5, that would cause the playhead to travel at half speed. Consequently, any tweens it encounters would also appear to progress at half speed. Once you get the hang of how timelines work, <strong>they can revolutionize your animation workflow</strong>. Just like tweens, timelines play immediately by default but you can pause them initially using <code>pause()</code> or by setting <code>paused:true</code> in the vars parameter of the constructor. There are quite a few methods available in the timeline classes that give you precise control, and we'd encourage you to look through the <a class="" href="/docs/#/HTML5/GSAP/TimelineLite/" target="_self">TimelineLite Documentation</a> to see what's available. If you can think of something you'd like to do, chances are there's a way to do it. <a name="tweenmax"></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Stepping up to TweenMax and TimelineMax</h2>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Tamaño de archivo apretada, un rendimiento excepcional, y una característica relativamente robusto establecer prioridades estaban todos en TweenLite y TimelineLite pero hubo algunas características adicionales que queríamos añadir sin inflar los componentes principales. Introduzca TweenMax y TimelineMax. TweenMax extiende TweenLite, haciendo todo lo que hace más extras como repetición, yoyo, repeatDelay, y mucho más. TimelineMax hace lo mismo para TimelineLite. Además, cuando se carga el archivo JavaScript TweenMax, también incluye un montón de extras de forma automática como CSSPlugin, RoundPropsPlugin, BezierPlugin, AttrPlugin, DirectionalRotationPlugin, TimelineLite, TimelineMax y EasePack. Básicamente, si el tamaño del archivo es una preocupación importante para usted, seguir con TweenLite y cargar manualmente Cualquiera que sea plugins o alivia necesita. De lo contrario, utilice TweenMax, ya que ofrece la característica final que se propuso con las mínimas molestias. TweenMax usa exactamente la misma sintaxis que TweenLite. De hecho, una instancia TweenMax <strong>es</strong> una instancia TweenLite. Si usted tiene un proyecto que ya esté usando TweenLite, literalmente, podría hacer una búsqueda y reemplazo para todas las instancias "TweenLite" con "TweenMax" y que sería un gran trabajo. TweenMax solo reconoce algunas propiedades especiales adicionales, por ejemplo:</p>
+
+<p className="p">Tight file size, outstanding performance, and a relatively robust feature set were all priorities in TweenLite and TimelineLite but there were some extra features that we wanted to add without bloating the core components. Enter TweenMax and TimelineMax. TweenMax extends TweenLite, doing EVERYTHING it does plus extras like repeat, yoyo, repeatDelay, and more. TimelineMax does the same for TimelineLite. Plus when you load the TweenMax JavaScript file, it also includes a bunch of extras automatically like CSSPlugin, RoundPropsPlugin, BezierPlugin, AttrPlugin, DirectionalRotationPlugin, TimelineLite, TimelineMax, and EasePack. Basically, if file size is a major concern for you, stick with TweenLite and manually load whichever plugins or eases you need. Otherwise, use TweenMax because it delivers the ultimate feature set with minimal hassle. TweenMax uses exactly the same syntax as TweenLite. In fact, a TweenMax instance <strong>is</strong> a TweenLite instance. If you have a project that already uses TweenLite you could literally do a search and replace for all "TweenLite" instances with "TweenMax" and it would work great. TweenMax just recognizes some extra special properties, for example: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="nkpLMqEgXPbUau2KsGCF" class="pre-container">
+<pre id="Ymi8AZDScWNYrnrgFCfl" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//repeat this tween 3 times (for a total of 4 cycles) and wait 0.5 seconds between each repeat</span><span class="pln">
+</span><span class="typ">TweenMax</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="str">"50%"</span><span class="pun">,</span><span class="pln"> repeat</span><span class="pun">:</span><span class="lit">3</span><span class="pun">,</span><span class="pln"> repeatDelay</span><span class="pun">:</span><span class="lit">0.5</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">//fade the opacity up and down infinitely (a repeat of -1 means infinitely)</span><span class="pln">
+</span><span class="typ">TweenMax</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">opacity</span><span class="pun">:</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> repeat</span><span class="pun">:-</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> yoyo</span><span class="pun">:</span><span class="kwd">true</span><span class="pun">});</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it"> TimelineMax también ofrece la repetición, yoyo, y repeatDelay así como los métodos convenientes como tweenTo (), currentLabel (), getLabelBefore () y getLabelAfter () y más. </p>
+
+<p className="p"> TimelineMax also offers repeat, yoyo, and repeatDelay as well as convenient methods like tweenTo(), currentLabel(), getLabelBefore() and getLabelAfter() and more. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="f5rqAua19MHLaiNXl5n0" class="pre-container">
+<pre id="BpC2M3iqFyM2TaNEBrVx" class="shortcode prettyprint lang-js   prettyprinted"><span class="kwd">var</span><span class="pln"> tl </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">TimelineMax</span><span class="pun">({</span><span class="pln">repeat</span><span class="pun">:</span><span class="lit">3</span><span class="pun">,</span><span class="pln"> yoyo</span><span class="pun">:</span><span class="kwd">true</span><span class="pun">,</span><span class="pln"> repeatDelay</span><span class="pun">:</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> onComplete</span><span class="pun">:</span><span class="pln">timelineDone</span><span class="pun">,</span><span class="pln"> onCompleteParams</span><span class="pun">:[</span><span class="str">"test1"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"test2"</span><span class="pun">]});</span><span class="pln">
+tl</span><span class="pun">.</span><span class="pln">staggerTo</span><span class="pun">([</span><span class="pln">e1</span><span class="pun">,</span><span class="pln"> e2</span><span class="pun">,</span><span class="pln"> e3</span><span class="pun">],</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">opacity</span><span class="pun">:</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> rotation</span><span class="pun">:</span><span class="lit">360</span><span class="pun">},</span><span class="pln"> </span><span class="lit">0.2</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">function</span><span class="pln"> timelineDone</span><span class="pun">(</span><span class="pln">p1</span><span class="pun">,</span><span class="pln"> p2</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"timeline done. params: "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> p1 </span><span class="pun">+</span><span class="pln"> </span><span class="str">" and "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> p2</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Overwriting other tweens</h2>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Un aspecto a menudo se pasa por alto de la interpolación es cómo (y si y cuándo) tweens sobrescriben otros tweens del mismo objeto. Por ejemplo, digamos que usted tiene un botón con onmouseover y onmouseout manipuladores que interpolar su mayor opacidad en el evento "sobre" y menor en el evento "fuera". Para complicar más las cosas, digamos que el "sobre" Tween dura 2 segundos y el "fuera" Tween tiene una duración de 1 segundo. Lo que debería ocurrir si el usuario se da la vuelta de entrada / salida / sobre / fuera rápidamente? Ver el problema? Si se permite que los preadolescentes para funcionar sin ningún tipo de sobreescritura, van a construir y luchan entre sí (uno tratando de interpolar el mayor opacidad, y la otra inferior). En este ejemplo, cuando el usuario se da la vuelta, a 2 segundos tween sería empezar a aumentar la opacidad a 1, pero si el usuario salió de 0,2 segundos más tarde, otro tween comenzaría, haciendo que la opacidad a disminuir. Cuando eso termina Tween 1 segundo después, el "sobre" Tween está todavía en curso (ya que tuvo una duración de 2 segundos), por lo que la opacidad de repente salta hacia arriba y terminar en un valor de 1 a pesar de que el usuario puso en marcha! No se preocupe. Te tenemos cubierto. Por defecto, cada vez que un ejemplo TweenLite hace por primera vez (después de cualquier retardo), se analizan todos los demás tweens activos de la misma diana y controles para las propiedades de la superposición individuales. Si encuentra alguno, que mata las superposiciones ofensivos (de nuevo, sólo las propiedades individuales). Este modo de sobreescritura se llama <code>"auto"</code>y es típicamente el más intuitivo. Sin embargo, puede haber ocasiones en las que desea que el nuevo Tween para matar todos los otros preadolescentes de un mismo objeto, independientemente de sus horas de inicio o propiedades que se solapan. Eso es lo que el <code>"all"</code>modo de sobreescritura es para. Y para saltar sobrescribir por completo, se puede definir un modo de sobreescritura de <code>"none"</code>. Hay varios otros modos para elegir también, así que echa un vistazo a los documentos completos para más detalles. Se define un modo de sobreescritura con el "sobrescribir" propiedad especial como este:</p>
+
+<p className="p">An often overlooked aspect of tweening is how (and if and when) tweens overwrite other tweens of the same object. For example, let's say you have a button with onmouseover and onmouseout handlers that tween its opacity higher on the "over" event and lower on "out" event. To further complicate things, let's say the "over" tween lasts 2 seconds and the "out" tween lasts 1 second. What should happen if the user rolls over/out/over/out quickly? See the problem? If tweens are allowed to run without any kind of overwriting, they'll build up and fight with each other (one trying to tween the opacity higher, and the other lower). In this example, when the user rolls over, a 2-second tween would start increasing the opacity to 1, but if the user rolled off 0.2 seconds later, another tween would begin, causing the opacity to decrease. When that tween finishes 1 second later, the "over" tween is still going (since it had a duration of 2 seconds), so the opacity would suddenly jump up and finish off at a value of 1 even though the user rolled out! Don't worry. We've got you covered. By default, whenever a TweenLite instance renders for the first time (after any delay), it analyzes all other active tweens of the same target and checks for individual overlapping properties. If it finds any, it kills the offending overlaps (again, only the individual properties). This overwrite mode is called <code>"auto"</code> and it is typically the most intuitive. However, there may be times when you want the new tween to kill all other tweens of the same object regardless of their start times or overlapping properties. That is what the <code>"all"</code> overwrite mode is for. And to skip overwriting altogether, you can define an overwrite mode of <code>"none"</code>. There are several other modes to choose from too, so check out the full docs for details. You define an overwrite mode with the "overwrite" special property like this: </p>
+
+
+
+<div id="Rqh1J4Y49k4Mt7hMYpFd" class="pre-container">
+<pre id="D82vjQ8Ug2rw8TWIn5Kx" class="shortcode prettyprint lang-js   prettyprinted"><span class="com">//overwrites all tweens of myElement immediately</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">myElement</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="str">"50%"</span><span class="pun">,</span><span class="pln"> overwrite</span><span class="pun">:</span><span class="str">"all"</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">//doesn't overwrite anything (allows conflicts)</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">myElement</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="str">"50%"</span><span class="pun">,</span><span class="pln"> overwrite</span><span class="pun">:</span><span class="str">"none"</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">//overwrites only individual overlapping properties on concurrent tweens of myElement (this is the default, so you typically don't need to specify any overwrite in this scenario)</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">to</span><span class="pun">(</span><span class="pln">myElement</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">width</span><span class="pun">:</span><span class="str">"50%"</span><span class="pun">,</span><span class="pln"> overwrite</span><span class="pun">:</span><span class="str">"auto"</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">//set the default overwrite mode to "all" instead of "auto"</span><span class="pln">
+</span><span class="typ">TweenLite</span><span class="pun">.</span><span class="pln">defaultOverwrite </span><span class="pun">=</span><span class="pln"> </span><span class="str">"all"</span><span class="pun">;</span></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+<p className="it">Por supuesto que puede matar manualmente todas las interpolaciones de un objeto en particular mediante el <code>TweenLite.killTweensOf()</code>método, pero lo bueno de definir los modos de sobreescritura es que la sobreescritura no entran en juego hasta que sea necesario (cuando la interpolación hace por primera vez), que es esencial cuando se trabaja con secuencias complejas.<a name="faq"></a></p>
+
+<p className="p"> Of course you can manually kill all the tweens of a particular object using the <code>TweenLite.killTweensOf()</code> method, but the nice thing about defining overwrite modes is that the overwriting doesn't kick in until it's necessary (when the tween renders for the first time) which is essential when working with complex sequences. <a name="faq"></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</body>
